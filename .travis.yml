@@ -1,11 +1,11 @@
 languange: php
 php:
-  - 5.6
-  - 7.0
-  - 7.1
+    - 5.6
+    - 7.0
+    - 7.1
 
 before_script:
-  - composer install
+    - composer install
 
 script:
-  - phpunit
+    - phpunit
