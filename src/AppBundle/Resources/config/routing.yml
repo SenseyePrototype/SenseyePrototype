@@ -1,0 +1,4 @@
+
+list:
+    path:     /developers
+    defaults: { _controller: AppBundle:Developer:list }
