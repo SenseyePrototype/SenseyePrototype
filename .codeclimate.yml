@@ -1,3 +1,6 @@
+languages:
+    - php
+
 exclude_paths:
     - app/*
     - tests/*
