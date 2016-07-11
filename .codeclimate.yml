@@ -1,5 +1,9 @@
-languages:
-    - php
+engines:
+    duplication:
+        enabled: true
+        config:
+            languages:
+                - php
 
 exclude_paths:
     - app/*
