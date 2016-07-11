@@ -8,9 +8,8 @@ class DeveloperController extends Controller
 {
     public function listAction()
     {
-        return $this->render('AppBundle:Developer:list.html.twig', array(
+        return $this->render('AppBundle:Developer:list.html.twig', [
             // ...
-        ));
+        ]);
     }
-
 }
