@@ -1,0 +1,6 @@
+exclude_paths:
+    - app/*
+    - tests/*
+    - web/*
+    - bin/*
+    - var/*
