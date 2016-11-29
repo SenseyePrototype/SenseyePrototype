@@ -1,1 +1,3 @@
 services:
+    senseye.elasticsearch.client:
+        class: 'Elastica\Client'
