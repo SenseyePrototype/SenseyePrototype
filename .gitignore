@@ -15,4 +15,6 @@
 /vendor/
 /web/bundles/
 composer.lock
+
 .php_cs.cache
+.idea
