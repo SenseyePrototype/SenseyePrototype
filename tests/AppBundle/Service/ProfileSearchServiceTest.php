@@ -3,6 +3,7 @@
 namespace Tests\AppBundle\Service;
 
 use Elastica\Document;
+use Elastica\Index;
 
 class ProfileSearchServiceTest extends AbstractServiceTest
 {
@@ -13,17 +14,37 @@ class ProfileSearchServiceTest extends AbstractServiceTest
         $index = $client->getIndex('developer');
         $type = $index->getType('profile');
 
-        $data = [
-            'title' => 'PHP developer',
-            'description' => 'Develop current project'
+        $this->clearIndex($index);
+
+        $profiles = [
+            [
+                'hash_code' => md5(1),
+                'title' => 'PHP developer',
+                'cities' => [
+                    [
+                        'alias' => 'kiev',
+                        'name' => 'Київ',
+                    ]
+                ],
+                'description' => 'Develop current project'
+            ]
         ];
 
-        $type->addDocument(new Document(1, $data));
+        foreach ($profiles as $profile) {
+            $type->addDocument(new Document($profile['hash_code'], $profile));
+        }
 
         $index->refresh();
 
         $result = $index->search();
 
-        $this->assertSame($data, $result[0]->getSource());
+        $this->assertSame($profiles, [$result[0]->getSource()]);
+    }
+
+    protected function clearIndex(Index $index)
+    {
+        try {
+            $index->delete();
+        } catch (\Exception $e) {}
     }
 }
