@@ -21,6 +21,13 @@ class SearchRequestAnalyzerTestCase extends TestCase
         ],
     ];
 
+    private $availableRange = [
+        'salary' => [
+            'from' => 100,
+            'to' => 25000,
+        ]
+    ];
+
     public function testEmpty()
     {
         $searchCriteria = $this
@@ -48,6 +55,29 @@ class SearchRequestAnalyzerTestCase extends TestCase
             );
 
         $this->assertSame($multi, $searchCriteria->getMultiMap());
+    }
+
+    /**
+     * @dataProvider salaryOutRangeDataProvider
+     * @param $salary
+     */
+    public function testSalaryOutRange($salary)
+    {
+        $searchCriteria = $this
+            ->getService()
+            ->analyze(
+                new ProfileAvailableCriteria([], $this->availableRange),
+                new Request(['salary' => $salary])
+            );
+
+        $this->assertSame(false, $searchCriteria->getSalaryRange()->exists());
+    }
+
+    public function salaryOutRangeDataProvider()
+    {
+        yield [''];
+        yield ['0'];
+        yield ['100'];
     }
 
     public function cityDataProvider()

@@ -40,4 +40,12 @@ class Range
     {
         return $this->to;
     }
+
+    /**
+     * @return bool
+     */
+    public function exists()
+    {
+        return $this->from || $this->to;
+    }
 }
