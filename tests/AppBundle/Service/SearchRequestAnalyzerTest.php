@@ -35,25 +35,25 @@ class SearchRequestAnalyzerTestCase extends TestCase
 
     /**
      * @dataProvider cityDataProvider
-     * @param array $cities
-     * @param $expected
+     * @param array $query
+     * @param $multi
      */
-    public function testCity($cities, $expected)
+    public function testMulti(array $query, array $multi)
     {
         $searchCriteria = $this
             ->getService()
             ->analyze(
                 new ProfileAvailableCriteria($this->availableMulti, []),
-                new Request(['cities' => $cities])
+                new Request($query)
             );
 
-        $this->assertSame($expected, $searchCriteria->getMultiMap());
+        $this->assertSame($multi, $searchCriteria->getMultiMap());
     }
 
     public function cityDataProvider()
     {
         yield [
-            'lviv',
+            ['cities' => 'lviv'],
             [
                 'cities' => [
                     [
@@ -65,23 +65,7 @@ class SearchRequestAnalyzerTestCase extends TestCase
         ];
 
         yield [
-            'lviv,kiev',
-            [
-                'cities' => [
-                    [
-                        'alias' => 'kiev',
-                        'name' => 'Київ',
-                    ],
-                    [
-                        'alias' => 'lviv',
-                        'name' => 'Львів',
-                    ],
-                ],
-            ],
-        ];
-
-        yield [
-            ',lviv,,,kiev,',
+            ['cities' => 'lviv,kiev'],
             [
                 'cities' => [
                     [
@@ -97,12 +81,28 @@ class SearchRequestAnalyzerTestCase extends TestCase
         ];
 
         yield [
-            'somelviv,somekiev',
+            ['cities' => ',lviv,,,kiev,'],
+            [
+                'cities' => [
+                    [
+                        'alias' => 'kiev',
+                        'name' => 'Київ',
+                    ],
+                    [
+                        'alias' => 'lviv',
+                        'name' => 'Львів',
+                    ],
+                ],
+            ],
+        ];
+
+        yield [
+            ['cities' => 'somelviv,somekiev'],
             [],
         ];
 
         yield [
-            ['somelviv,somekiev'],
+            ['cities' => ['somelviv,somekiev']],
             [],
         ];
     }
