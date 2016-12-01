@@ -11,6 +11,18 @@ class ProfileSearchRequestAnalyzer
 {
     public function analyze(ProfileAvailableCriteria $available, Request $request)
     {
-        return new ProfileSearchCriteria([], new Range());
+        $resultMulti = [];
+
+        foreach ($available->getMultiMap() as $criteriaName => $availableList) {
+            if ($filter = $request->query->get($criteriaName)) {
+                $aliases = array_column($availableList, null, 'alias');
+
+                $resultMulti[$criteriaName] = [
+                    $aliases[$filter]
+                ];
+            }
+        }
+
+        return new ProfileSearchCriteria($resultMulti, new Range());
     }
 }
