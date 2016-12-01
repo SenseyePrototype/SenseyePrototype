@@ -14,12 +14,14 @@ class ProfileSearchRequestAnalyzer
         $resultMulti = [];
 
         foreach ($available->getMultiMap() as $criteriaName => $availableList) {
-            if ($filter = $request->query->get($criteriaName)) {
-                $aliases = array_column($availableList, null, 'alias');
+            if ($filterString = $request->query->get($criteriaName)) {
+                $aliasSourceMap = array_column($availableList, null, 'alias');
 
-                $resultMulti[$criteriaName] = [
-                    $aliases[$filter]
-                ];
+                $requestAliases = explode(',', $filterString);
+
+                if ($intersect = array_intersect_key($aliasSourceMap, array_flip($requestAliases))) {
+                    $resultMulti[$criteriaName] = array_values($intersect);
+                }
             }
         }
 
