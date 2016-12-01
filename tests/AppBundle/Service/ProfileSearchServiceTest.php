@@ -26,7 +26,33 @@ class ProfileSearchServiceTest extends AbstractServiceTest
                         'name' => 'Київ',
                     ]
                 ],
-                'description' => 'Develop current project'
+                'description' => 'Develop current project',
+                'salary' => 5000,
+                'experience' => 5,
+                'profiles' => [
+                    [
+                        'alias' => 'github',
+                        'name' => 'GitHub',
+                        'link' => 'https://github.com/SenseyePrototype',
+                        'verified' => true,
+                    ]
+                ],
+                'link' => 'http://senseye.project/developer/1',
+                'created' => date('Y-m-d H:i:s'),
+                'skills' => [
+                    [
+                        'alias' => 'php',
+                        'name' => 'PHP',
+                    ],
+                    [
+                        'alias' => 'mysql',
+                        'name' => 'MySQL',
+                    ],
+                    [
+                        'alias' => 'javascript',
+                        'name' => 'JavaScript',
+                    ],
+                ]
             ]
         ];
 
