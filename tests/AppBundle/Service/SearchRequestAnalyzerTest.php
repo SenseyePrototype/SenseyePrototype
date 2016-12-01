@@ -33,26 +33,36 @@ class SearchRequestAnalyzerTestCase extends TestCase
         $this->assertInstanceOf(ProfileSearchCriteria::class, $searchCriteria);
     }
 
-    public function testCity()
+    /**
+     * @dataProvider cityDataProvider
+     * @param array $cities
+     * @param $expected
+     */
+    public function testCity($cities, $expected)
     {
         $searchCriteria = $this
             ->getService()
             ->analyze(
                 new ProfileAvailableCriteria($this->availableMulti, []),
-                new Request(['cities' => 'lviv'])
+                new Request(['cities' => $cities])
             );
 
-        $this->assertSame(
+        $this->assertSame($expected, $searchCriteria->getMultiMap());
+    }
+
+    public function cityDataProvider()
+    {
+        yield [
+            'lviv',
             [
                 'cities' => [
                     [
                         'alias' => 'lviv',
                         'name' => 'Львів',
                     ],
-                ]
+                ],
             ],
-            $searchCriteria->getMultiMap()
-        );
+        ];
     }
 
     private function getService()
