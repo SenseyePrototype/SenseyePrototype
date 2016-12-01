@@ -26,6 +26,32 @@ class ProfileSearchRequestAnalyzer
             }
         }
 
-        return new ProfileSearchCriteria($resultMulti, new Range());
+        return new ProfileSearchCriteria($resultMulti, $this->getSalary($available->getRangeMap(), $request));
+    }
+
+    private function getSalary(array $rangeMap, Request $request)
+    {
+        $salary = $request->query->get('salary');
+
+        if (isset($rangeMap['salary']) && is_string($salary)) {
+            $range = explode('-', $salary);
+
+            $sourceFrom = (int)array_shift($range);
+            $sourceTo = (int)array_shift($range);
+
+            $from = $rangeMap['salary']['from'] < $sourceFrom && $sourceFrom <= $rangeMap['salary']['to']
+                ? $sourceFrom
+                : null;
+
+            $to = $sourceTo >= $from
+                && $rangeMap['salary']['from'] <= $sourceTo
+                && $sourceTo < $rangeMap['salary']['to']
+                ? $sourceTo
+                : null;
+
+            return new Range($from, $to);
+        }
+
+        return new Range();
     }
 }

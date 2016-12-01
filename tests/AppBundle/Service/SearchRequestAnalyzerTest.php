@@ -86,6 +86,8 @@ class SearchRequestAnalyzerTestCase extends TestCase
         yield ['1000-1500', 1000, 1500];
         yield ['1000-25000', 1000, null];
         yield ['1000-25001', 1000, null];
+        yield ['-100', null, 100];
+        yield ['-2000', null, 2000];
     }
 
     /**
@@ -109,8 +111,14 @@ class SearchRequestAnalyzerTestCase extends TestCase
         yield [''];
         yield ['0'];
         yield ['100'];
-        yield ['25000'];
+        yield ['25001'];
         yield ['125000'];
+
+        yield ['one'];
+        yield ['one-'];
+        yield ['-two'];
+        yield ['one-two'];
+        yield [['one-two']];
     }
 
     public function cityDataProvider()
