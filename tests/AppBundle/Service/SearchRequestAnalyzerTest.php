@@ -79,6 +79,32 @@ class SearchRequestAnalyzerTestCase extends TestCase
                 ],
             ],
         ];
+
+        yield [
+            ',lviv,,,kiev,',
+            [
+                'cities' => [
+                    [
+                        'alias' => 'kiev',
+                        'name' => 'Київ',
+                    ],
+                    [
+                        'alias' => 'lviv',
+                        'name' => 'Львів',
+                    ],
+                ],
+            ],
+        ];
+
+        yield [
+            'somelviv,somekiev',
+            [],
+        ];
+
+        yield [
+            ['somelviv,somekiev'],
+            [],
+        ];
     }
 
     private function getService()
