@@ -8,7 +8,20 @@ use Symfony\Component\HttpFoundation\Request;
 
 class SearchRequestAnalyzerTestCase extends TestCase
 {
-    public function test()
+    private $availableMulti = [
+        'cities' => [
+            [
+                'alias' => 'kiev',
+                'name' => 'Київ',
+            ],
+            [
+                'alias' => 'lviv',
+                'name' => 'Львів',
+            ],
+        ],
+    ];
+
+    public function testEmpty()
     {
         $searchCriteria = $this
             ->getService()
@@ -18,6 +31,28 @@ class SearchRequestAnalyzerTestCase extends TestCase
             );
 
         $this->assertInstanceOf(ProfileSearchCriteria::class, $searchCriteria);
+    }
+
+    public function testCity()
+    {
+        $searchCriteria = $this
+            ->getService()
+            ->analyze(
+                new ProfileAvailableCriteria($this->availableMulti, []),
+                new Request(['cities' => 'lviv'])
+            );
+
+        $this->assertSame(
+            [
+                'cities' => [
+                    [
+                        'alias' => 'lviv',
+                        'name' => 'Львів',
+                    ],
+                ]
+            ],
+            $searchCriteria->getMultiMap()
+        );
     }
 
     private function getService()

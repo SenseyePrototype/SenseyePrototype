@@ -7,22 +7,22 @@ class ProfileAvailableCriteria
     /**
      * @var array
      */
-    private $rangeMap;
-
-    /**
-     * @var array 
-     */
     private $multiMap;
 
     /**
-     * ProfileAvailableCriteria constructor.
-     * @param array $rangeMap
-     * @param array $multiMap
+     * @var array
      */
-    public function __construct(array $rangeMap, array $multiMap)
+    private $rangeMap;
+
+    /**
+     * ProfileAvailableCriteria constructor.
+     * @param array $multiMap
+     * @param array $rangeMap
+     */
+    public function __construct(array $multiMap, array $rangeMap)
     {
-        $this->rangeMap = $rangeMap;
         $this->multiMap = $multiMap;
+        $this->rangeMap = $rangeMap;
     }
 
     /**
