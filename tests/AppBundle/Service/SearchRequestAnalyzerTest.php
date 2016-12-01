@@ -58,6 +58,37 @@ class SearchRequestAnalyzerTestCase extends TestCase
     }
 
     /**
+     * @dataProvider salaryDataProvider
+     * @param $salary
+     * @param $from
+     * @param $to
+     */
+    public function testSalary($salary, $from, $to)
+    {
+        $searchCriteria = $this
+            ->getService()
+            ->analyze(
+                new ProfileAvailableCriteria([], $this->availableRange),
+                new Request(['salary' => $salary])
+            );
+
+        $this->assertSame($from, $searchCriteria->getSalaryRange()->getFrom());
+        $this->assertSame($to, $searchCriteria->getSalaryRange()->getTo());
+        $this->assertSame(true, $searchCriteria->getSalaryRange()->exists());
+    }
+
+    public function salaryDataProvider()
+    {
+        yield ['101', 101, null];
+        yield ['107-', 107, null];
+        yield ['108-1', 108, null];
+        yield ['1000-1000', 1000, 1000];
+        yield ['1000-1500', 1000, 1500];
+        yield ['1000-25000', 1000, null];
+        yield ['1000-25001', 1000, null];
+    }
+
+    /**
      * @dataProvider salaryOutRangeDataProvider
      * @param $salary
      */
@@ -78,6 +109,8 @@ class SearchRequestAnalyzerTestCase extends TestCase
         yield [''];
         yield ['0'];
         yield ['100'];
+        yield ['25000'];
+        yield ['125000'];
     }
 
     public function cityDataProvider()
