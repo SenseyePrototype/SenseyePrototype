@@ -5,7 +5,7 @@ namespace Tests\AppBundle\Service;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-abstract class AbstractServiceTest extends KernelTestCase
+abstract class TestCase extends KernelTestCase
 {
     /**
      * @var ContainerInterface

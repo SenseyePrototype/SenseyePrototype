@@ -1,3 +1,6 @@
 services:
     senseye.elasticsearch.client:
         class: 'Elastica\Client'
+
+    senseye.profile.search.request.analyzer:
+        class: 'AppBundle\Service\ProfileSearchRequestAnalyzer'

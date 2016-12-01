@@ -5,7 +5,7 @@ namespace Tests\AppBundle\Service;
 use Elastica\Document;
 use Elastica\Index;
 
-class ProfileSearchServiceTest extends AbstractServiceTest
+class ProfileSearchTestCase extends TestCase
 {
     public function test()
     {
