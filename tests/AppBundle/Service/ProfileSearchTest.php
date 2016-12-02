@@ -72,6 +72,10 @@ class ProfileSearchTestCase extends TestCase
                     'alias' => 'symfony',
                     'name' => 'Symfony',
                 ],
+                [
+                    'alias' => 'git',
+                    'name' => 'Git',
+                ],
             ]
         ];
 
@@ -114,6 +118,10 @@ class ProfileSearchTestCase extends TestCase
                     'alias' => 'less',
                     'name' => 'LESS',
                 ],
+                [
+                    'alias' => 'git',
+                    'name' => 'Git',
+                ],
             ]
         ];
 
@@ -129,6 +137,10 @@ class ProfileSearchTestCase extends TestCase
         $index->refresh();
 
         $this->assertSame(array_reverse($profiles), $searcher->search($emptySearchCriteria));
+
+        foreach ($this->getBothCriteria() as $criteria) {
+            $this->assertSame(array_reverse($profiles), $searcher->search($criteria));
+        }
 
         foreach ($this->getArchitectCriteria() as $criteria) {
             $this->assertSame([$architect], $searcher->search($criteria));
@@ -150,11 +162,52 @@ class ProfileSearchTestCase extends TestCase
             [
                 'skills' => [
                     [
+                        'alias' => 'php',
+                    ],
+                ]
+            ],
+            new Range()
+        );
+
+        yield new ProfileSearchCriteria(
+            [
+                'skills' => [
+                    [
                         'alias' => 'php'
+                    ],
+                    [
+                        'alias' => 'javascript'
+                    ],
+                    [
+                        'alias' => 'git'
+                    ],
+                ],
+                'profiles' => [
+                    [
+                        'alias' => 'github',
                     ]
                 ]
             ],
-            new Range())
-        ;
+            new Range(5000, 5000)
+        );
+    }
+
+    private function getBothCriteria()
+    {
+        yield new ProfileSearchCriteria(
+            [
+                'skills' => [
+                    [
+                        'alias' => 'git'
+                    ],
+                ],
+                'profiles' => [
+                    [
+                        'alias' => 'github',
+                    ]
+                ]
+            ],
+            new Range(1000, 5000)
+        );
     }
 }
