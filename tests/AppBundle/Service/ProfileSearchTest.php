@@ -2,6 +2,8 @@
 
 namespace Tests\AppBundle\Service;
 
+use AppBundle\Component\ProfileSearchCriteria;
+use AppBundle\Component\Range;
 use Elastica\Document;
 use Elastica\Index;
 
@@ -62,9 +64,8 @@ class ProfileSearchTestCase extends TestCase
 
         $index->refresh();
 
-        $result = $index->search();
-
-        $this->assertSame($profiles, [$result[0]->getSource()]);
+        $searcher = $this->container->get('senseye.profile.searcher');
+        $this->assertSame($profiles, $searcher->search(new ProfileSearchCriteria([], new Range())));
     }
 
     protected function clearIndex(Index $index)

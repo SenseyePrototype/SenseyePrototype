@@ -4,3 +4,8 @@ services:
 
     senseye.profile.search.request.analyzer:
         class: 'AppBundle\Service\ProfileSearchRequestAnalyzer'
+
+    senseye.profile.searcher:
+        class: 'AppBundle\Service\ProfileSearcher'
+        arguments:
+            - '@senseye.elasticsearch.client'
