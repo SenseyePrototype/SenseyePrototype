@@ -29,6 +29,16 @@ class ProfileSearcher
 
         $boolQuery = new BoolQuery();
 
+        if ($criteria->getSalaryRange()->exists()) {
+            $salary = new Query\Range();
+            $param = array_filter([
+                'gte' => $criteria->getSalaryRange()->getFrom(),
+                'lte' => $criteria->getSalaryRange()->getTo(),
+            ]);
+            $salary->setParam('salary', $param);
+            $boolQuery->addFilter($salary);
+        }
+
         $query = new Query($boolQuery);
 
         $resultSet = $searchable->search($query);
