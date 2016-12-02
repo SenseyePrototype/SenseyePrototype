@@ -145,5 +145,16 @@ class ProfileSearchTestCase extends TestCase
     private function getArchitectCriteria()
     {
         yield new ProfileSearchCriteria([], new Range(5000, 5000));
+
+        yield new ProfileSearchCriteria(
+            [
+                'skills' => [
+                    [
+                        'alias' => 'php'
+                    ]
+                ]
+            ],
+            new Range())
+        ;
     }
 }
