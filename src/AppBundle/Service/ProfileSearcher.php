@@ -4,6 +4,8 @@ namespace AppBundle\Service;
 
 use AppBundle\Component\ProfileSearchCriteria;
 use Elastica\Client;
+use Elastica\Query;
+use Elastica\Query\BoolQuery;
 
 class ProfileSearcher
 {
@@ -23,9 +25,13 @@ class ProfileSearcher
 
     public function search(ProfileSearchCriteria $criteria)
     {
-        $search = $this->client->getIndex('developer')->getType('profile');
+        $searchable = $this->client->getIndex('developer')->getType('profile');
 
-        $resultSet = $search->search();
+        $boolQuery = new BoolQuery();
+
+        $query = new Query($boolQuery);
+
+        $resultSet = $searchable->search($query);
 
         $result = [];
 

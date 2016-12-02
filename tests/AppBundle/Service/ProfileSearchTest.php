@@ -18,6 +18,9 @@ class ProfileSearchTestCase extends TestCase
 
         $this->clearIndex($index);
 
+        $emptySearchCriteria = new ProfileSearchCriteria([], new Range());
+        $searcher = $this->container->get('senseye.profile.searcher');
+
         $architect = [
             'hash_code' => md5(1),
             'title' => 'PHP Architect',
@@ -125,14 +128,22 @@ class ProfileSearchTestCase extends TestCase
 
         $index->refresh();
 
-        $searcher = $this->container->get('senseye.profile.searcher');
-        $this->assertSame(array_reverse($profiles), $searcher->search(new ProfileSearchCriteria([], new Range())));
+        $this->assertSame(array_reverse($profiles), $searcher->search($emptySearchCriteria));
+
+        foreach ($this->getArchitectCriteria() as $criteria) {
+            $this->assertSame([$architect], $searcher->search($criteria));
+        }
     }
 
-    protected function clearIndex(Index $index)
+    private function clearIndex(Index $index)
     {
         try {
             $index->delete();
         } catch (\Exception $e) {}
+    }
+
+    private function getArchitectCriteria()
+    {
+        yield new ProfileSearchCriteria([], new Range(5000, 5000));
     }
 }
