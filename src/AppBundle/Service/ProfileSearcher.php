@@ -39,6 +39,16 @@ class ProfileSearcher
             $boolQuery->addFilter($salary);
         }
 
+        if ($criteria->getMultiMap()) {
+            foreach ($criteria->getMultiMap() as $name => $list) {
+                $param = new Query\Terms();
+
+                $param->setTerms("$name.alias", array_column($list, 'alias'));
+
+                $boolQuery->addFilter($param);
+            }
+        }
+
         $query = new Query($boolQuery);
 
         $resultSet = $searchable->search($query);
