@@ -10,6 +10,11 @@ class ProfileSearchCriteria
     private $multiMap;
 
     /**
+     * @var array
+     */
+    private $mustMap;
+
+    /**
      * @var Range|null
      */
     private $salaryRange;
@@ -17,11 +22,13 @@ class ProfileSearchCriteria
     /**
      * ProfileSearchCriteria constructor.
      * @param array $multiMap
+     * @param array $mustMap
      * @param Range|null $salaryRange
      */
-    public function __construct(array $multiMap, $salaryRange)
+    public function __construct(array $multiMap, array $mustMap, $salaryRange)
     {
         $this->multiMap = $multiMap;
+        $this->mustMap = $mustMap;
         $this->salaryRange = $salaryRange;
     }
 
@@ -31,6 +38,14 @@ class ProfileSearchCriteria
     public function getMultiMap()
     {
         return $this->multiMap;
+    }
+
+    /**
+     * @return array
+     */
+    public function getMustMap()
+    {
+        return $this->mustMap;
     }
 
     /**

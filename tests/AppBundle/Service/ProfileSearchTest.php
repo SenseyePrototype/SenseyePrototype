@@ -18,7 +18,7 @@ class ProfileSearchTestCase extends TestCase
 
         $this->clearIndex($index);
 
-        $emptySearchCriteria = new ProfileSearchCriteria([], new Range());
+        $emptySearchCriteria = new ProfileSearchCriteria([], [], new Range());
         $searcher = $this->container->get('senseye.profile.searcher');
 
         $architect = [
@@ -156,9 +156,10 @@ class ProfileSearchTestCase extends TestCase
 
     private function getArchitectCriteria()
     {
-        yield new ProfileSearchCriteria([], new Range(5000, 5000));
+        yield new ProfileSearchCriteria([], [], new Range(5000, 5000));
 
         yield new ProfileSearchCriteria(
+            [],
             [
                 'skills' => [
                     [
@@ -171,6 +172,13 @@ class ProfileSearchTestCase extends TestCase
 
         yield new ProfileSearchCriteria(
             [
+                'profiles' => [
+                    [
+                        'alias' => 'github',
+                    ]
+                ]
+            ],
+            [
                 'skills' => [
                     [
                         'alias' => 'php'
@@ -182,11 +190,6 @@ class ProfileSearchTestCase extends TestCase
                         'alias' => 'git'
                     ],
                 ],
-                'profiles' => [
-                    [
-                        'alias' => 'github',
-                    ]
-                ]
             ],
             new Range(5000, 5000)
         );
@@ -196,16 +199,18 @@ class ProfileSearchTestCase extends TestCase
     {
         yield new ProfileSearchCriteria(
             [
-                'skills' => [
-                    [
-                        'alias' => 'git'
-                    ],
-                ],
                 'profiles' => [
                     [
                         'alias' => 'github',
                     ]
                 ]
+            ],
+            [
+                'skills' => [
+                    [
+                        'alias' => 'git'
+                    ],
+                ],
             ],
             new Range(1000, 5000)
         );

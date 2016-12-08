@@ -11,9 +11,18 @@ class ProfileSearchRequestAnalyzer
 {
     public function analyze(ProfileAvailableCriteria $available, Request $request)
     {
-        $resultMulti = [];
+        return new ProfileSearchCriteria(
+            $this->intersect($available->getMultiMap(), $request),
+            $this->intersect($available->getMustMap(), $request),
+            $this->getSalary($available->getRangeMap(), $request)
+        );
+    }
 
-        foreach ($available->getMultiMap() as $criteriaName => $availableList) {
+    private function intersect(array $map, Request $request)
+    {
+        $result = [];
+
+        foreach ($map as $criteriaName => $availableList) {
             $filter = $request->query->get($criteriaName);
             if (is_string($filter)) {
                 $aliasSourceMap = array_column($availableList, null, 'alias');
@@ -21,12 +30,12 @@ class ProfileSearchRequestAnalyzer
                 $requestAliases = explode(',', $filter);
 
                 if ($intersect = array_intersect_key($aliasSourceMap, array_flip($requestAliases))) {
-                    $resultMulti[$criteriaName] = array_values($intersect);
+                    $result[$criteriaName] = array_values($intersect);
                 }
             }
         }
 
-        return new ProfileSearchCriteria($resultMulti, $this->getSalary($available->getRangeMap(), $request));
+        return $result;
     }
 
     private function getSalary(array $rangeMap, Request $request)

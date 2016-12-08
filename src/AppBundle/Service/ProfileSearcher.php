@@ -39,11 +39,19 @@ class ProfileSearcher
             $boolQuery->addFilter($salary);
         }
 
-        if ($criteria->getMultiMap()) {
-            foreach ($criteria->getMultiMap() as $name => $list) {
-                $param = new Query\Terms();
+        foreach ($criteria->getMultiMap() as $name => $list) {
+            $param = new Query\Terms();
 
-                $param->setTerms("$name.alias", array_column($list, 'alias'));
+            $param->setTerms("$name.alias", array_column($list, 'alias'));
+
+            $boolQuery->addFilter($param);
+        }
+
+        foreach ($criteria->getMustMap() as $name => $list) {
+            foreach ($list as $item) {
+                $param = new Query\Term();
+
+                $param->setTerm("$name.alias", $item['alias']);
 
                 $boolQuery->addFilter($param);
             }
