@@ -171,6 +171,24 @@ class ProfileSearchTestCase extends TestCase
         );
 
         yield new ProfileSearchCriteria(
+            [],
+            [
+                'skills' => [
+                    [
+                        'alias' => 'php'
+                    ],
+                    [
+                        'alias' => 'javascript'
+                    ],
+                    [
+                        'alias' => 'git'
+                    ],
+                ],
+            ],
+            new Range()
+        );
+
+        yield new ProfileSearchCriteria(
             [
                 'profiles' => [
                     [
