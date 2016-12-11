@@ -6,6 +6,7 @@ use AppBundle\Component\ProfileSearchCriteria;
 use Elastica\Client;
 use Elastica\Query;
 use Elastica\Query\BoolQuery;
+use Elastica\Query\MultiMatch;
 
 class ProfileSearcher
 {
@@ -28,6 +29,14 @@ class ProfileSearcher
         $searchable = $this->client->getIndex('developer')->getType('profile');
 
         $boolQuery = new BoolQuery();
+
+        if ($criteria->getFulltext()) {
+            $match = new MultiMatch();
+            $match
+                ->setQuery($criteria->getFulltext())
+                ->setFields(['title']);
+            $boolQuery->addMust($match);
+        }
 
         if ($criteria->getSalaryRange()->exists()) {
             $salary = new Query\Range();

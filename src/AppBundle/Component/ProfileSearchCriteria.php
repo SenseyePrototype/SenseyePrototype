@@ -33,7 +33,7 @@ class ProfileSearchCriteria
      */
     public function __construct($fullText, array $multiMap, array $mustMap, Range $salaryRange)
     {
-        $this->fullText = $fullText;
+        $this->fulltext = $fullText;
         $this->multiMap = $multiMap;
         $this->mustMap = $mustMap;
         $this->salaryRange = $salaryRange;
