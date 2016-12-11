@@ -214,6 +214,8 @@ class ProfileSearchTestCase extends TestCase
             ],
             new Range(5000, 5000)
         );
+
+        yield new ProfileSearchCriteria('architect', [], [], new Range());
     }
 
     private function getBothCriteria()

@@ -20,7 +20,7 @@ class ProfileSearchCriteria
     private $mustMap;
 
     /**
-     * @var Range|null
+     * @var Range
      */
     private $salaryRange;
 
@@ -29,14 +29,22 @@ class ProfileSearchCriteria
      * @param string|null $fullText
      * @param array $multiMap
      * @param array $mustMap
-     * @param Range|null $salaryRange
+     * @param Range $salaryRange
      */
-    public function __construct($fullText, array $multiMap, array $mustMap, $salaryRange)
+    public function __construct($fullText, array $multiMap, array $mustMap, Range $salaryRange)
     {
         $this->fullText = $fullText;
         $this->multiMap = $multiMap;
         $this->mustMap = $mustMap;
         $this->salaryRange = $salaryRange;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getFulltext()
+    {
+        return $this->fulltext;
     }
 
     /**
