@@ -18,7 +18,7 @@ class ProfileSearchTestCase extends TestCase
 
         $this->clearIndex($index);
 
-        $emptySearchCriteria = new ProfileSearchCriteria([], [], new Range());
+        $emptySearchCriteria = new ProfileSearchCriteria(null, [], [], new Range());
         $searcher = $this->container->get('senseye.profile.searcher');
 
         $architect = [
@@ -156,9 +156,10 @@ class ProfileSearchTestCase extends TestCase
 
     private function getArchitectCriteria()
     {
-        yield new ProfileSearchCriteria([], [], new Range(5000, 5000));
+        yield new ProfileSearchCriteria(null, [], [], new Range(5000, 5000));
 
         yield new ProfileSearchCriteria(
+            null,
             [],
             [
                 'skills' => [
@@ -171,6 +172,7 @@ class ProfileSearchTestCase extends TestCase
         );
 
         yield new ProfileSearchCriteria(
+            null,
             [],
             [
                 'skills' => [
@@ -189,6 +191,7 @@ class ProfileSearchTestCase extends TestCase
         );
 
         yield new ProfileSearchCriteria(
+            null,
             [
                 'profiles' => [
                     [
@@ -216,6 +219,7 @@ class ProfileSearchTestCase extends TestCase
     private function getBothCriteria()
     {
         yield new ProfileSearchCriteria(
+            null,
             [
                 'profiles' => [
                     [

@@ -5,6 +5,11 @@ namespace AppBundle\Component;
 class ProfileSearchCriteria
 {
     /**
+     * @var string|null
+     */
+    private $fulltext;
+
+    /**
      * @var array
      */
     private $multiMap;
@@ -21,12 +26,14 @@ class ProfileSearchCriteria
 
     /**
      * ProfileSearchCriteria constructor.
+     * @param string|null $fullText
      * @param array $multiMap
      * @param array $mustMap
      * @param Range|null $salaryRange
      */
-    public function __construct(array $multiMap, array $mustMap, $salaryRange)
+    public function __construct($fullText, array $multiMap, array $mustMap, $salaryRange)
     {
+        $this->fullText = $fullText;
         $this->multiMap = $multiMap;
         $this->mustMap = $mustMap;
         $this->salaryRange = $salaryRange;

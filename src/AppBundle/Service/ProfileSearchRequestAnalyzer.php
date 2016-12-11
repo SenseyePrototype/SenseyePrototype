@@ -12,6 +12,7 @@ class ProfileSearchRequestAnalyzer
     public function analyze(ProfileAvailableCriteria $available, Request $request)
     {
         return new ProfileSearchCriteria(
+            null,
             $this->intersect($available->getMultiMap(), $request),
             $this->intersect($available->getMustMap(), $request),
             $this->getSalary($available->getRangeMap(), $request)
