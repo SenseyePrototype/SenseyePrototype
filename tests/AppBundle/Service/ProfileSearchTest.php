@@ -22,7 +22,7 @@ class ProfileSearchTestCase extends TestCase
         $searcher = $this->container->get('senseye.profile.searcher');
 
         $architect = [
-            'hash_code' => md5(1),
+            'hash_code' => 1,
             'title' => 'PHP Architect',
             'cities' => [
                 [
@@ -80,7 +80,7 @@ class ProfileSearchTestCase extends TestCase
         ];
 
         $designer = [
-            'hash_code' => md5(2),
+            'hash_code' => 2,
             'title' => 'Designer',
             'cities' => [
                 [
@@ -125,10 +125,13 @@ class ProfileSearchTestCase extends TestCase
             ]
         ];
 
-        $profiles = [
-            $architect,
-            $designer,
-        ];
+        $profiles = array_merge(
+            [
+                $architect,
+                $designer,
+            ],
+            $this->getProfiles()
+        );
 
         foreach ($profiles as $profile) {
             $type->addDocument(new Document($profile['hash_code'], $profile));
@@ -136,10 +139,10 @@ class ProfileSearchTestCase extends TestCase
 
         $index->refresh();
 
-        $this->assertSame(array_reverse($profiles), $searcher->search($emptySearchCriteria));
+        $this->assertSameProfiles($profiles, $searcher->search($emptySearchCriteria));
 
         foreach ($this->getBothCriteria() as $criteria) {
-            $this->assertSame(array_reverse($profiles), $searcher->search($criteria));
+            $this->assertSameProfiles([$architect, $designer], $searcher->search($criteria));
         }
 
         foreach ($this->getArchitectCriteria() as $criteria) {
@@ -238,5 +241,50 @@ class ProfileSearchTestCase extends TestCase
             ],
             new Range(1000, 5000)
         );
+    }
+
+    private function getProfiles()
+    {
+        $frontend = [
+            'hash_code' => 3,
+            'title' => 'JavaScript Developer',
+            'cities' => [
+                [
+                    'alias' => 'kiev',
+                    'name' => 'Київ',
+                ]
+            ],
+            'description' => 'Develop awesome project',
+            'salary' => 2500,
+            'experience' => 3,
+            'profiles' => [],
+            'link' => 'http://senseye.project/developer/3',
+            'created' => date('Y-m-d H:i:s'),
+            'skills' => [
+                [
+                    'alias' => 'javascript',
+                    'name' => 'JavaScript',
+                ],
+                [
+                    'alias' => 'git',
+                    'name' => 'Git',
+                ],
+            ]
+        ];
+
+        return [
+            $frontend,
+        ];
+    }
+
+    private function assertSameProfiles(array $expected, array $actual)
+    {
+        $expected = array_column($expected, null, 'hash_code');
+        $actual = array_column($actual, null, 'hash_code');
+
+        ksort($expected);
+        ksort($actual);
+
+        $this->assertSame($expected, $actual);
     }
 }
