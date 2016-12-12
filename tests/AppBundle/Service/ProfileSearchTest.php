@@ -18,7 +18,6 @@ class ProfileSearchTestCase extends TestCase
 
         $this->clearIndex($index);
 
-        $emptySearchCriteria = new ProfileSearchCriteria(null, [], [], new Range());
         $searcher = $this->container->get('senseye.profile.searcher');
 
         $architect = [
@@ -139,7 +138,9 @@ class ProfileSearchTestCase extends TestCase
 
         $index->refresh();
 
-        $this->assertSameProfiles($profiles, $searcher->search($emptySearchCriteria));
+        foreach ($this->getAllCriteria() as $criteria) {
+            $this->assertSameProfiles($profiles, $searcher->search($criteria));
+        }
 
         foreach ($this->getBothCriteria() as $criteria) {
             $this->assertSameProfiles([$architect, $designer], $searcher->search($criteria));
@@ -219,6 +220,11 @@ class ProfileSearchTestCase extends TestCase
         );
 
         yield new ProfileSearchCriteria('architect', [], [], new Range());
+    }
+
+    private function getAllCriteria()
+    {
+        yield new ProfileSearchCriteria(null, [], [], new Range());
     }
 
     private function getBothCriteria()
