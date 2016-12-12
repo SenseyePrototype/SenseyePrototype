@@ -225,6 +225,7 @@ class ProfileSearchTestCase extends TestCase
     private function getAllCriteria()
     {
         yield new ProfileSearchCriteria(null, [], [], new Range());
+        yield new ProfileSearchCriteria('develop', [], [], new Range());
     }
 
     private function getBothCriteria()
