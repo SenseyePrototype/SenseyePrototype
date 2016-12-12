@@ -76,7 +76,7 @@ class ProfileSearchTestCase extends TestCase
                     'alias' => 'git',
                     'name' => 'Git',
                 ],
-            ]
+            ],
         ];
 
         $designer = [
@@ -122,7 +122,7 @@ class ProfileSearchTestCase extends TestCase
                     'alias' => 'git',
                     'name' => 'Git',
                 ],
-            ]
+            ],
         ];
 
         $profiles = array_merge(
@@ -169,7 +169,7 @@ class ProfileSearchTestCase extends TestCase
                     [
                         'alias' => 'php',
                     ],
-                ]
+                ],
             ],
             new Range()
         );
@@ -200,7 +200,7 @@ class ProfileSearchTestCase extends TestCase
                     [
                         'alias' => 'github',
                     ]
-                ]
+                ],
             ],
             [
                 'skills' => [
@@ -230,7 +230,7 @@ class ProfileSearchTestCase extends TestCase
                     [
                         'alias' => 'github',
                     ]
-                ]
+                ],
             ],
             [
                 'skills' => [
@@ -269,11 +269,67 @@ class ProfileSearchTestCase extends TestCase
                     'alias' => 'git',
                     'name' => 'Git',
                 ],
-            ]
+            ],
+        ];
+
+        $android = [
+            'hash_code' => 4,
+            'title' => 'Java Developer',
+            'cities' => [
+                [
+                    'alias' => 'kiev',
+                    'name' => 'Київ',
+                ]
+            ],
+            'description' => 'Develop android application',
+            'salary' => 1500,
+            'experience' => 2,
+            'profiles' => [],
+            'link' => 'http://senseye.project/developer/4',
+            'created' => date('Y-m-d H:i:s'),
+            'skills' => [
+                [
+                    'alias' => 'Java',
+                    'name' => 'Java',
+                ],
+                [
+                    'alias' => 'git',
+                    'name' => 'Git',
+                ],
+            ],
+        ];
+
+        $cpp = [
+            'hash_code' => 5,
+            'title' => 'Senior C++ Developer',
+            'cities' => [
+                [
+                    'alias' => 'kiev',
+                    'name' => 'Київ',
+                ]
+            ],
+            'description' => 'Develop NoSQL database',
+            'salary' => 3500,
+            'experience' => 7,
+            'profiles' => [],
+            'link' => 'http://senseye.project/developer/5',
+            'created' => date('Y-m-d H:i:s'),
+            'skills' => [
+                [
+                    'alias' => 'cpp',
+                    'name' => 'C++',
+                ],
+                [
+                    'alias' => 'git',
+                    'name' => 'Git',
+                ],
+            ],
         ];
 
         return [
             $frontend,
+            $android,
+            $cpp,
         ];
     }
 
