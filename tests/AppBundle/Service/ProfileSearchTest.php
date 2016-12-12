@@ -326,10 +326,94 @@ class ProfileSearchTestCase extends TestCase
             ],
         ];
 
+        $swift = [
+            'hash_code' => 6,
+            'title' => 'iOS Developer',
+            'cities' => [
+                [
+                    'alias' => 'kiev',
+                    'name' => 'Київ',
+                ]
+            ],
+            'description' => 'Develop apple application',
+            'salary' => 2000,
+            'experience' => 3,
+            'profiles' => [],
+            'link' => 'http://senseye.project/developer/6',
+            'created' => date('Y-m-d H:i:s'),
+            'skills' => [
+                [
+                    'alias' => 'swift',
+                    'name' => 'Swift',
+                ],
+                [
+                    'alias' => 'git',
+                    'name' => 'Git',
+                ],
+            ],
+        ];
+
+        $golang = [
+            'hash_code' => 7,
+            'title' => 'Go Developer',
+            'cities' => [
+                [
+                    'alias' => 'kiev',
+                    'name' => 'Київ',
+                ]
+            ],
+            'description' => 'Develop web project',
+            'salary' => 2000,
+            'experience' => 3,
+            'profiles' => [],
+            'link' => 'http://senseye.project/developer/7',
+            'created' => date('Y-m-d H:i:s'),
+            'skills' => [
+                [
+                    'alias' => 'golang',
+                    'name' => 'Go',
+                ],
+                [
+                    'alias' => 'git',
+                    'name' => 'Git',
+                ],
+            ],
+        ];
+
+        $qa = [
+            'hash_code' => 8,
+            'title' => 'QA',
+            'cities' => [
+                [
+                    'alias' => 'kiev',
+                    'name' => 'Київ',
+                ]
+            ],
+            'description' => 'QA Automation Engineer',
+            'salary' => 2000,
+            'experience' => 5,
+            'profiles' => [],
+            'link' => 'http://senseye.project/developer/8',
+            'created' => date('Y-m-d H:i:s'),
+            'skills' => [
+                [
+                    'alias' => 'java',
+                    'name' => 'Java',
+                ],
+                [
+                    'alias' => 'git',
+                    'name' => 'Git',
+                ],
+            ],
+        ];
+
         return [
             $frontend,
             $android,
             $cpp,
+            $swift,
+            $golang,
+            $qa,
         ];
     }
 
