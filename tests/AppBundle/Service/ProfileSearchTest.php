@@ -389,14 +389,14 @@ class ProfileSearchTestCase extends TestCase
 
         $qa = [
             'hash_code' => 8,
-            'title' => 'QA',
+            'title' => 'QA Automation Engineer',
             'cities' => [
                 [
                     'alias' => 'kiev',
                     'name' => 'Київ',
                 ]
             ],
-            'description' => 'QA Automation Engineer',
+            'description' => 'Looking for interesting project  where can develop my professional skills',
             'salary' => 2000,
             'experience' => 5,
             'profiles' => [],

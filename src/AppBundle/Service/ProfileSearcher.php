@@ -34,7 +34,10 @@ class ProfileSearcher
             $match = new MultiMatch();
             $match
                 ->setQuery($criteria->getFulltext())
-                ->setFields(['title']);
+                ->setFields([
+                    'title',
+                    'description',
+                ]);
             $boolQuery->addMust($match);
         }
 
