@@ -237,6 +237,7 @@ class ProfileSearchTestCase extends TestCase
         );
 
         yield new ProfileSearchCriteria('architect', [], [], new Range(), new Range());
+        yield new ProfileSearchCriteria(null, [], [], new Range(), new Range(5, 5));
     }
 
     private function getAllCriteria()
@@ -335,7 +336,7 @@ class ProfileSearchTestCase extends TestCase
             ],
             'description' => 'Develop NoSQL database',
             'salary' => 3500,
-            'experience' => 7,
+            'experience' => 17,
             'profiles' => [],
             'link' => 'http://senseye.project/developer/5',
             'created' => date('Y-m-d H:i:s'),
@@ -416,7 +417,7 @@ class ProfileSearchTestCase extends TestCase
             ],
             'description' => 'Looking for interesting project  where can develop my professional skills',
             'salary' => 2000,
-            'experience' => 5,
+            'experience' => 3,
             'profiles' => [],
             'link' => 'http://senseye.project/developer/8',
             'created' => date('Y-m-d H:i:s'),
