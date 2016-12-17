@@ -6,6 +6,7 @@ use AppBundle\Component\ProfileSearchCriteria;
 use AppBundle\Component\Range;
 use Elastica\Document;
 use Elastica\Index;
+use Elastica\SearchableInterface;
 
 class ProfileSearchTestCase extends TestCase
 {
@@ -14,11 +15,9 @@ class ProfileSearchTestCase extends TestCase
         $client = $this->container->get('senseye.elasticsearch.client');
 
         $index = $client->getIndex('developer');
-        $type = $index->getType('profile');
+        $searchable = $index->getType('profile');
 
         $this->clearIndex($index);
-
-        $searcher = $this->container->get('senseye.profile.searcher');
 
         $architect = [
             'hash_code' => 1,
@@ -133,22 +132,37 @@ class ProfileSearchTestCase extends TestCase
         );
 
         foreach ($profiles as $profile) {
-            $type->addDocument(new Document($profile['hash_code'], $profile));
+            $searchable->addDocument(new Document($profile['hash_code'], $profile));
         }
 
         $index->refresh();
 
         foreach ($this->getAllCriteria() as $criteria) {
-            $this->assertSameProfiles($profiles, $searcher->search($criteria));
+            $this->assertSameProfiles($profiles, $this->search($searchable, $criteria));
         }
 
         foreach ($this->getBothCriteria() as $criteria) {
-            $this->assertSameProfiles([$architect, $designer], $searcher->search($criteria));
+            $this->assertSameProfiles([$architect, $designer], $this->search($searchable, $criteria));
         }
 
         foreach ($this->getArchitectCriteria() as $criteria) {
-            $this->assertSame([$architect], $searcher->search($criteria));
+            $this->assertSame([$architect], $this->search($searchable, $criteria));
         }
+    }
+
+    private function search(SearchableInterface $searchable, ProfileSearchCriteria $criteria)
+    {
+        $query = $this->container->get('senseye.profile.search.builder')->build($criteria);
+
+        $resultSet = $searchable->search($query);
+
+        $result = [];
+
+        foreach ($resultSet as $item) {
+            $result[] = $item->getSource();
+        }
+
+        return $result;
     }
 
     private function clearIndex(Index $index)

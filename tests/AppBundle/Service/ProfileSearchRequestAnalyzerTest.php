@@ -6,7 +6,7 @@ use AppBundle\Component\ProfileAvailableCriteria;
 use AppBundle\Component\ProfileSearchCriteria;
 use Symfony\Component\HttpFoundation\Request;
 
-class SearchRequestAnalyzerTestCase extends TestCase
+class ProfileSearchRequestAnalyzerTestCase extends TestCase
 {
     private $availableMulti = [
         'cities' => [
