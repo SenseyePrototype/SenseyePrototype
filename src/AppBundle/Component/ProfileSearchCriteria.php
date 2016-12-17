@@ -25,18 +25,30 @@ class ProfileSearchCriteria
     private $salaryRange;
 
     /**
+     * @var Range
+     */
+    private $experienceRange;
+
+    /**
      * ProfileSearchCriteria constructor.
-     * @param string|null $fullText
+     * @param $fullText
      * @param array $multiMap
      * @param array $mustMap
      * @param Range $salaryRange
+     * @param Range $experienceRange
      */
-    public function __construct($fullText, array $multiMap, array $mustMap, Range $salaryRange)
-    {
+    public function __construct(
+        $fullText,
+        array $multiMap,
+        array $mustMap,
+        Range $salaryRange,
+        Range $experienceRange
+    ) {
         $this->fulltext = $fullText;
         $this->multiMap = $multiMap;
         $this->mustMap = $mustMap;
         $this->salaryRange = $salaryRange;
+        $this->experienceRange = $experienceRange;
     }
 
     /**
@@ -64,10 +76,18 @@ class ProfileSearchCriteria
     }
 
     /**
-     * @return Range|null
+     * @return Range
      */
     public function getSalaryRange()
     {
         return $this->salaryRange;
+    }
+
+    /**
+     * @return Range
+     */
+    public function getExperienceRange()
+    {
+        return $this->experienceRange;
     }
 }

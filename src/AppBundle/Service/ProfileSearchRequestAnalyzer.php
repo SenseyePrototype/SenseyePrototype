@@ -15,7 +15,8 @@ class ProfileSearchRequestAnalyzer
             null,
             $this->intersect($available->getMultiMap(), $request),
             $this->intersect($available->getMustMap(), $request),
-            $this->getSalary($available->getRangeMap(), $request)
+            $this->getRange($available->getRangeMap(), $request, 'salary'),
+            $this->getRange($available->getRangeMap(), $request, 'experience')
         );
     }
 
@@ -39,23 +40,23 @@ class ProfileSearchRequestAnalyzer
         return $result;
     }
 
-    private function getSalary(array $rangeMap, Request $request)
+    private function getRange(array $rangeMap, Request $request, $key)
     {
-        $salary = $request->query->get('salary');
+        $salary = $request->query->get($key);
 
-        if (isset($rangeMap['salary']) && is_string($salary)) {
+        if (isset($rangeMap[$key]) && is_string($salary)) {
             $range = explode('-', $salary);
 
             $sourceFrom = (int)array_shift($range);
             $sourceTo = (int)array_shift($range);
 
-            $from = $rangeMap['salary']['from'] < $sourceFrom && $sourceFrom <= $rangeMap['salary']['to']
+            $from = $rangeMap[$key]['from'] < $sourceFrom && $sourceFrom <= $rangeMap[$key]['to']
                 ? $sourceFrom
                 : null;
 
             $to = $sourceTo >= $from
-                && $rangeMap['salary']['from'] <= $sourceTo
-                && $sourceTo < $rangeMap['salary']['to']
+                && $rangeMap[$key]['from'] <= $sourceTo
+                && $sourceTo < $rangeMap[$key]['to']
                 ? $sourceTo
                 : null;
 

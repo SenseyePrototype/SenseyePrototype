@@ -202,8 +202,10 @@ class ProfileSearchRequestAnalyzerTestCase extends TestCase
     /**
      * @dataProvider experienceDataProvider
      * @param $experience
+     * @param $from
+     * @param $to
      */
-    public function testExperienceRange($experience)
+    public function testExperienceRange($experience, $from, $to)
     {
         $searchCriteria = $this
             ->getService()
@@ -212,7 +214,9 @@ class ProfileSearchRequestAnalyzerTestCase extends TestCase
                 new Request(['experience' => $experience])
             );
 
-        $this->assertSame(false, $searchCriteria->getExperienceRange()->exists());
+        $this->assertSame($from, $searchCriteria->getExperienceRange()->getFrom());
+        $this->assertSame($to, $searchCriteria->getExperienceRange()->getTo());
+        $this->assertSame(true, $searchCriteria->getExperienceRange()->exists());
     }
 
     public function experienceDataProvider()

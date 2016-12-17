@@ -174,7 +174,7 @@ class ProfileSearchTestCase extends TestCase
 
     private function getArchitectCriteria()
     {
-        yield new ProfileSearchCriteria(null, [], [], new Range(5000, 5000));
+        yield new ProfileSearchCriteria(null, [], [], new Range(5000, 5000), new Range());
 
         yield new ProfileSearchCriteria(
             null,
@@ -186,6 +186,7 @@ class ProfileSearchTestCase extends TestCase
                     ],
                 ],
             ],
+            new Range(),
             new Range()
         );
 
@@ -205,6 +206,7 @@ class ProfileSearchTestCase extends TestCase
                     ],
                 ],
             ],
+            new Range(),
             new Range()
         );
 
@@ -230,16 +232,17 @@ class ProfileSearchTestCase extends TestCase
                     ],
                 ],
             ],
-            new Range(5000, 5000)
+            new Range(5000, 5000),
+            new Range()
         );
 
-        yield new ProfileSearchCriteria('architect', [], [], new Range());
+        yield new ProfileSearchCriteria('architect', [], [], new Range(), new Range());
     }
 
     private function getAllCriteria()
     {
-        yield new ProfileSearchCriteria(null, [], [], new Range());
-        yield new ProfileSearchCriteria('develop', [], [], new Range());
+        yield new ProfileSearchCriteria(null, [], [], new Range(), new Range());
+        yield new ProfileSearchCriteria('develop', [], [], new Range(), new Range());
     }
 
     private function getBothCriteria()
@@ -260,7 +263,8 @@ class ProfileSearchTestCase extends TestCase
                     ],
                 ],
             ],
-            new Range(1000, 5000)
+            new Range(1000, 5000),
+            new Range()
         );
     }
 
