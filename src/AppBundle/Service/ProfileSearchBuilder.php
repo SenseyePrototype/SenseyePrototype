@@ -28,14 +28,16 @@ class ProfileSearchBuilder
             $boolQuery->addMust($match);
         }
 
-        if ($criteria->getSalaryRange()->exists()) {
-            $salary = new Query\Range();
-            $param = array_filter([
-                'gte' => $criteria->getSalaryRange()->getFrom(),
-                'lte' => $criteria->getSalaryRange()->getTo(),
-            ]);
-            $salary->setParam('salary', $param);
-            $boolQuery->addFilter($salary);
+        foreach ($criteria->getRangeMap() as $name => $range) {
+            if ($range->exists()) {
+                $queryRange = new Query\Range();
+                $param = array_filter([
+                    'gte' => $range->getFrom(),
+                    'lte' => $range->getTo(),
+                ]);
+                $queryRange->setParam($name, $param);
+                $boolQuery->addFilter($queryRange);
+            }
         }
 
         foreach ($criteria->getMultiMap() as $name => $list) {

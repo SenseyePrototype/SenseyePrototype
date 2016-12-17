@@ -90,4 +90,15 @@ class ProfileSearchCriteria
     {
         return $this->experienceRange;
     }
+
+    /**
+     * @return Range[]
+     */
+    public function getRangeMap()
+    {
+        return [
+            'salary' => $this->salaryRange,
+            'experience' => $this->experienceRange,
+        ];
+    }
 }
