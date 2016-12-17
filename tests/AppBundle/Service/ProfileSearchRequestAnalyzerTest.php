@@ -42,7 +42,11 @@ class ProfileSearchRequestAnalyzerTestCase extends TestCase
         'salary' => [
             'from' => 100,
             'to' => 25000,
-        ]
+        ],
+        'experience' => [
+            'from' => 0,
+            'to' => 25,
+        ],
     ];
 
     public function testEmpty()
@@ -193,6 +197,27 @@ class ProfileSearchRequestAnalyzerTestCase extends TestCase
         yield ['-two'];
         yield ['one-two'];
         yield [['one-two']];
+    }
+
+    /**
+     * @dataProvider experienceDataProvider
+     * @param $experience
+     */
+    public function testExperienceRange($experience)
+    {
+        $searchCriteria = $this
+            ->getService()
+            ->analyze(
+                new ProfileAvailableCriteria([], [], $this->availableRange),
+                new Request(['experience' => $experience])
+            );
+
+        $this->assertSame(false, $searchCriteria->getExperienceRange()->exists());
+    }
+
+    public function experienceDataProvider()
+    {
+        yield ['1', 1, null];
     }
 
     /**
