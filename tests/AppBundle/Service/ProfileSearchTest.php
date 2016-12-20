@@ -244,7 +244,7 @@ class ProfileSearchTestCase extends TestCase
 
     private function getAllCriteria()
     {
-        yield new ProfileSearchCriteria(null, [], [], new Range(), new Range());
+        yield $this->getEmptyCriteria();
         yield new ProfileSearchCriteria('develop', [], [], new Range(), new Range());
     }
 
@@ -454,5 +454,10 @@ class ProfileSearchTestCase extends TestCase
         ksort($actual);
 
         $this->assertSame($expected, $actual);
+    }
+
+    private function getEmptyCriteria()
+    {
+        return new ProfileSearchCriteria(null, [], [], new Range(), new Range());
     }
 }
