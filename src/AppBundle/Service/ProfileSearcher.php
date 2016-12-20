@@ -2,9 +2,11 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\Component\Adapter\ElasticAdapter;
 use AppBundle\Component\ProfileSearchCriteria;
 use AppBundle\Component\ProfileSearchResponse;
 use Elastica\Client;
+use ReenExeCubeTime\LightPaginator\CompleteFactory;
 
 class ProfileSearcher
 {
@@ -19,22 +21,41 @@ class ProfileSearcher
     private $builder;
 
     /**
+     * @var CompleteFactory
+     */
+    private $pagerFactory;
+
+    /**
      * ProfileSearcher constructor.
      * @param Client $client
      * @param ProfileSearchBuilder $builder
+     * @param CompleteFactory $pagerFactory
      */
-    public function __construct(Client $client, ProfileSearchBuilder $builder)
+    public function __construct(Client $client, ProfileSearchBuilder $builder, CompleteFactory $pagerFactory)
     {
         $this->client = $client;
         $this->builder = $builder;
+        $this->pagerFactory = $pagerFactory;
     }
 
     /**
      * @param ProfileSearchCriteria $criteria
+     * @param int $page
+     * @param int $limit
      * @return ProfileSearchResponse
      */
-    public function search(ProfileSearchCriteria $criteria)
+    public function search(ProfileSearchCriteria $criteria, $page = 1, $limit = 7)
     {
-        return new ProfileSearchResponse();
+        $searchable = $this->client->getIndex('developer')->getType('profile');
+
+        $query = $this->builder->build($criteria);
+
+        $pager = $this->pagerFactory->createSmartPager(
+            new ElasticAdapter($searchable, $query),
+            $page,
+            $limit
+        );
+
+        return new ProfileSearchResponse($pager);
     }
 }

@@ -2,6 +2,9 @@ services:
     senseye.elasticsearch.client:
         class: 'Elastica\Client'
 
+    senseye.pager.factory:
+        class: 'ReenExeCubeTime\LightPaginator\CompleteFactory'
+
     senseye.profile.search.request.analyzer:
         class: 'AppBundle\Service\ProfileSearchRequestAnalyzer'
 
@@ -13,3 +16,4 @@ services:
         arguments:
             - '@senseye.elasticsearch.client'
             - '@senseye.profile.search.builder'
+            - '@senseye.pager.factory'

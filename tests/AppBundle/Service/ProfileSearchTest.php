@@ -157,7 +157,7 @@ class ProfileSearchTestCase extends TestCase
         $response = $searcher->search($this->getEmptyCriteria());
 
         $pager = $response->getPager();
-        $this->assertSame(10, $pager->getCount());
+        $this->assertSame(8, $pager->getCount());
         $this->assertSame(1, $pager->getCurrentPage());
         $this->assertSame(7, $pager->getPerPage());
         $this->assertSame(2, $pager->getPageCount());
