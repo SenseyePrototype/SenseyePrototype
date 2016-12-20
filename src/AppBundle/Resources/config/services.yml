@@ -7,3 +7,9 @@ services:
 
     senseye.profile.search.builder:
         class: 'AppBundle\Service\ProfileSearchBuilder'
+
+    senseye.profile.searcher:
+        class: 'AppBundle\Service\ProfileSearcher'
+        arguments:
+            - '@senseye.elasticsearch.client'
+            - '@senseye.profile.search.builder'

@@ -148,6 +148,8 @@ class ProfileSearchTestCase extends TestCase
         foreach ($this->getArchitectCriteria() as $criteria) {
             $this->assertSame([$architect], $this->search($searchable, $criteria));
         }
+
+        $searcher = $this->container->get('senseye.profile.searcher');
     }
 
     private function search(SearchableInterface $searchable, ProfileSearchCriteria $criteria)
