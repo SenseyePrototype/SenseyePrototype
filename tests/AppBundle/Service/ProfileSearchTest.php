@@ -154,13 +154,33 @@ class ProfileSearchTestCase extends TestCase
     {
         $searcher = $this->container->get('senseye.profile.searcher');
 
-        $response = $searcher->search($this->getEmptyCriteria());
+        $criteria = $this->getEmptyCriteria();
+        $response = $searcher->search($criteria, 1, 7);
 
         $pager = $response->getPager();
         $this->assertSame(8, $pager->getCount());
         $this->assertSame(1, $pager->getCurrentPage());
         $this->assertSame(7, $pager->getPerPage());
         $this->assertSame(2, $pager->getPageCount());
+        $this->assertSame(7, count($pager->getResults()));
+
+        $response = $searcher->search($criteria, 2, 5);
+
+        $pager = $response->getPager();
+        $this->assertSame(8, $pager->getCount());
+        $this->assertSame(2, $pager->getCurrentPage());
+        $this->assertSame(5, $pager->getPerPage());
+        $this->assertSame(2, $pager->getPageCount());
+        $this->assertSame(3, count($pager->getResults()));
+
+        $response = $searcher->search($criteria, 5, 3);
+
+        $pager = $response->getPager();
+        $this->assertSame(8, $pager->getCount());
+        $this->assertSame(1, $pager->getCurrentPage());
+        $this->assertSame(3, $pager->getPerPage());
+        $this->assertSame(3, $pager->getPageCount());
+        $this->assertSame(3, count($pager->getResults()));
     }
 
     private function search(SearchableInterface $searchable, ProfileSearchCriteria $criteria)
