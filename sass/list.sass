@@ -1,0 +1,92 @@
+$bg-color: #1a237e
+$bg-color-2: #3f51b5
+$color: white
+$color-border: rgba($color, .5)
+$color-hover: #E8EAF6
+body
+  background-color: $bg-color-2
+  color: $color
+
+label
+  color: $color
+  &:before
+    border: 1px solid $color
+a
+  color: $color
+  &:hover, &:focus, &:active, &.active
+    color: $color-hover
+.btn
+  color: $bg-color
+  background-color: $color
+  &:hover, &:focus, &:active, &.active
+    color: $bg-color-2
+    background-color: $color-hover
+input[type="checkbox"]+label:before, [type="checkbox"]:not(.filled-in)+label:after
+  border-color: $color-border
+.input-field label
+  color: $color
+input:not([type]), input[type=text], input[type=password], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime], input[type=datetime-local], input[type=tel], input[type=number], input[type=search], textarea.materialize-textarea
+  border-color: $color-border
+.navigation
+  background-color: $bg-color
+  nav
+    background-color: transparent
+    box-shadow: none
+.content
+  padding-top: 50px
+  .left-menu
+    .block
+      display: block
+      margin-bottom: 40px
+      font-size: 16px
+      .name
+        padding-bottom: 10px
+        font-size: 22px
+        font-weight: bold
+      .el
+        display: block
+
+  .work-block
+    position: relative
+    padding: 20px
+    background-color: rgba($bg-color, 0.5)
+    margin-bottom: 40px
+    .header
+      position: relative
+      .title
+        font-size: 20px
+      .post-date
+        opacity: 0.75
+        font-size: 0.8em
+        display: block
+        position: absolute
+        right: 10px
+    .user-criteria
+      padding: 10px 0
+      .el
+        display: block
+        float: left
+        margin-left: 20px
+        i
+          padding-right: 5px
+    .skills
+      display: block
+      margin-top: 20px
+      padding: 10px
+      font-size: 12px
+      .el
+        padding: 2px 10px
+        color: $bg-color
+        background-color: $color
+        border-radius: 10px
+        display: block
+        float: left
+        margin-right: 10px
+    .link-original
+      padding: 10px
+      opacity: 0.2
+      position: absolute
+      bottom: 20px
+      right: 20px
+      &:hover
+        opacity: 1

@@ -1,0 +1,119 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic);
+@import url(https://fonts.googleapis.com/css?family=Lora);
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset,
+legend, input, textarea, p, blockquote, th, td {
+  margin: 0;
+  padding: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  font-weight: normal; }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: table; }
+
+body {
+  background-color: #08233e;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  z-index: -1; }
+
+.transy {
+  width: 100%;
+  height: 100%;
+  float: left;
+  bottom: 0%;
+  position: absolute;
+  z-index: -1;
+  background: url(../images/bg.jpg) no-repeat top center fixed;
+  opacity: 0.25;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(10px);
+  transform: rotateX(0deg); }
+
+.wrapper {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  text-shadow: 1px 1.732px 2px rgba(0, 0, 0, 0.5); }
+
+.centered {
+  display: inline-block; }
+
+.header {
+  width: 60%;
+  padding: 0px 20%;
+  float: left;
+  margin-bottom: 100px; }
+
+.header h1 {
+  font-family: 'Lora', sans-serif;
+  font-size: 150px;
+  color: #fff; }
+
+.header p.title {
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: -20px; }
+
+.content {
+  width: 60%;
+  text-align: center;
+  padding: 0 20%;
+  margin-bottom: 30px;
+  float: left; }
+
+.content p {
+  font-size: 27px;
+  font-weight: 700; }
+
+.content p.target {
+  font-size: 14px;
+  max-width: 600px;
+  display: block;
+  margin: 10px auto 0;
+  opacity: 0.75; }
+
+@media only screen and (max-width: 1024px) {
+  .header, .content {
+    width: 80%;
+    padding: 0px 10%; } }
+@media only screen and (max-width: 768px) {
+  .header, .content {
+    width: 90%;
+    padding: 0px 5%; }
+
+  .header {
+    margin-bottom: 50px; }
+
+  .header h1 {
+    font-size: 100px;
+    color: #fff; }
+
+  .header p.line1 {
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 10px;
+    margin-top: -10px; }
+
+  .content p {
+    font-size: 23px;
+    font-weight: 700; } }
+
+/*# sourceMappingURL=main.css.map */
