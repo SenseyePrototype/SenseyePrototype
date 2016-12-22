@@ -12,7 +12,7 @@ class DeveloperController extends Controller
         $profileResponse = $this->get('senseye.profile.getter')->search($request);
 
         return $this->render('AppBundle:Developer:list.html.twig', [
-            // ...
+            'profiles' => $profileResponse->getResults(),
         ]);
     }
 }

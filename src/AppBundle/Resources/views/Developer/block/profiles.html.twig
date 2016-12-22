@@ -1,92 +1,38 @@
-{# @var developers \AppBundle\Component\Profile[] #}
-<div class="col s9">
-    <div class="col s12">
-        <h5 class="left-align">Найдено 1500 кандидатов</h5>
-    </div>
-    <div class="row">
-        <div class="col s12">
-            <div class="row">
-                <div class="input-field col s12">
-                    <input type="text" id="search">
-                    <label for="search">Поиск</label>
-                </div>
+{# @var profiles \AppBundle\Component\Profile[] #}
+{% for profile in profiles %}
+    <div class="col s12 work-block z-depth-2 card-panel hoverable">
+        <div class="col s12 header">
+            <div class="title">{{ profile.getTitle() }}</div>
+            <div class="post-date">27 ноября 2016</div>
+        </div>
+        <div class="col s12 user-criteria">
+            <div class="el location">
+                <i class="zmdi zmdi-pin"></i>
+                {% for city in profile.getCities() %}
+                    {{ city['name'] }}{% if not loop.last %} ,{% endif %}
+                {% endfor %}
             </div>
+            <div class="el money">
+                <i class="zmdi zmdi-money"></i>
+                {{ profile.getSalary() }}
+            </div>
+            <div class="el experience">
+                <i class="zmdi zmdi-graduation-cap"></i>
+                {{ profile.getExperience() }} года опыта
+            </div>
+        </div>
+        <div class="col s12 message">
+            <p>{{ profile.getDescription() }}</p>
+        </div>
+        <div class="col s12 skills">
+            {%  for skill in profile.getSkills() %}
+                <div class="el z-depth-3">{{ skill['name'] }}</div>
+            {% endfor %}
+        </div>
+        <div class="link-original">
+            <a href="/">
+                <i class="zmdi zmdi-link"></i> Vergo
+            </a>
         </div>
     </div>
-    <div class="row">
-        <div class="col s12 work-block z-depth-2 card-panel hoverable">
-            <div class="col s12 header">
-                <div class="title">Full Stack Alex</div>
-                <div class="post-date">27 ноября 2016</div>
-            </div>
-            <div class="col s12 user-criteria">
-                <div class="el location"><i class="zmdi zmdi-pin"></i>Черновцы, Львов</div>
-                <div class="el money"><i class="zmdi zmdi-money"></i>5000</div>
-                <div class="el experience"><i class="zmdi zmdi-graduation-cap"></i>3 года опыта</div>
-            </div>
-            <div class="col s12 message">
-                <p>
-                Programming / Web: PHP, JavaScript, C, ARM assembler, HTML, CSS, LESS; Database / Caching: MySQL, PostgreSQL, memcached, Sphinx; Middleware: Apache, nginx; Frameworks: jQuery, jQuery UI, Yii; Version Control: SVN.
-                </p>
-
-                <p>
-                    Developed a couple of high-load / middle-load and scalable websites on own framework; Have experience in hardware solutions - written a lot of firmwares for hardware solutions / flash loaders for mobile phones. In last 5 years moved into web programming. Worked with team of 21 people; During study at university was the captain of the ACM programming faculty team and participated in different competitions.
-                </p>
-                Want to create interesting, scalable and high-load web projects in interesting team.
-            </div>
-            <div class="col s12 skills">
-                <div class="el z-depth-3">Java</div>
-                <div class="el z-depth-3">MySQL</div>
-                <div class="el z-depth-3">PHP</div>
-                <div class="el z-depth-3">Redis</div>
-            </div>
-            <div class="link-original">
-                <a href="/">
-                    <i class="zmdi zmdi-link"></i> Vergo
-                </a>
-            </div>
-        </div>
-        <div class="col s12 work-block z-depth-2 card-panel hoverable">
-            <div class="col s12 header">
-                <div class="title">Full Stack Alex</div>
-                <div class="post-date">27 ноября 2016</div>
-            </div>
-            <div class="col s12 user-criteria">
-                <div class="el location"><i class="zmdi zmdi-pin"></i>Черновцы, Львов</div>
-                <div class="el money"><i class="zmdi zmdi-money"></i>5000</div>
-                <div class="el experience"><i class="zmdi zmdi-graduation-cap"></i>3 года опыта</div>
-            </div>
-            <div class="col s12 message">
-                <p>
-                Programming / Web: PHP, JavaScript, C, ARM assembler, HTML, CSS, LESS; Database / Caching: MySQL, PostgreSQL, memcached, Sphinx; Middleware: Apache, nginx; Frameworks: jQuery, jQuery UI, Yii; Version Control: SVN.
-                </p>
-
-                <p>
-                    Developed a couple of high-load / middle-load and scalable websites on own framework; Have experience in hardware solutions - written a lot of firmwares for hardware solutions / flash loaders for mobile phones. In last 5 years moved into web programming. Worked with team of 21 people; During study at university was the captain of the ACM programming faculty team and participated in different competitions.
-                </p>
-                Want to create interesting, scalable and high-load web projects in interesting team.
-            </div>
-        </div>
-        <div class="col s12 work-block z-depth-2 card-panel hoverable">
-            <div class="col s12 header">
-                <div class="title">Full Stack Alex</div>
-                <div class="post-date">27 ноября 2016</div>
-            </div>
-            <div class="col s12 user-criteria">
-                <div class="el location"><i class="zmdi zmdi-pin"></i>Черновцы, Львов</div>
-                <div class="el money"><i class="zmdi zmdi-money"></i>5000</div>
-                <div class="el experience"><i class="zmdi zmdi-graduation-cap"></i>3 года опыта</div>
-            </div>
-            <div class="col s12 message">
-                <p>
-                Programming / Web: PHP, JavaScript, C, ARM assembler, HTML, CSS, LESS; Database / Caching: MySQL, PostgreSQL, memcached, Sphinx; Middleware: Apache, nginx; Frameworks: jQuery, jQuery UI, Yii; Version Control: SVN.
-                </p>
-
-                <p>
-                    Developed a couple of high-load / middle-load and scalable websites on own framework; Have experience in hardware solutions - written a lot of firmwares for hardware solutions / flash loaders for mobile phones. In last 5 years moved into web programming. Worked with team of 21 people; During study at university was the captain of the ACM programming faculty team and participated in different competitions.
-                </p>
-                Want to create interesting, scalable and high-load web projects in interesting team.
-            </div>
-        </div>
-    </div>
-</div>
+{% endfor %}
