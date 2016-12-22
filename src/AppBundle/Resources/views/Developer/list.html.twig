@@ -1,10 +1,240 @@
-{% extends '::base.html.twig' %}
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/list.css') }}">
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Senseye поиск программистов</title>
+    <meta property="og:site_name" content="Senseye – пошук программістів">
+    <meta name="description" content="Пошук програмістів">
+    <meta name="keywords" content="Senseye,поиск резюме,пошук резюме,пошук программістів">
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-{% block title %}AppBundle:Developer:list{% endblock %}
+        ga('create', 'UA-80707389-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link href="css/list.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
 
-{% block body %}
-<h1>Welcome to Developer:list page</h1>
-{% endblock %}
+<section class="navigation z-depth-2">
+    <nav class="container">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo left">Senseye</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="#" class="disabled tooltipped" data-position="bottom" data-delay="50" data-tooltip="Will be in next release">Sign up</a></li>
+                <li><a href="#" class="disabled tooltipped" data-position="bottom" data-delay="50" data-tooltip="Will be in next release">Sign in</a></li>
+            </ul>
+        </div>
+    </nav>
+</section>
+<section class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col s3 left-menu">
+                <div class="block">
+                    <div class="name">Город</div>
+                    <div class="elements">
+                        <p>
+                            <input type="checkbox" id="city_kiev" checked="checked" />
+                            <label for="city_kiev">Киев</label>
+                        </p>
+                        <p>
+                            <input type="checkbox" id="city_od" />
+                            <label for="city_od">Одесса</label>
+                        </p>
+                        <p>
+                            <input type="checkbox" id="city_lv" />
+                            <label for="city_lv">Львов</label>
+                        </p>
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="name">Вознаграждение</div>
+                    <div class="elements">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="icon_prefix" type="text" class="validate">
+                                <label for="icon_prefix">от</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="icon_telephone" type="tel" class="validate" ca>
+                                <label for="icon_telephone">до</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="name">Специализация</div>
+                    <div class="elements">
+                        <p>
+                            <input type="checkbox" id="backend" checked="checked" />
+                            <label for="backend">Back-end</label>
+                        </p>
+                        <p>
+                            <input type="checkbox" id="frontend" />
+                            <label for="frontend">Front-end</label>
+                        </p>
+                        <p>
+                            <input type="checkbox" id="android" />
+                            <label for="android">Android</label>
+                        </p>
+                        <p>
+                            <input type="checkbox" id="ios" />
+                            <label for="ios">IOS</label>
+                        </p>
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="name">Навыки</div>
+                    <div class="elements">
+                        <p>
+                            <input type="checkbox" id="php" checked="checked" />
+                            <label for="php">PHP</label>
+                        </p>
+                        <p>
+                            <input type="checkbox" id="Mysql" />
+                            <label for="Mysql">Mysql</label>
+                        </p>
+                        <p>
+                            <input type="checkbox" id="NodeJS" />
+                            <label for="NodeJS">NodeJS</label>
+                        </p>
+                        <p>
+                            <input type="checkbox" id="Redis" />
+                            <label for="Redis">Redis</label>
+                        </p>
+                        <p>
+                            <input type="checkbox" id="Css" />
+                            <label for="Css">Css</label>
+                        </p>
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="name">Профили</div>
+                    <div class="elements">
+                        <p>
+                            <input type="checkbox" id="github" checked="checked" />
+                            <label for="github">
+                                <i class="zmdi zmdi-github-alt"></i> github
+                            </label>
+                        </p>
+                        <p>
+                            <input type="checkbox" id="linkedin" />
+                            <label for="linkedin">
+                                <i class="zmdi zmdi-linkedin"></i> linkedin
+                            </label>
+                        </p>
+                    </div>
+                </div>
+                <div class="block">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">
+                        Поиск
+                    </button>
+                </div>
+            </div>
+            <div class="col s9">
+                <div class="col s12">
+                    <h5 class="left-align">Найдено 1500 кандидатов</h5>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" id="search">
+                                <label for="search">Поиск</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 work-block z-depth-2 card-panel hoverable">
+                        <div class="col s12 header">
+                            <div class="title">Full Stack Alex</div>
+                            <div class="post-date">27 ноября 2016</div>
+                        </div>
+                        <div class="col s12 user-criteria">
+                            <div class="el location"><i class="zmdi zmdi-pin"></i>Черновцы, Львов</div>
+                            <div class="el money"><i class="zmdi zmdi-money"></i>5000</div>
+                            <div class="el experience"><i class="zmdi zmdi-graduation-cap"></i>3 года опыта</div>
+                        </div>
+                        <div class="col s12 message">
+                            <p>
+                            Programming / Web: PHP, JavaScript, C, ARM assembler, HTML, CSS, LESS; Database / Caching: MySQL, PostgreSQL, memcached, Sphinx; Middleware: Apache, nginx; Frameworks: jQuery, jQuery UI, Yii; Version Control: SVN.
+                            </p>
+
+                            <p>
+                                Developed a couple of high-load / middle-load and scalable websites on own framework; Have experience in hardware solutions - written a lot of firmwares for hardware solutions / flash loaders for mobile phones. In last 5 years moved into web programming. Worked with team of 21 people; During study at university was the captain of the ACM programming faculty team and participated in different competitions.
+                            </p>
+                            Want to create interesting, scalable and high-load web projects in interesting team.
+                        </div>
+                        <div class="col s12 skills">
+                            <div class="el z-depth-3">Java</div>
+                            <div class="el z-depth-3">MySQL</div>
+                            <div class="el z-depth-3">PHP</div>
+                            <div class="el z-depth-3">Redis</div>
+                        </div>
+                        <div class="link-original">
+                            <a href="/">
+                                <i class="zmdi zmdi-link"></i> Vergo
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col s12 work-block z-depth-2 card-panel hoverable">
+                        <div class="col s12 header">
+                            <div class="title">Full Stack Alex</div>
+                            <div class="post-date">27 ноября 2016</div>
+                        </div>
+                        <div class="col s12 user-criteria">
+                            <div class="el location"><i class="zmdi zmdi-pin"></i>Черновцы, Львов</div>
+                            <div class="el money"><i class="zmdi zmdi-money"></i>5000</div>
+                            <div class="el experience"><i class="zmdi zmdi-graduation-cap"></i>3 года опыта</div>
+                        </div>
+                        <div class="col s12 message">
+                            <p>
+                            Programming / Web: PHP, JavaScript, C, ARM assembler, HTML, CSS, LESS; Database / Caching: MySQL, PostgreSQL, memcached, Sphinx; Middleware: Apache, nginx; Frameworks: jQuery, jQuery UI, Yii; Version Control: SVN.
+                            </p>
+
+                            <p>
+                                Developed a couple of high-load / middle-load and scalable websites on own framework; Have experience in hardware solutions - written a lot of firmwares for hardware solutions / flash loaders for mobile phones. In last 5 years moved into web programming. Worked with team of 21 people; During study at university was the captain of the ACM programming faculty team and participated in different competitions.
+                            </p>
+                            Want to create interesting, scalable and high-load web projects in interesting team.
+                        </div>
+                    </div>
+                    <div class="col s12 work-block z-depth-2 card-panel hoverable">
+                        <div class="col s12 header">
+                            <div class="title">Full Stack Alex</div>
+                            <div class="post-date">27 ноября 2016</div>
+                        </div>
+                        <div class="col s12 user-criteria">
+                            <div class="el location"><i class="zmdi zmdi-pin"></i>Черновцы, Львов</div>
+                            <div class="el money"><i class="zmdi zmdi-money"></i>5000</div>
+                            <div class="el experience"><i class="zmdi zmdi-graduation-cap"></i>3 года опыта</div>
+                        </div>
+                        <div class="col s12 message">
+                            <p>
+                            Programming / Web: PHP, JavaScript, C, ARM assembler, HTML, CSS, LESS; Database / Caching: MySQL, PostgreSQL, memcached, Sphinx; Middleware: Apache, nginx; Frameworks: jQuery, jQuery UI, Yii; Version Control: SVN.
+                            </p>
+
+                            <p>
+                                Developed a couple of high-load / middle-load and scalable websites on own framework; Have experience in hardware solutions - written a lot of firmwares for hardware solutions / flash loaders for mobile phones. In last 5 years moved into web programming. Worked with team of 21 people; During study at university was the captain of the ACM programming faculty team and participated in different competitions.
+                            </p>
+                            Want to create interesting, scalable and high-load web projects in interesting team.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Compiled and minified JavaScript -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+
+</body>
+</html>
