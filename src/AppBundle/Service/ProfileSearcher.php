@@ -3,9 +3,11 @@
 namespace AppBundle\Service;
 
 use AppBundle\Component\Adapter\ElasticAdapter;
+use AppBundle\Component\Profile;
 use AppBundle\Component\ProfileSearchCriteria;
 use AppBundle\Component\ProfileSearchResponse;
 use Elastica\Client;
+use Elastica\Result;
 use ReenExeCubeTime\LightPaginator\CompleteFactory;
 
 class ProfileSearcher
@@ -56,6 +58,12 @@ class ProfileSearcher
             $limit
         );
 
-        return new ProfileSearchResponse($pager);
+        $profiles = [];
+        /* @var $result Result */
+        foreach ($pager->getResults() as $result) {
+            $profiles[] = new Profile($result->getSource());
+        }
+
+        return new ProfileSearchResponse($pager, $profiles);
     }
 }

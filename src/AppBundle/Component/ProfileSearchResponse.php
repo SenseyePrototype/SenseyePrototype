@@ -13,12 +13,19 @@ class ProfileSearchResponse
     private $pager;
 
     /**
-     * ProfileSearchResponse constructor.
-     * @param Pager $pager
+     * @var Profile[]
      */
-    public function __construct(PagerInterface $pager)
+    private $results;
+
+    /**
+     * ProfileSearchResponse constructor.
+     * @param PagerInterface $pager
+     * @param Profile[] $results
+     */
+    public function __construct(PagerInterface $pager, array $results)
     {
         $this->pager = $pager;
+        $this->results = $results;
     }
 
     /**
@@ -27,5 +34,10 @@ class ProfileSearchResponse
     public function getPager()
     {
         return $this->pager;
+    }
+
+    public function getResults()
+    {
+        return $this->results;
     }
 }

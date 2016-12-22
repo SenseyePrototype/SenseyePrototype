@@ -17,3 +17,13 @@ services:
             - '@senseye.elasticsearch.client'
             - '@senseye.profile.search.builder'
             - '@senseye.pager.factory'
+
+    senseye.profile.available.criteria.repository:
+        class: 'AppBundle\Service\ProfileAvailableCriteriaRepository'
+
+    senseye.profile.getter:
+        class: 'AppBundle\Service\ProfileGetter'
+        arguments:
+            - '@senseye.profile.searcher'
+            - '@senseye.profile.available.criteria.repository'
+            - '@senseye.profile.search.request.analyzer'
