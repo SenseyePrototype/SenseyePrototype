@@ -1,3 +1,7 @@
+intro:
+    path: /
+    defaults: { _controller: AppBundle:Intro:index }
+
 list:
     path:     /developers
     defaults: { _controller: AppBundle:Developer:list }
