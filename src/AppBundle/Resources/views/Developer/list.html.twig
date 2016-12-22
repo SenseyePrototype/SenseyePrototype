@@ -1,3 +1,4 @@
+{# @var pager \ReenExeCubeTime\LightPaginator\Pager #}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -140,7 +141,7 @@
             </div>
             <div class="col s9">
                 <div class="col s12">
-                    <h5 class="left-align">Найдено 1500 кандидатов</h5>
+                    <h5 class="left-align">{{ 'found_choice'|transchoice(pager.getCount()) }}</h5>
                 </div>
                 <div class="row">
                     <div class="col s12">

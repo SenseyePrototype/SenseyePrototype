@@ -1,1 +1,2 @@
 search: 'Поиск'
+found_choice: '{1}Найден %count% кандидат|]1,Inf[Найдено %count% кандидатов'

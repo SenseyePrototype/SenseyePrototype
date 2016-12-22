@@ -13,6 +13,7 @@ class DeveloperController extends Controller
 
         return $this->render('AppBundle:Developer:list.html.twig', [
             'profiles' => $profileResponse->getResults(),
+            'pager' => $profileResponse->getPager(),
         ]);
     }
 }
