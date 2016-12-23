@@ -1,10 +1,17 @@
 search: 'Поиск'
-found_choice: '{1}Найден %count% кандидат|]1,Inf[Найдено %count% кандидатов'
 salary: 'Вознаграждение'
-from: 'от'
-to: 'до'
 specialization: 'Специализация'
 skills: 'Навыки'
 profiles: 'Профили'
 city: 'Город'
+
+from: 'от'
+to: 'до'
+
+found_choice: '{1}Найден %count% кандидат|]1,Inf[Найдено %count% кандидатов'
 experience_choice: '{1,21}%count% год опыта|{2,3,4}%count% года опыта|]1,Inf[%count% лет опыта'
+
+seo:
+    title: 'Senseye – пошук программістів'
+    description: 'Пошук програмістів'
+    keywords: 'Senseye,поиск резюме,пошук резюме,пошук программістів'
