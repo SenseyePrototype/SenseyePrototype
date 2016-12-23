@@ -19,7 +19,7 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
-    <link href="css/list.css" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('css/list.css') }}" type="text/css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -39,7 +39,7 @@
         <div class="row">
             <div class="col s3 left-menu">
                 <div class="block">
-                    <div class="name">Город</div>
+                    <div class="name">{{ 'city'|trans }}</div>
                     <div class="elements">
                         <p>
                             <input type="checkbox" id="city_kiev" checked="checked" />
@@ -56,22 +56,22 @@
                     </div>
                 </div>
                 <div class="block">
-                    <div class="name">Вознаграждение</div>
+                    <div class="name">{{ 'salary'|trans }}</div>
                     <div class="elements">
                         <div class="row">
                             <div class="input-field col s6">
                                 <input id="icon_prefix" type="text" class="validate">
-                                <label for="icon_prefix">от</label>
+                                <label for="icon_prefix">{{ 'from'|trans }}</label>
                             </div>
                             <div class="input-field col s6">
                                 <input id="icon_telephone" type="tel" class="validate" ca>
-                                <label for="icon_telephone">до</label>
+                                <label for="icon_telephone">{{ 'to'|trans }}</label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="block">
-                    <div class="name">Специализация</div>
+                    <div class="name">{{ 'specialization'|trans }}</div>
                     <div class="elements">
                         <p>
                             <input type="checkbox" id="backend" checked="checked" />
@@ -92,50 +92,50 @@
                     </div>
                 </div>
                 <div class="block">
-                    <div class="name">Навыки</div>
+                    <div class="name">{{ 'skills'|trans }}</div>
                     <div class="elements">
                         <p>
                             <input type="checkbox" id="php" checked="checked" />
                             <label for="php">PHP</label>
                         </p>
                         <p>
-                            <input type="checkbox" id="Mysql" />
-                            <label for="Mysql">Mysql</label>
+                            <input type="checkbox" id="mysql"/>
+                            <label for="mysql">MySQL</label>
                         </p>
                         <p>
-                            <input type="checkbox" id="NodeJS" />
-                            <label for="NodeJS">NodeJS</label>
+                            <input type="checkbox" id="nodejs"/>
+                            <label for="nodejs">Node.js</label>
                         </p>
                         <p>
-                            <input type="checkbox" id="Redis" />
-                            <label for="Redis">Redis</label>
+                            <input type="checkbox" id="redis"/>
+                            <label for="redis">Redis</label>
                         </p>
                         <p>
-                            <input type="checkbox" id="Css" />
-                            <label for="Css">Css</label>
+                            <input type="checkbox" id="css"/>
+                            <label for="css">CSS</label>
                         </p>
                     </div>
                 </div>
                 <div class="block">
-                    <div class="name">Профили</div>
+                    <div class="name">{{ 'profiles'|trans }}</div>
                     <div class="elements">
                         <p>
                             <input type="checkbox" id="github" checked="checked" />
                             <label for="github">
-                                <i class="zmdi zmdi-github-alt"></i> github
+                                <i class="zmdi zmdi-github-alt"></i> GitHub
                             </label>
                         </p>
                         <p>
                             <input type="checkbox" id="linkedin" />
                             <label for="linkedin">
-                                <i class="zmdi zmdi-linkedin"></i> linkedin
+                                <i class="zmdi zmdi-linkedin"></i> LinkedIn
                             </label>
                         </p>
                     </div>
                 </div>
                 <div class="block">
                     <button class="btn waves-effect waves-light" type="submit" name="action">
-                        Поиск
+                        {{ 'search'|trans }}
                     </button>
                 </div>
             </div>
