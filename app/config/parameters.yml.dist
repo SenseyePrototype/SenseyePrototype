@@ -10,8 +10,10 @@ parameters:
     # You should uncomment this if you want use pdo_sqlite
     # database_path: "%kernel.root_dir%/data.db3"
 
-    elastic_host:      localhost
-    elastic_port:      9200
+    elastic_host:     localhost
+    elastic_port:     9200
+    elastic_username: elastic
+    elastic_password: elastic
 
     mailer_transport:  smtp
     mailer_host:       localhost

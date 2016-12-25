@@ -1,6 +1,11 @@
 services:
     senseye.elasticsearch.client:
         class: 'Elastica\Client'
+        arguments:
+            - host: '%elastic_host%'
+              port: '%elastic_port%'
+              username: '%elastic_username%'
+              password: '%elastic_password%'
 
     senseye.pager.factory:
         class: 'ReenExeCubeTime\LightPaginator\CompleteFactory'
