@@ -26,9 +26,20 @@ class ProfileAvailableCriteriaRepository
         $this->indexService = $indexService;
     }
 
+    /**
+     * @return ProfileAvailableCriteria
+     */
     public function get()
     {
-        return new ProfileAvailableCriteria([], [], []);
+        $resultSet = $this->indexService->getFilter()->getDocument($this->id);
+
+        $data = $resultSet->getData();
+
+        return new ProfileAvailableCriteria(
+            $data['multi'],
+            $data['must'],
+            $data['range']
+        );
     }
 
     public function store(array $available)
