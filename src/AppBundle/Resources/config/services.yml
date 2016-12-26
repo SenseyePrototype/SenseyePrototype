@@ -30,6 +30,8 @@ services:
 
     senseye.profile.available.criteria.repository:
         class: 'AppBundle\Service\ProfileAvailableCriteriaRepository'
+        arguments:
+            - '@senseye.developer.index'
 
     senseye.profile.getter:
         class: 'AppBundle\Service\ProfileGetter'
