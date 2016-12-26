@@ -7,15 +7,22 @@ class ProfileAvailableCriteriaContainer
     /**
      * @var ProfileAvailableCriteria
      */
-    private $criteria;
+    private $available;
 
     /**
-     * ProfileAvailableCriteriaGetter constructor.
-     * @param ProfileAvailableCriteria $criteria
+     * @var ProfileSearchCriteria
      */
-    public function __construct(ProfileAvailableCriteria $criteria)
+    private $selected;
+
+    /**
+     * ProfileAvailableCriteriaContainer constructor.
+     * @param ProfileAvailableCriteria $available
+     * @param ProfileSearchCriteria $selected
+     */
+    public function __construct(ProfileAvailableCriteria $available, ProfileSearchCriteria $selected)
     {
-        $this->criteria = $criteria;
+        $this->available = $available;
+        $this->selected = $selected;
     }
 
     /**
@@ -23,7 +30,7 @@ class ProfileAvailableCriteriaContainer
      */
     public function getCities()
     {
-        return $this->criteria->getMultiMap()['cities'];
+        return $this->available->getMultiMap()['cities'];
     }
 
     /**
@@ -31,7 +38,15 @@ class ProfileAvailableCriteriaContainer
      */
     public function getExperience()
     {
-        return $this->criteria->getRangeMap()['experience'];
+        return $this->available->getRangeMap()['experience'];
+    }
+
+    /**
+     * @return Range
+     */
+    public function getSelectedExperience()
+    {
+        return $this->selected->getExperienceRange();
     }
 
     /**
@@ -39,7 +54,15 @@ class ProfileAvailableCriteriaContainer
      */
     public function getSalary()
     {
-        return $this->criteria->getRangeMap()['salary'];
+        return $this->available->getRangeMap()['salary'];
+    }
+
+    /**
+     * @return Range
+     */
+    public function getSelectedSalary()
+    {
+        return $this->selected->getSalaryRange();
     }
 
     /**
@@ -47,6 +70,6 @@ class ProfileAvailableCriteriaContainer
      */
     public function getSkills()
     {
-        return $this->criteria->getMustMap()['skills'];
+        return $this->available->getMustMap()['skills'];
     }
 }

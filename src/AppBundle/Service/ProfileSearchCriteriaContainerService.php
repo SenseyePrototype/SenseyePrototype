@@ -11,7 +11,8 @@ class ProfileSearchCriteriaContainerService
     public function merge(ProfileAvailableCriteria $availableCriteria, ProfileSearchCriteria $searchCriteria)
     {
         return new ProfileAvailableCriteriaContainer(
-            $availableCriteria
+            $availableCriteria,
+            $searchCriteria
         );
     }
 }
