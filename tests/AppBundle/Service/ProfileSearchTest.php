@@ -5,7 +5,6 @@ namespace Tests\AppBundle\Service;
 use AppBundle\Component\ProfileSearchCriteria;
 use AppBundle\Component\Range;
 use Elastica\Document;
-use Elastica\Index;
 use Elastica\SearchableInterface;
 
 class ProfileSearchTestCase extends TestCase

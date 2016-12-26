@@ -25,7 +25,7 @@ class DeveloperIndexService
      */
     public function getProfile()
     {
-        return $this->client->getIndex('developer')->getType('profiles');
+        return $this->client->getIndex('profiles')->getType('developer');
     }
 
     /**
@@ -33,6 +33,6 @@ class DeveloperIndexService
      */
     public function getFilter()
     {
-        return $this->client->getIndex('developer')->getType('filter');
+        return $this->client->getIndex('filters')->getType('developer');
     }
 }
