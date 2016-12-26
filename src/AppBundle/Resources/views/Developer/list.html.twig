@@ -41,12 +41,14 @@
                     <div class="elements">
                         <div class="row">
                             {% set experience = profileCriteriaContainer.getExperience() %}
+                            {# @var selectedExperience \AppBundle\Component\Range #}
+                            {% set selectedExperience = profileCriteriaContainer.getSelectedExperience() %}
                             <div class="input-field col s6">
-                                <input id="experience-from" type="text" class="validate" placeholder="{{ experience['from'] }}" />
+                                <input id="experience-from" type="text" class="validate" value="{{ selectedExperience.getFrom() }}" placeholder="{{ experience['from'] }}" />
                                 <label for="experience-from">{{ 'from'|trans }}</label>
                             </div>
                             <div class="input-field col s6">
-                                <input id="experience-to" type="tel" class="validate" placeholder="{{ experience['to'] }}" />
+                                <input id="experience-to" type="tel" class="validate" value="{{ selectedExperience.getTo() }}" placeholder="{{ experience['to'] }}" />
                                 <label for="experience-to">{{ 'to'|trans }}</label>
                             </div>
                         </div>
@@ -92,12 +94,14 @@
                     <div class="elements">
                         <div class="row">
                             {% set salary = profileCriteriaContainer.getSalary() %}
+                            {# @var selectedSalary \AppBundle\Component\Range #}
+                            {% set selectedSalary = profileCriteriaContainer.getSelectedSalary() %}
                             <div class="input-field col s6">
-                                <input id="salary-from" type="text" class="validate" placeholder="{{ salary['from'] }}" />
+                                <input id="salary-from" type="text" class="validate" value="{{ selectedSalary.getFrom() }}" placeholder="{{ salary['from'] }}" />
                                 <label for="salary-from">{{ 'from'|trans }}</label>
                             </div>
                             <div class="input-field col s6">
-                                <input id="salary-to" type="tel" class="validate" placeholder="{{ salary['to'] }}" />
+                                <input id="salary-to" type="tel" class="validate" value="{{ selectedSalary.getTo() }}" placeholder="{{ salary['to'] }}" />
                                 <label for="salary-to">{{ 'to'|trans }}</label>
                             </div>
                         </div>
