@@ -12,10 +12,10 @@
 <section class="navigation z-depth-2">
     <nav class="container">
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo left">Senseye</a>
+            <a href="{{ path('list') }}" class="brand-logo left">Senseye</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#" class="disabled tooltipped" data-position="bottom" data-delay="50" data-tooltip="Will be in next release">Sign up</a></li>
-                <li><a href="#" class="disabled tooltipped" data-position="bottom" data-delay="50" data-tooltip="Will be in next release">Sign in</a></li>
+                <li><a href="javascript:void(0);" class="disabled tooltipped" data-position="bottom" data-delay="50" data-tooltip="Will be in next release">Sign up</a></li>
+                <li><a href="javascript:void(0);" class="disabled tooltipped" data-position="bottom" data-delay="50" data-tooltip="Will be in next release">Sign in</a></li>
             </ul>
         </div>
     </nav>
@@ -26,11 +26,11 @@
             <div class="col s3 left-menu">
                 <div class="block">
                     <div class="name">{{ 'city'|trans }}</div>
-                    <div class="elements">
+                    <div class="elements js-search-criteria-multi" data-param="cities">
                         {% for city in profileCriteriaContainer.getCities() %}
                             {% set reference = 'city' ~ city['alias'] %}
                             <p>
-                                <input type="checkbox" id="{{ reference }}" {% if city['checked'] %}checked="checked"{% endif %} />
+                                <input type="checkbox" id="{{ reference }}" data-alias="{{ city['alias'] }}" {% if city['checked'] %}checked="checked"{% endif %} />
                                 <label for="{{ reference }}">{{ city['name'] }}</label>
                             </p>
                         {% endfor %}
@@ -38,17 +38,17 @@
                 </div>
                 <div class="block">
                     <div class="name">{{ 'experience'|trans }}</div>
-                    <div class="elements">
+                    <div class="elements js-search-criteria-range" data-param="experience">
                         <div class="row">
                             {% set experience = profileCriteriaContainer.getExperience() %}
                             {# @var selectedExperience \AppBundle\Component\Range #}
                             {% set selectedExperience = profileCriteriaContainer.getSelectedExperience() %}
                             <div class="input-field col s6">
-                                <input id="experience-from" type="text" class="validate" value="{{ selectedExperience.getFrom() }}" placeholder="{{ experience['from'] }}" />
+                                <input id="experience-from" type="text" class="validate js-range-from" value="{{ selectedExperience.getFrom() }}" placeholder="{{ experience['from'] }}" />
                                 <label for="experience-from">{{ 'from'|trans }}</label>
                             </div>
                             <div class="input-field col s6">
-                                <input id="experience-to" type="tel" class="validate" value="{{ selectedExperience.getTo() }}" placeholder="{{ experience['to'] }}" />
+                                <input id="experience-to" type="tel" class="validate js-range-to" value="{{ selectedExperience.getTo() }}" placeholder="{{ experience['to'] }}" />
                                 <label for="experience-to">{{ 'to'|trans }}</label>
                             </div>
                         </div>
@@ -79,11 +79,11 @@
                 #}
                 <div class="block">
                     <div class="name">{{ 'skills'|trans }}</div>
-                    <div class="elements">
+                    <div class="elements js-search-criteria-multi" data-param="skills">
                         {% for skill in profileCriteriaContainer.getSkills() %}
                             {% set reference = 'skill' ~ skill['alias'] %}
                             <p>
-                                <input type="checkbox" id="{{ reference }}" {% if skill['checked'] %}checked="checked"{% endif %} />
+                                <input type="checkbox" id="{{ reference }}" data-alias="{{ skill['alias'] }}" {% if skill['checked'] %}checked="checked"{% endif %} />
                                 <label for="{{ reference }}">{{ skill['name'] }}</label>
                             </p>
                         {% endfor %}
@@ -91,17 +91,17 @@
                 </div>
                 <div class="block">
                     <div class="name">{{ 'salary'|trans }}</div>
-                    <div class="elements">
+                    <div class="elements js-search-criteria-range" data-param="salary">
                         <div class="row">
                             {% set salary = profileCriteriaContainer.getSalary() %}
                             {# @var selectedSalary \AppBundle\Component\Range #}
                             {% set selectedSalary = profileCriteriaContainer.getSelectedSalary() %}
                             <div class="input-field col s6">
-                                <input id="salary-from" type="text" class="validate" value="{{ selectedSalary.getFrom() }}" placeholder="{{ salary['from'] }}" />
+                                <input id="salary-from" type="text" class="validate js-range-from" value="{{ selectedSalary.getFrom() }}" placeholder="{{ salary['from'] }}" />
                                 <label for="salary-from">{{ 'from'|trans }}</label>
                             </div>
                             <div class="input-field col s6">
-                                <input id="salary-to" type="tel" class="validate" value="{{ selectedSalary.getTo() }}" placeholder="{{ salary['to'] }}" />
+                                <input id="salary-to" type="tel" class="validate js-range-to" value="{{ selectedSalary.getTo() }}" placeholder="{{ salary['to'] }}" />
                                 <label for="salary-to">{{ 'to'|trans }}</label>
                             </div>
                         </div>
