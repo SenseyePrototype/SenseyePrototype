@@ -19,9 +19,9 @@ class DeveloperController extends Controller
         return $this->render('AppBundle:Developer:list.html.twig', [
             'profiles' => $profileResponse->getResults(),
             'pager' => $profileResponse->getPager(),
-            'profileCriteriaContainer' => new ProfileAvailableCriteriaContainer(
-                $this->get('senseye.profile.available.criteria.repository')->get()
-            ),
+            'profileCriteriaContainer' => $this
+                ->get('senseye.profile.criteria.container')
+                ->merge($available, $criteria),
         ]);
     }
 }
