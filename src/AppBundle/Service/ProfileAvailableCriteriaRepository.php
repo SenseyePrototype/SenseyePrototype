@@ -18,6 +18,11 @@ class ProfileAvailableCriteriaRepository
     private $indexService;
 
     /**
+     * @var ProfileAvailableCriteria
+     */
+    private $criteria;
+
+    /**
      * ProfileAvailableCriteriaRepository constructor.
      * @param DeveloperIndexService $indexService
      */
@@ -31,15 +36,9 @@ class ProfileAvailableCriteriaRepository
      */
     public function get()
     {
-        $resultSet = $this->indexService->getFilter()->getDocument($this->id);
-
-        $data = $resultSet->getData();
-
-        return new ProfileAvailableCriteria(
-            $data['multi'],
-            $data['must'],
-            $data['range']
-        );
+        return $this->criteria
+            ? $this->criteria
+            : $this->criteria = $this->fetch();
     }
 
     public function store(array $available)
@@ -49,5 +48,18 @@ class ProfileAvailableCriteriaRepository
         $type->addDocument(new Document($this->id, $available));
 
         $type->getIndex()->refresh();
+    }
+
+    private function fetch()
+    {
+        $resultSet = $this->indexService->getFilter()->getDocument($this->id);
+
+        $data = $resultSet->getData();
+
+        return new ProfileAvailableCriteria(
+            $data['multi'],
+            $data['must'],
+            $data['range']
+        );
     }
 }

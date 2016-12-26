@@ -1,4 +1,5 @@
 {# @var pager \ReenExeCubeTime\LightPaginator\Pager #}
+{# @var profileCriteriaContainer \AppBundle\Component\ProfileAvailableCriteriaContainer #}
 {% extends '::base.html.twig' %}
 {% block stylesheets %}
     <!-- Compiled and minified CSS -->
@@ -26,98 +27,101 @@
                 <div class="block">
                     <div class="name">{{ 'city'|trans }}</div>
                     <div class="elements">
-                        <p>
-                            <input type="checkbox" id="city_kiev" checked="checked" />
-                            <label for="city_kiev">Киев</label>
-                        </p>
-                        <p>
-                            <input type="checkbox" id="city_od" />
-                            <label for="city_od">Одесса</label>
-                        </p>
-                        <p>
-                            <input type="checkbox" id="city_lv" />
-                            <label for="city_lv">Львов</label>
-                        </p>
+                        {% for city in profileCriteriaContainer.getCities() %}
+                            {% set reference = 'city' ~ city['alias'] %}
+                            <p>
+                                <input type="checkbox" id="{{ reference }}" checked="checked" />
+                                <label for="{{ reference }}">{{ city['name'] }}</label>
+                            </p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="name">{{ 'experience'|trans }}</div>
+                    <div class="elements">
+                        <div class="row">
+                            {% set experience = profileCriteriaContainer.getExperience() %}
+                            <div class="input-field col s6">
+                                <input id="icon_prefix" type="text" class="validate" placeholder="{{ experience['from'] }}" />
+                                <label for="icon_prefix">{{ 'from'|trans }}</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="icon_telephone" type="tel" class="validate" placeholder="{{ experience['to'] }}" />
+                                <label for="icon_telephone">{{ 'to'|trans }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {#
+                    <div class="block">
+                        <div class="name">{{ 'specialization'|trans }}</div>
+                        <div class="elements">
+                            <p>
+                                <input type="checkbox" id="backend" checked="checked" />
+                                <label for="backend">Back-end</label>
+                            </p>
+                            <p>
+                                <input type="checkbox" id="frontend" />
+                                <label for="frontend">Front-end</label>
+                            </p>
+                            <p>
+                                <input type="checkbox" id="android" />
+                                <label for="android">Android</label>
+                            </p>
+                            <p>
+                                <input type="checkbox" id="ios" />
+                                <label for="ios">IOS</label>
+                            </p>
+                        </div>
+                    </div>
+                #}
+                <div class="block">
+                    <div class="name">{{ 'skills'|trans }}</div>
+                    <div class="elements">
+                        {% for skill in profileCriteriaContainer.getSkills() %}
+                            {% set reference = 'skill' ~ skill['alias'] %}
+                            <p>
+                                <input type="checkbox" id="{{ reference }}" checked="checked" />
+                                <label for="{{ reference }}">{{ skill['name'] }}</label>
+                            </p>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="block">
                     <div class="name">{{ 'salary'|trans }}</div>
                     <div class="elements">
                         <div class="row">
+                            {% set salary = profileCriteriaContainer.getSalary() %}
                             <div class="input-field col s6">
-                                <input id="icon_prefix" type="text" class="validate">
+                                <input id="icon_prefix" type="text" class="validate" placeholder="{{ salary['from'] }}" />
                                 <label for="icon_prefix">{{ 'from'|trans }}</label>
                             </div>
                             <div class="input-field col s6">
-                                <input id="icon_telephone" type="tel" class="validate" ca>
+                                <input id="icon_telephone" type="tel" class="validate" placeholder="{{ salary['to'] }}" />
                                 <label for="icon_telephone">{{ 'to'|trans }}</label>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="block">
-                    <div class="name">{{ 'specialization'|trans }}</div>
-                    <div class="elements">
-                        <p>
-                            <input type="checkbox" id="backend" checked="checked" />
-                            <label for="backend">Back-end</label>
-                        </p>
-                        <p>
-                            <input type="checkbox" id="frontend" />
-                            <label for="frontend">Front-end</label>
-                        </p>
-                        <p>
-                            <input type="checkbox" id="android" />
-                            <label for="android">Android</label>
-                        </p>
-                        <p>
-                            <input type="checkbox" id="ios" />
-                            <label for="ios">IOS</label>
-                        </p>
+                {#
+                    <div class="block">
+                        <div class="name">{{ 'profiles'|trans }}</div>
+                        <div class="elements">
+                            <p>
+                                <input type="checkbox" id="github" checked="checked" />
+                                <label for="github">
+                                    <i class="zmdi zmdi-github-alt"></i> GitHub
+                                </label>
+                            </p>
+                            <p>
+                                <input type="checkbox" id="linkedin" />
+                                <label for="linkedin">
+                                    <i class="zmdi zmdi-linkedin"></i> LinkedIn
+                                </label>
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div class="block">
-                    <div class="name">{{ 'skills'|trans }}</div>
-                    <div class="elements">
-                        <p>
-                            <input type="checkbox" id="php" checked="checked" />
-                            <label for="php">PHP</label>
-                        </p>
-                        <p>
-                            <input type="checkbox" id="mysql"/>
-                            <label for="mysql">MySQL</label>
-                        </p>
-                        <p>
-                            <input type="checkbox" id="nodejs"/>
-                            <label for="nodejs">Node.js</label>
-                        </p>
-                        <p>
-                            <input type="checkbox" id="redis"/>
-                            <label for="redis">Redis</label>
-                        </p>
-                        <p>
-                            <input type="checkbox" id="css"/>
-                            <label for="css">CSS</label>
-                        </p>
-                    </div>
-                </div>
-                <div class="block">
-                    <div class="name">{{ 'profiles'|trans }}</div>
-                    <div class="elements">
-                        <p>
-                            <input type="checkbox" id="github" checked="checked" />
-                            <label for="github">
-                                <i class="zmdi zmdi-github-alt"></i> GitHub
-                            </label>
-                        </p>
-                        <p>
-                            <input type="checkbox" id="linkedin" />
-                            <label for="linkedin">
-                                <i class="zmdi zmdi-linkedin"></i> LinkedIn
-                            </label>
-                        </p>
-                    </div>
-                </div>
+                #}
                 <div class="block">
                     <button class="btn waves-effect waves-light" type="submit" name="action">
                         {{ 'search'|trans }}
