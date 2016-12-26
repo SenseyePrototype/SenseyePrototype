@@ -30,7 +30,7 @@
                         {% for city in profileCriteriaContainer.getCities() %}
                             {% set reference = 'city' ~ city['alias'] %}
                             <p>
-                                <input type="checkbox" id="{{ reference }}" checked="checked" />
+                                <input type="checkbox" id="{{ reference }}" {% if city['checked'] %}checked="checked"{% endif %} />
                                 <label for="{{ reference }}">{{ city['name'] }}</label>
                             </p>
                         {% endfor %}
@@ -83,7 +83,7 @@
                         {% for skill in profileCriteriaContainer.getSkills() %}
                             {% set reference = 'skill' ~ skill['alias'] %}
                             <p>
-                                <input type="checkbox" id="{{ reference }}" checked="checked" />
+                                <input type="checkbox" id="{{ reference }}" {% if skill['checked'] %}checked="checked"{% endif %} />
                                 <label for="{{ reference }}">{{ skill['name'] }}</label>
                             </p>
                         {% endfor %}

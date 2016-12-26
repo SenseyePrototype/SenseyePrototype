@@ -15,14 +15,21 @@ class ProfileAvailableCriteriaContainer
     private $selected;
 
     /**
+     * @var array
+     */
+    private $multi;
+
+    /**
      * ProfileAvailableCriteriaContainer constructor.
      * @param ProfileAvailableCriteria $available
      * @param ProfileSearchCriteria $selected
+     * @param array $multi
      */
-    public function __construct(ProfileAvailableCriteria $available, ProfileSearchCriteria $selected)
+    public function __construct(ProfileAvailableCriteria $available, ProfileSearchCriteria $selected, array $multi)
     {
         $this->available = $available;
         $this->selected = $selected;
+        $this->multi = $multi;
     }
 
     /**
@@ -30,7 +37,7 @@ class ProfileAvailableCriteriaContainer
      */
     public function getCities()
     {
-        return $this->available->getMultiMap()['cities'];
+        return $this->multi['cities'];
     }
 
     /**
@@ -70,6 +77,6 @@ class ProfileAvailableCriteriaContainer
      */
     public function getSkills()
     {
-        return $this->available->getMustMap()['skills'];
+        return $this->multi['skills'];
     }
 }
