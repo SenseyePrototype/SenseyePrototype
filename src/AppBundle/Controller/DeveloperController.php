@@ -10,7 +10,11 @@ class DeveloperController extends Controller
 {
     public function listAction(Request $request)
     {
-        $profileResponse = $this->get('senseye.profile.getter')->search($request);
+        $available = $this->get('senseye.profile.available.criteria.repository')->get();
+
+        $criteria = $this->get('senseye.profile.search.request.analyzer')->analyze($available, $request);
+
+        $profileResponse = $this->get('senseye.profile.searcher')->search($criteria);
 
         return $this->render('AppBundle:Developer:list.html.twig', [
             'profiles' => $profileResponse->getResults(),

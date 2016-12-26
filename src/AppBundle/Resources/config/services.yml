@@ -32,10 +32,3 @@ services:
         class: 'AppBundle\Service\ProfileAvailableCriteriaRepository'
         arguments:
             - '@senseye.developer.index'
-
-    senseye.profile.getter:
-        class: 'AppBundle\Service\ProfileGetter'
-        arguments:
-            - '@senseye.profile.searcher'
-            - '@senseye.profile.available.criteria.repository'
-            - '@senseye.profile.search.request.analyzer'
