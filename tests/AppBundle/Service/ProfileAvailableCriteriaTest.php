@@ -13,9 +13,100 @@ class ProfileAvailableCriteriaTest extends TestCase
         $this->clearIndex($index);
 
         $source = [
-            'multi' => [],
-            'must' => [],
-            'range' => [],
+            'multi' => [
+                'cities' => [
+                    [
+                        'alias' => 'kiev',
+                        'name' => 'Київ',
+                    ],
+                    [
+                        'alias' => 'lviv',
+                        'name' => 'Львів',
+                    ],
+                    [
+                        'alias' => 'odessa',
+                        'name' => 'Одеса',
+                    ],
+                ],
+            ],
+            'must' => [
+                'skills' => [
+                    [
+                        'alias' => 'php',
+                        'name' => 'PHP',
+                    ],
+                    [
+                        'alias' => 'mysql',
+                        'name' => 'MySQL',
+                    ],
+                    [
+                        'alias' => 'javascript',
+                        'name' => 'JavaScript',
+                    ],
+                    [
+                        'alias' => 'elasticsearch',
+                        'name' => 'Elasticsearch',
+                    ],
+                    [
+                        'alias' => 'redis',
+                        'name' => 'Redis',
+                    ],
+                    [
+                        'alias' => 'phpunit',
+                        'name' => 'PHPUnit',
+                    ],
+                    [
+                        'alias' => 'symfony',
+                        'name' => 'Symfony',
+                    ],
+                    [
+                        'alias' => 'git',
+                        'name' => 'Git',
+                    ],
+                    [
+                        'alias' => 'html',
+                        'name' => 'HTML',
+                    ],
+                    [
+                        'alias' => 'css',
+                        'name' => 'CSS',
+                    ],
+                    [
+                        'alias' => 'sass',
+                        'name' => 'SASS',
+                    ],
+                    [
+                        'alias' => 'less',
+                        'name' => 'LESS',
+                    ],
+                    [
+                        'alias' => 'Java',
+                        'name' => 'Java',
+                    ],
+                    [
+                        'alias' => 'cpp',
+                        'name' => 'C++',
+                    ],
+                    [
+                        'alias' => 'swift',
+                        'name' => 'Swift',
+                    ],
+                    [
+                        'alias' => 'golang',
+                        'name' => 'Go',
+                    ],
+                ],
+            ],
+            'range' => [
+                'salary' => [
+                    'from' => 1500,
+                    'to' => 5000,
+                ],
+                'experience' => [
+                    'from' => 2,
+                    'to' => 17,
+                ],
+            ],
         ];
 
         $repository = $this->container->get('senseye.profile.available.criteria.repository');
