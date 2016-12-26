@@ -9,7 +9,7 @@ city: 'Город'
 from: 'от'
 to: 'до'
 
-found_choice: '{1}Найден %count% кандидат|]1,Inf[Найдено %count% кандидатов'
+found_choice: '{1}Найден %count% кандидат|]1,Inf[Найдено %count% кандидатов|{0}'
 experience_choice: '{1,21}%count% год опыта|{2,3,4}%count% года опыта|]1,Inf[%count% лет опыта'
 
 seo:

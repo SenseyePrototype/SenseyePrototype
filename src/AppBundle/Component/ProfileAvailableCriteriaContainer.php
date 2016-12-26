@@ -33,6 +33,14 @@ class ProfileAvailableCriteriaContainer
     }
 
     /**
+     * @return null|string
+     */
+    public function getFulltext()
+    {
+        return $this->selected->getFulltext();
+    }
+
+    /**
      * @return array
      */
     public function getCities()
