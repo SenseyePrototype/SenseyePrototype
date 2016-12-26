@@ -12,10 +12,9 @@ class ProfileSearchTestCase extends TestCase
 {
     public function test()
     {
-        $client = $this->container->get('senseye.elasticsearch.client');
+        $searchable = $this->container->get('senseye.developer.index')->getProfile();
 
-        $index = $client->getIndex('developer');
-        $searchable = $index->getType('profile');
+        $index = $searchable->getIndex();
 
         $this->clearIndex($index);
 
@@ -196,13 +195,6 @@ class ProfileSearchTestCase extends TestCase
         }
 
         return $result;
-    }
-
-    private function clearIndex(Index $index)
-    {
-        try {
-            $index->delete();
-        } catch (\Exception $e) {}
     }
 
     private function getArchitectCriteria()

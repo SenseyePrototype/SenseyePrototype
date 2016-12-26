@@ -7,6 +7,11 @@ services:
               username: '%elastic_username%'
               password: '%elastic_password%'
 
+    senseye.developer.index:
+        class: 'AppBundle\Service\DeveloperIndexService'
+        arguments:
+            - '@senseye.elasticsearch.client'
+
     senseye.pager.factory:
         class: 'ReenExeCubeTime\LightPaginator\CompleteFactory'
 
@@ -19,7 +24,7 @@ services:
     senseye.profile.searcher:
         class: 'AppBundle\Service\ProfileSearcher'
         arguments:
-            - '@senseye.elasticsearch.client'
+            - '@senseye.developer.index'
             - '@senseye.profile.search.builder'
             - '@senseye.pager.factory'
 

@@ -6,16 +6,15 @@ use AppBundle\Component\Adapter\ElasticAdapter;
 use AppBundle\Component\Profile;
 use AppBundle\Component\ProfileSearchCriteria;
 use AppBundle\Component\ProfileSearchResponse;
-use Elastica\Client;
 use Elastica\Result;
 use ReenExeCubeTime\LightPaginator\CompleteFactory;
 
 class ProfileSearcher
 {
     /**
-     * @var Client
+     * @var DeveloperIndexService
      */
-    private $client;
+    private $indexService;
 
     /**
      * @var ProfileSearchBuilder
@@ -29,13 +28,13 @@ class ProfileSearcher
 
     /**
      * ProfileSearcher constructor.
-     * @param Client $client
+     * @param DeveloperIndexService $indexService
      * @param ProfileSearchBuilder $builder
      * @param CompleteFactory $pagerFactory
      */
-    public function __construct(Client $client, ProfileSearchBuilder $builder, CompleteFactory $pagerFactory)
+    public function __construct(DeveloperIndexService $indexService, ProfileSearchBuilder $builder, CompleteFactory $pagerFactory)
     {
-        $this->client = $client;
+        $this->indexService = $indexService;
         $this->builder = $builder;
         $this->pagerFactory = $pagerFactory;
     }
@@ -48,7 +47,7 @@ class ProfileSearcher
      */
     public function search(ProfileSearchCriteria $criteria, $page = 1, $limit = 7)
     {
-        $searchable = $this->client->getIndex('developer')->getType('profile');
+        $searchable = $this->indexService->getProfile();
 
         $query = $this->builder->build($criteria);
 
