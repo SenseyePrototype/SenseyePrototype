@@ -365,7 +365,11 @@ class ProfileSearchTestCase extends TestCase
                 [
                     'alias' => 'kiev',
                     'name' => 'Київ',
-                ]
+                ],
+                [
+                    'alias' => 'odessa',
+                    'name' => 'Одеса',
+                ],
             ],
             'description' => 'Develop NoSQL database',
             'salary' => 3500,
@@ -419,7 +423,11 @@ class ProfileSearchTestCase extends TestCase
                 [
                     'alias' => 'kiev',
                     'name' => 'Київ',
-                ]
+                ],
+                [
+                    'alias' => 'lviv',
+                    'name' => 'Львів',
+                ],
             ],
             'description' => 'Develop web project',
             'salary' => 2000,
@@ -446,7 +454,11 @@ class ProfileSearchTestCase extends TestCase
                 [
                     'alias' => 'kiev',
                     'name' => 'Київ',
-                ]
+                ],
+                [
+                    'alias' => 'lviv',
+                    'name' => 'Львів',
+                ],
             ],
             'description' => 'Looking for interesting project  where can develop my professional skills',
             'salary' => 2000,
