@@ -48,7 +48,7 @@
                                 <label for="experience-from">{{ 'from'|trans }}</label>
                             </div>
                             <div class="input-field col s6">
-                                <input id="experience-to" type="tel" class="validate js-range-to" value="{{ selectedExperience.getTo() }}" placeholder="{{ experience['to'] }}" />
+                                <input id="experience-to" type="text" class="validate js-range-to" value="{{ selectedExperience.getTo() }}" placeholder="{{ experience['to'] }}" />
                                 <label for="experience-to">{{ 'to'|trans }}</label>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                                 <label for="salary-from">{{ 'from'|trans }}</label>
                             </div>
                             <div class="input-field col s6">
-                                <input id="salary-to" type="tel" class="validate js-range-to" value="{{ selectedSalary.getTo() }}" placeholder="{{ salary['to'] }}" />
+                                <input id="salary-to" type="text" class="validate js-range-to" value="{{ selectedSalary.getTo() }}" placeholder="{{ salary['to'] }}" />
                                 <label for="salary-to">{{ 'to'|trans }}</label>
                             </div>
                         </div>
@@ -160,8 +160,10 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var $submit = $('.js-search-submit');
+            var $range = $('.js-search-criteria-range');
+            var $search = $('.js-search-criteria-fulltext');
 
-            $submit.click(function () {
+            function search() {
                 var criteria = [];
 
                 $('.js-search-criteria-multi').each(function () {
@@ -175,16 +177,23 @@
                     }
                 });
 
-                $('.js-search-criteria-range').each(function () {
+                $range.each(function () {
                     var $this = $(this);
 
                     criteria.push($this.attr('data-param') + '=' + $('.js-range-from', $this).val() + '-' + $('.js-range-to', $this).val());
                 });
 
-                criteria.push('search' + '=' + $('.js-search-criteria-fulltext').val());
+                criteria.push('search' + '=' + $search.val());
 
                 location.href = location.pathname + '?' + criteria.join('&');
-            });
+            }
+
+            $submit.click(search);
+            $search.add($range).on('keyup', function (event) {
+                if (event.keyCode === 0b1101) {
+                    search();
+                }
+            })
         });
     </script>
 {% endblock %}
