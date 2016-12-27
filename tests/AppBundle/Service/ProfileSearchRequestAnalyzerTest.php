@@ -187,6 +187,7 @@ class ProfileSearchRequestAnalyzerTestCase extends TestCase
     public function salaryOutRangeDataProvider()
     {
         yield [''];
+        yield ['-'];
         yield ['0'];
         yield ['100'];
         yield ['25001'];
