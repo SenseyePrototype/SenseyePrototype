@@ -20,21 +20,15 @@ class ImportCommand extends ContainerAwareCommand
         $connection = $this->getContainer()->get('doctrine')->getConnection();
 
         $cityStatement = $connection->prepare('
-            SELECT `name`
+            SELECT `alias`, `name`
             FROM `city`;
         ');
 
         $cityStatement->execute();
 
-        $cities = $cityStatement->fetchAll(\PDO::FETCH_COLUMN);
+        $cities = $cityStatement->fetchAll(\PDO::FETCH_ASSOC);
 
-        $preparedCities = [];
-        foreach ($cities as $city) {
-            $preparedCities[] = [
-                'alias' => crc32($city),
-                'name' => $city,
-            ];
-        }
+        $cityNameMap = array_column($cities, null, 'name');
 
         $skillStatement = $connection->prepare('
             SELECT `alias`, `name`
@@ -62,7 +56,7 @@ class ImportCommand extends ContainerAwareCommand
 
         $available = [
             'multi' => [
-                'cities' => $preparedCities,
+                'cities' => $cities,
             ],
             'must' => [
                 'skills' => $preparedSkills,
@@ -82,5 +76,15 @@ class ImportCommand extends ContainerAwareCommand
         $repository = $this->getContainer()->get('senseye.profile.available.criteria.repository');
 
         $repository->store($available);
+
+        $profileStatement = $connection->prepare('
+            SELECT * FROM `profile`;
+        ');
+
+        $profileStatement->execute();
+
+        $profiles = $profileStatement->fetchAll(\PDO::FETCH_ASSOC);
+
+        $skillAliasMap = array_column($skills, null, 'alias');
     }
 }
