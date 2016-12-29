@@ -15,6 +15,11 @@ interface ProfileInterface
     public function getDescription();
 
     /**
+     * @return string
+     */
+    public function getLink();
+
+    /**
      * @return array
      */
     public function getSkills();

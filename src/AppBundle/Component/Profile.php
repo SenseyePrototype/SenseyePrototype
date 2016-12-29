@@ -28,6 +28,11 @@ class Profile implements ProfileInterface
         return $this->data['description'];
     }
 
+    public function getLink()
+    {
+        return $this->data['link'];
+    }
+
     public function getSkills()
     {
         return $this->data['skills'];

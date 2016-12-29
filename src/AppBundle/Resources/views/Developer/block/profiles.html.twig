@@ -2,7 +2,9 @@
 {% for profile in profiles %}
     <div class="col s12 work-block z-depth-2 card-panel hoverable">
         <div class="col s12 header">
-            <div class="title">{{ profile.getTitle() }}</div>
+            <div class="title">
+                <a href="{{ profile.getLink() }}?from=senseye" target="_blank">{{ profile.getTitle() }}</a>
+            </div>
             <div class="post-date">27 ноября 2016</div>
         </div>
         <div class="col s12 user-criteria">
