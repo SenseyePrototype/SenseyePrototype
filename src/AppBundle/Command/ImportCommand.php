@@ -38,7 +38,7 @@ class ImportCommand extends ContainerAwareCommand
 
         $skillStatement->execute();
 
-        $skills = $cityStatement->fetchAll(\PDO::FETCH_ASSOC);
+        $skills = $skillStatement->fetchAll(\PDO::FETCH_ASSOC);
 
         $preparedSkills = array_slice($skills, 0, 100);
 
