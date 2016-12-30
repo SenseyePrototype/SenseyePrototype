@@ -1,2 +1,6 @@
 search_developer_app:
     resource: "@AppBundle/Resources/config/routing.yml"
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
