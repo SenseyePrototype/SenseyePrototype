@@ -65,4 +65,17 @@ class ProfileSearcher
 
         return new ProfileSearchResponse($pager, $profiles);
     }
+
+    /**
+     * @param ProfileSearchCriteria $criteria
+     * @return int
+     */
+    public function count(ProfileSearchCriteria $criteria)
+    {
+        $searchable = $this->indexService->getProfile();
+
+        $query = $this->builder->build($criteria);
+
+        return $searchable->count($query);
+    }
 }
