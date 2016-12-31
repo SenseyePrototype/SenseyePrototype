@@ -13,6 +13,6 @@ found_choice: '{1}Найден %count% кандидат|]1,Inf[Найдено %c
 experience_choice: '{1,21}%count% год опыта|{2,3,4}%count% года опыта|]1,Inf[%count% лет опыта|{0} меньше года'
 
 seo:
-    title: 'Senseye – пошук программістів'
-    description: 'Пошук програмістів'
-    keywords: 'Senseye,поиск резюме,пошук резюме,пошук программістів'
+    title: 'Senseye – поиск программистов'
+    description: 'Поиск программистов'
+    keywords: 'поиск резюме'

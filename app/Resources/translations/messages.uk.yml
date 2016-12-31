@@ -1,0 +1,18 @@
+search: 'Пошук'
+salary: 'Винагорода'
+experience: 'Досвід'
+specialization: 'Спеціалізація'
+skills: 'Вміння'
+profiles: 'Профілі'
+city: 'Місто'
+
+from: 'від'
+to: 'до'
+
+found_choice: '{1}Знайдено %count% кандидата|]1,Inf[Знайдено %count% кандидатів|{0}'
+experience_choice: '{1,21}%count% рік досвіду|{2,3,4}%count% роки досвіду|]1,Inf[%count% років досвіду|{0} меньше року'
+
+seo:
+    title: 'Senseye – пошук программістів'
+    description: 'Пошук програмістів'
+    keywords: 'пошук резюме'
