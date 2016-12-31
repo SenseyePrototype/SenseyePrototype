@@ -24,22 +24,11 @@
     <div class="container">
         <div class="row">
             <div class="col s3 left-menu">
-                <div class="result shown" style="top:108px;">
-                    <div class="result__wrap loader">
-                        <a class="result__submit" href="javascript:void(0);"><span class="result__label">Показать</span><span class="result__count"></span></a>
-                        <a class="result__close" href="javascript:void(0);">+</a>
-                    </div>
-                </div>
-                <div class="result shown" style="top:150px;">
-                    <div class="result__wrap">
-                        <a class="result__submit" href="javascript:void(0);"><span class="result__label">Показать</span><span class="result__count">19 300</span></a>
-                        <a class="result__close" href="javascript:void(0);">+</a>
-                    </div>
-                </div>
-                <div class="result shown" style="top:192px;">
-                    <div class="result__wrap">
-                        <span class="result__label">Ничего не найдено</span>
-                        <a class="result__close" href="javascript:void(0);">+</a>
+                <div id="js-count-hint" class="result" style="top:108px;">
+                    <div class="js-count-loader result__wrap">
+                        <span class="js-empty result__label">Ничего не найдено</span>
+                        <a class="js-submit result__submit" href="javascript:void(0);"><span class="result__label">Показать</span><span class="js-count-result result__count"></span></a>
+                        <a class="js-close result__close" href="javascript:void(0);">+</a>
                     </div>
                 </div>
                 <div class="block">
@@ -177,14 +166,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var $submit = $('.js-search-submit');
             var $range = $('.js-search-criteria-range');
+            var $multi = $('.js-search-criteria-multi');
             var $search = $('.js-search-criteria-fulltext');
+            var $hint = $('#js-count-hint');
+            var $loader = $('.js-count-loader', $hint);
+            var $count = $('.js-count-result', $hint);
+            var $empty = $('.js-empty', $hint);
+            var $submit = $('.js-submit', $hint);
 
-            function search() {
+            function getCriteria() {
                 var criteria = [];
 
-                $('.js-search-criteria-multi').each(function () {
+                $multi.each(function () {
                     var $this = $(this);
                     var list = [];
                     $('input:checked', $this).each(function () {
@@ -203,15 +197,60 @@
 
                 criteria.push('search' + '=' + $search.val());
 
-                location.href = location.pathname + '?' + criteria.join('&');
+                return '?' + criteria.join('&');
             }
 
-            $submit.click(search);
+            function search() {
+                location.href = location.pathname + getCriteria();
+            }
+
+            function showCount(props) {
+                $hint.toggleClass('shown', props.shown);
+                $loader.toggleClass('loaded', props.loaded);
+                $count.html(props.count);
+                $empty.toggle(props.empty);
+                $submit.toggle(props.submit);
+            }
+
+            function getCount() {
+                showCount({
+                    shown: true,
+                    loaded: true,
+                    submit: true,
+                    empty: false,
+                    count: ''
+                });
+                $.ajax({
+                    url: '/api/v1/developers/count.json' + getCriteria(),
+                    success: function (response) {
+                        showCount({
+                            shown: true,
+                            loaded: false,
+                            submit: response.count > 0,
+                            empty: response.count === 0,
+                            count: response.count
+                        });
+                    }
+                });
+            }
+
+            $(document).on('click', '.js-search-submit', search);
+            $($submit).on('click', search);
+            $('input', $multi).on('change', getCount);
+            $hint.on('click', '.js-close', function () {
+                showCount({
+                    shown: false,
+                    loaded: false,
+                    submit: true,
+                    empty: false,
+                    count: '',
+                });
+            });
             $search.add($range).on('keyup', function (event) {
                 if (event.keyCode === 0b1101) {
                     search();
                 }
-            })
+            });
         });
     </script>
 {% endblock %}
