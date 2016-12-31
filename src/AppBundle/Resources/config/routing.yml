@@ -7,8 +7,3 @@ developers.page:
     path:     /developers
     defaults: { _controller: AppBundle:Developer:list }
     methods: ['GET']
-
-api.developers.count:
-    path:     /api/v1/developers/count.json
-    defaults: { _controller: AppBundle:ApiDeveloper:count }
-    methods: ['GET']

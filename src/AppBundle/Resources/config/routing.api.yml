@@ -1,0 +1,4 @@
+api.developers.count:
+    path:     /api/v1/developers/count.json
+    defaults: { _controller: AppBundle:ApiDeveloper:count }
+    methods: ['GET']
