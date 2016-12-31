@@ -10,7 +10,7 @@ class DeveloperControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/developers');
+        $client->request('GET', '/developers');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
