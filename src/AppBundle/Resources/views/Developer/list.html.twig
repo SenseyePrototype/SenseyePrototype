@@ -21,7 +21,7 @@
     </nav>
 </section>
 <section class="content">
-    <div class="container">
+    <div class="js-container container">
         <div class="row">
             <div class="col s3 left-menu">
                 <div id="js-count-hint" class="result" style="top:108px;">
@@ -174,6 +174,7 @@
             var $count = $('.js-count-result', $hint);
             var $empty = $('.js-empty', $hint);
             var $submit = $('.js-submit', $hint);
+            var $container = $('.js-container');
 
             function getCriteria() {
                 var criteria = [];
@@ -202,6 +203,10 @@
 
             function search() {
                 location.href = location.pathname + getCriteria();
+            }
+
+            function setCountOffset(top) {
+                $hint.css('top', top);
             }
 
             function showCount(props) {
@@ -236,7 +241,10 @@
 
             $(document).on('click', '.js-search-submit', search);
             $($submit).on('click', search);
-            $('input', $multi).on('change', getCount);
+            $('input', $multi).on('change', function () {
+                setCountOffset($(this).offset().top - $container.offset().top);
+                getCount();
+            });
             $hint.on('click', '.js-close', function () {
                 showCount({
                     shown: false,
