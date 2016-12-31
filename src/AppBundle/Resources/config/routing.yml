@@ -1,11 +1,14 @@
 intro:
     path: /
     defaults: { _controller: AppBundle:Intro:index }
+    methods: ['GET']
 
-developers:
+developers.page:
     path:     /developers
     defaults: { _controller: AppBundle:Developer:list }
+    methods: ['GET']
 
-api_developers_count:
+api.developers.count:
     path:     /api/v1/developers/count.json
     defaults: { _controller: AppBundle:ApiDeveloper:count }
+    methods: ['GET']
