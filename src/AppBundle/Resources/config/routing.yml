@@ -2,6 +2,10 @@ intro:
     path: /
     defaults: { _controller: AppBundle:Intro:index }
 
-list:
+developers:
     path:     /developers
     defaults: { _controller: AppBundle:Developer:list }
+
+api_developers_count:
+    path:     /api/v1/developers/count.json
+    defaults: { _controller: AppBundle:ApiDeveloper:count }
