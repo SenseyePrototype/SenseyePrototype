@@ -3,6 +3,7 @@
 namespace Tests\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\Response;
 
 class DeveloperControllerTest extends WebTestCase
 {
@@ -12,14 +13,6 @@ class DeveloperControllerTest extends WebTestCase
 
         $client->request('GET', '/developers');
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-
-        $this->assertSame(
-            [
-                'count' => 8
-            ],
-            json_decode($client->getResponse()->getContent(), true)
-        );
+        $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
     }
-
 }

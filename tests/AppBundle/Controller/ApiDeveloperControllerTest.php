@@ -14,6 +14,12 @@ class ApiDeveloperControllerTest extends WebTestCase
         $client->request('GET', '/api/v1/developers/count.json');
 
         $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
-    }
 
+        $this->assertSame(
+            [
+                'count' => 8
+            ],
+            json_decode($client->getResponse()->getContent(), true)
+        );
+    }
 }
