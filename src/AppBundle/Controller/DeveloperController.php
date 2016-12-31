@@ -14,7 +14,7 @@ class DeveloperController extends Controller
 
         $criteria = $this->get('senseye.profile.search.request.analyzer')->analyze($available, $request);
 
-        $profileResponse = $this->get('senseye.profile.searcher')->search($criteria);
+        $profileResponse = $this->get('senseye.profile.searcher')->search($criteria, 1, 17);
 
         return $this->render('AppBundle:Developer:list.html.twig', [
             'profiles' => $profileResponse->getResults(),
