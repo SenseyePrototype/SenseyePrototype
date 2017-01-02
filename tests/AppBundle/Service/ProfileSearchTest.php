@@ -129,9 +129,12 @@ class ProfileSearchTestCase extends TestCase
             $this->getProfiles()
         );
 
+        $documents = [];
         foreach ($profiles as $profile) {
-            $searchable->addDocument(new Document($profile['hash_code'], $profile));
+            $documents[] = new Document($profile['hash_code'], $profile);
         }
+
+        $searchable->addDocuments($documents);
 
         $index->refresh();
 
