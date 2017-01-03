@@ -96,6 +96,7 @@ class ImportCommand extends ContainerAwareCommand
             $index->delete();
         } catch (\Exception $e) {}
 
+        $documents = [];
         foreach ($profiles as $profile) {
             $document = [
                 'title' => $profile['title'],
@@ -113,8 +114,10 @@ class ImportCommand extends ContainerAwareCommand
                     )
                 ),
             ];
-            $searchable->addDocument(new Document($profile['id'], $document));
+            $documents[] = new Document($profile['id'], $document);
         }
+
+        $searchable->addDocuments($documents);
 
         $index->refresh();
     }
