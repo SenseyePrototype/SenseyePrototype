@@ -30,11 +30,11 @@ class SkillPriorityRepository extends \Doctrine\ORM\EntityRepository
         ");
 
         $connection->beginTransaction();
-        $priority = 1;
+        $priority = count($aliases);
         foreach ($aliases as $alias) {
             $statement->execute([
                 'alias' => $alias,
-                'priority' => $priority++,
+                'priority' => $priority--,
             ]);
         }
         $connection->commit();

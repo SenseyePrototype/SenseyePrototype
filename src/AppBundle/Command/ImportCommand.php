@@ -33,7 +33,9 @@ class ImportCommand extends ContainerAwareCommand
 
         $skillStatement = $connection->prepare('
             SELECT `alias`, `name`
-            FROM `skill`;
+            FROM `skill`
+            LEFT JOIN `s_skill_priority` USING (`alias`)
+            ORDER BY `priority` DESC, `count` DESC;
         ');
 
         $skillStatement->execute();
