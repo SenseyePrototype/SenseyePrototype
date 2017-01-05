@@ -5,7 +5,7 @@ namespace Tests\AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
-class DeveloperControllerTest extends WebTestCase
+class MainControllerListTest extends WebTestCase
 {
     /**
      * @dataProvider dataProvider
@@ -23,7 +23,10 @@ class DeveloperControllerTest extends WebTestCase
     public function dataProvider()
     {
         return [
+            ['/'],
+            ['/ru'],
             ['/developers'],
+            ['/ru/developers'],
         ];
     }
 }
