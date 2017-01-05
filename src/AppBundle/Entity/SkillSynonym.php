@@ -3,9 +3,9 @@
 namespace AppBundle\Entity;
 
 /**
- * SkillPriority
+ * SkillSynonym
  */
-class SkillPriority
+class SkillSynonym
 {
     /**
      * @var integer
@@ -18,9 +18,9 @@ class SkillPriority
     private $alias;
 
     /**
-     * @var integer
+     * @var string
      */
-    private $priority;
+    private $synonym;
 
 
     /**
@@ -38,7 +38,7 @@ class SkillPriority
      *
      * @param string $alias
      *
-     * @return SkillPriority
+     * @return SkillSynonym
      */
     public function setAlias($alias)
     {
@@ -58,26 +58,27 @@ class SkillPriority
     }
 
     /**
-     * Set priority
+     * Set synonym
      *
-     * @param integer $priority
+     * @param string $synonym
      *
-     * @return SkillPriority
+     * @return SkillSynonym
      */
-    public function setPriority($priority)
+    public function setSynonym($synonym)
     {
-        $this->priority = $priority;
+        $this->synonym = $synonym;
 
         return $this;
     }
 
     /**
-     * Get priority
+     * Get synonym
      *
-     * @return integer
+     * @return string
      */
-    public function getPriority()
+    public function getSynonym()
     {
-        return $this->priority;
+        return $this->synonym;
     }
 }
+
