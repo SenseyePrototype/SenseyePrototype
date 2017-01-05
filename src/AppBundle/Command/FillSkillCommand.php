@@ -46,8 +46,24 @@ class FillSkillCommand extends ContainerAwareCommand
 
         $synonym->add([
             'php' => ['php5', 'php7'],
+            'golang' => ['go'],
+            'express' => ['expressjs'],
+            'react' => ['reactjs'],
+            'symfony' => ['symfony2', 'symfony3'],
+            'teamlead' => ['teamleadership', 'teamleading'],
+            'testcase' => ['testcasedesign', 'testcases', 'testcasescreation'],
+            'manualtesting' => ['manualtestingqa'],
+            'presentation' => ['presentations'],
+            'gulp' => ['gulpjs'],
+            'googleanalytics' => ['googleanalytic'],
+            'gamedevelopment' => ['gamedev'],
+            'c++' => ['cc++'],
             'css' => ['css', 'css3'],
-            'html' => ['html', 'html5'],
+            'html' => ['html', 'html5', 'htmlcss'],
+            'actionscript' => ['actionscript3as3'],
+            'blender' => ['blender3d'],
+            'bugreport' => ['bugreporting', 'bugreports', 'bugtracking'],
+            'businessanalysis' => ['businessanalisys', 'businessanalyst', 'businessanalytics'],
         ]);
     }
 }
