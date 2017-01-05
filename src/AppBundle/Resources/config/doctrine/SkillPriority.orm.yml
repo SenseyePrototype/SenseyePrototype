@@ -1,0 +1,28 @@
+AppBundle\Entity\SkillPriority:
+    type: entity
+    table: s_skill_priority
+    repositoryClass: AppBundle\Repository\SkillPriorityRepository
+
+    uniqueConstraints:
+        UNIQUE_ALIAS:
+            columns:
+                - alias
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+
+    fields:
+        alias:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        priority:
+            type: integer
+            nullable: false
