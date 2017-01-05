@@ -2,6 +2,8 @@
 
 namespace AppBundle\Command;
 
+use AppBundle\Repository\SkillPriorityRepository;
+use AppBundle\Repository\SkillSynonymRepository;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -15,13 +17,11 @@ class FillSkillCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        /* @var */
-        $repository = $this
-            ->getContainer()
-            ->get('doctrine')
-            ->getRepository('AppBundle:SkillPriority');
+        $doctrine = $this->getContainer()->get('doctrine');
 
-        $aliases = [
+        /* @var $priority SkillPriorityRepository */
+        $priority = $doctrine->getRepository('AppBundle:SkillPriority');
+        $priority->add([
             'php',
             'net',
             'java',
@@ -39,8 +39,15 @@ class FillSkillCommand extends ContainerAwareCommand
             'sql',
             'git',
             'jira',
-        ];
+        ]);
 
-        $repository->add($aliases);
+        /* @var $synonym SkillSynonymRepository */
+        $synonym = $doctrine->getRepository('AppBundle:SkillSynonym');
+
+        $synonym->add([
+            'php' => ['php5', 'php7'],
+            'css' => ['css', 'css3'],
+            'html' => ['html', 'html5'],
+        ]);
     }
 }

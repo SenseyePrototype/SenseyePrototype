@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use Doctrine\DBAL\Connection;
+
 /**
  * SkillSynonymRepository
  *
@@ -10,4 +12,32 @@ namespace AppBundle\Repository;
  */
 class SkillSynonymRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function add(array $aliasSynonymMap)
+    {
+        $table = $this
+            ->getEntityManager()
+            ->getClassMetadata('AppBundle:SkillSynonym')
+            ->getTableName();
+
+        /* @var $connection Connection */
+        $connection = $this->getEntityManager()->getConnection();
+
+        $connection->exec("TRUNCATE TABLE `$table`;`");
+
+        $statement = $connection->prepare("
+            INSERT INTO `$table`(`alias`, `synonym`)
+            VALUE (:alias, :synonym);
+        ");
+
+        $connection->beginTransaction();
+        foreach ($aliasSynonymMap as $alias => $synonyms) {
+            foreach ($synonyms as $synonym) {
+                $statement->execute([
+                    'alias' => $alias,
+                    'synonym' => $synonym,
+                ]);
+            }
+        }
+        $connection->commit();
+    }
 }
