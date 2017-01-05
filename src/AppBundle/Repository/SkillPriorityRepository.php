@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use Doctrine\DBAL\Connection;
+
 /**
  * SkillPriorityRepository
  *
@@ -10,4 +12,31 @@ namespace AppBundle\Repository;
  */
 class SkillPriorityRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function add(array $aliases)
+    {
+        $table = $this
+            ->getEntityManager()
+            ->getClassMetadata('AppBundle:SkillPriority')
+            ->getTableName();
+
+        /* @var $connection Connection */
+        $connection = $this->getEntityManager()->getConnection();
+
+        $connection->exec("TRUNCATE TABLE `$table`;`");
+
+        $statement = $connection->prepare("
+            INSERT INTO `$table`(`alias`, `priority`)
+            VALUE (:alias, :priority);
+        ");
+
+        $connection->beginTransaction();
+        $priority = 1;
+        foreach ($aliases as $alias) {
+            $statement->execute([
+                'alias' => $alias,
+                'priority' => $priority++,
+            ]);
+        }
+        $connection->commit();
+    }
 }
