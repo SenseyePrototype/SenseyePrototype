@@ -24,6 +24,7 @@ abstract class TestCase extends KernelTestCase
     {
         try {
             $index->delete();
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
     }
 }

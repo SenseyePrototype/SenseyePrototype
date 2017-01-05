@@ -1,12 +1,11 @@
 <?php
 
-$finder = Symfony\CS\Finder\DefaultFinder::create()
-    ->in(['src']);
+$finder = PhpCsFixer\Finder::create()
+    ->in(['src', 'tests']);
 
-return Symfony\CS\Config\Config::create()
-    ->setUsingLinter(false)
-    ->setUsingCache(true)
-    ->fixers([
-        'short_array_syntax'
-    ])
-    ->finder($finder);
+return PhpCsFixer\Config::create()
+    ->setRules(array(
+        '@PSR2' => true,
+        'array_syntax' => array('syntax' => 'short'),
+    ))
+    ->setFinder($finder);

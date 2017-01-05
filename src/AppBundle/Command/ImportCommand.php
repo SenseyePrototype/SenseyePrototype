@@ -94,7 +94,8 @@ class ImportCommand extends ContainerAwareCommand
 
         try {
             $index->delete();
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
 
         $documents = [];
         foreach ($profiles as $profile) {
