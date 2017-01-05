@@ -1,13 +1,12 @@
-AppBundle\Entity\SkillSynonym:
+AppBundle\Entity\City:
     type: entity
-    table: s_skill_synonym
-    repositoryClass: AppBundle\Repository\SkillSynonymRepository
+    table: s_city
+    repositoryClass: AppBundle\Repository\CityRepository
 
     uniqueConstraints:
-        UNIQUE_SYNONYM_ALIAS:
+        UNIQUE_ALIAS:
             columns:
                 - alias
-                - synonym
 
     id:
         id:
@@ -24,7 +23,7 @@ AppBundle\Entity\SkillSynonym:
             nullable: false
             length: 255
             fixed: false
-        synonym:
+        name:
             type: string
             nullable: false
             length: 255
