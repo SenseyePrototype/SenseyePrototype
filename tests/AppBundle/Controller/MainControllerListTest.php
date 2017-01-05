@@ -24,9 +24,7 @@ class MainControllerListTest extends WebTestCase
     {
         return [
             ['/'],
-//            ['/ru'],
             ['/developers'],
-//            ['/ru/developers'],
         ];
     }
 }
