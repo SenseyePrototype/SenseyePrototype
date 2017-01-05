@@ -6,11 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class FillSkillPriorityCommand extends ContainerAwareCommand
+class FillSkillCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
-        $this->setName('senseye:fill:skill:priority');
+        $this->setName('senseye:fill:skill');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
