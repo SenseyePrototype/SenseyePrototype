@@ -7,12 +7,23 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DeveloperControllerTest extends WebTestCase
 {
-    public function testList()
+    /**
+     * @dataProvider dataProvider
+     * @param $path
+     */
+    public function testList($path)
     {
         $client = static::createClient();
 
-        $client->request('GET', '/developers');
+        $client->request('GET', $path);
 
         $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+    }
+
+    public function dataProvider()
+    {
+        return [
+            ['/developers'],
+        ];
     }
 }
