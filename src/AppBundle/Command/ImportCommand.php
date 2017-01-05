@@ -20,42 +20,15 @@ class ImportCommand extends ContainerAwareCommand
         /* @var $connection Connection */
         $connection = $this->getContainer()->get('doctrine')->getConnection();
 
-        $cityStatement = $connection->prepare('
-            SELECT `alias`, `name`
-            FROM `city`;
-        ');
-
-        $cityStatement->execute();
-
-        $cities = $cityStatement->fetchAll(\PDO::FETCH_ASSOC);
+        $cities = $this->getCities();
 
         $cityNameMap = array_column($cities, null, 'name');
 
-        $skillStatement = $connection->prepare('
-            SELECT `alias`, `name`
-            FROM `skill`
-            LEFT JOIN `s_skill_priority` USING (`alias`)
-            ORDER BY `priority` DESC, `count` DESC;
-        ');
-
-        $skillStatement->execute();
-
-        $skills = $skillStatement->fetchAll(\PDO::FETCH_ASSOC);
+        $skills = $this->getSkills();
 
         $preparedSkills = array_slice($skills, 0, 100);
 
-        $rangeStatement = $connection->prepare('
-            SELECT 
-                MIN(`salary`) AS `salary_from`,
-                MAX(`salary`) AS `salary_to`,
-                MIN(`experience`) AS `experience_from`,
-                MAX(`experience`) AS `experience_to`
-            FROM `profile`;
-        ');
-
-        $rangeStatement->execute();
-
-        $ranges = $rangeStatement->fetch(\PDO::FETCH_ASSOC);
+        $ranges = $this->getRanges();
 
         $available = [
             'multi' => [
@@ -90,6 +63,8 @@ class ImportCommand extends ContainerAwareCommand
 
         $skillAliasMap = array_column($skills, null, 'alias');
 
+        $synonymMap = $this->getSynonymMap();
+
         $searchable = $this->getContainer()->get('senseye.developer.index')->getProfile();
 
         $index = $searchable->getIndex();
@@ -101,6 +76,15 @@ class ImportCommand extends ContainerAwareCommand
 
         $documents = [];
         foreach ($profiles as $profile) {
+            $profileSkills = array_flip(json_decode($profile['skills'], true));
+
+            if ($profileSkillSynonyms = array_intersect_key($synonymMap, $profileSkills)) {
+                $profileSkills = array_merge(
+                    $profileSkills,
+                    array_flip($profileSkillSynonyms)
+                );
+            }
+
             $document = [
                 'title' => $profile['title'],
                 'description' => $profile['description'],
@@ -113,7 +97,7 @@ class ImportCommand extends ContainerAwareCommand
                 'skills' => array_values(
                     array_intersect_key(
                         $skillAliasMap,
-                        array_flip(json_decode($profile['skills'], true))
+                        $profileSkills
                     )
                 ),
             ];
@@ -123,5 +107,69 @@ class ImportCommand extends ContainerAwareCommand
         $searchable->addDocuments($documents);
 
         $index->refresh();
+    }
+
+    private function getSkills()
+    {
+        $skillStatement = $this->getConnection()->prepare('
+            SELECT `alias`, `name`
+            FROM `skill`
+            LEFT JOIN `s_skill_priority` USING (`alias`)
+            ORDER BY `priority` DESC, `count` DESC;
+        ');
+
+        $skillStatement->execute();
+
+        return $skillStatement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    private function getCities()
+    {
+        $cityStatement = $this->getConnection()->prepare('
+            SELECT `alias`, `name`
+            FROM `city`;
+        ');
+
+        $cityStatement->execute();
+
+        return $cityStatement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    private function getSynonymMap()
+    {
+        $synonymStatement = $this->getConnection()->prepare('
+            SELECT `alias`, `synonym`
+            FROM `s_skill_synonym`;
+        ');
+
+        $synonymStatement->execute();
+
+        $list = $synonymStatement->fetchAll(\PDO::FETCH_ASSOC);
+
+        return array_column($list, 'alias', 'synonym');
+    }
+
+    private function getRanges()
+    {
+        $rangeStatement = $this->getConnection()->prepare('
+            SELECT 
+                MIN(`salary`) AS `salary_from`,
+                MAX(`salary`) AS `salary_to`,
+                MIN(`experience`) AS `experience_from`,
+                MAX(`experience`) AS `experience_to`
+            FROM `profile`;
+        ');
+
+        $rangeStatement->execute();
+
+        return $rangeStatement->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    private function getConnection()
+    {
+        /* @var $connection Connection */
+        $connection = $this->getContainer()->get('doctrine')->getConnection();
+
+        return $connection;
     }
 }
