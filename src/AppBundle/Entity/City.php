@@ -3,9 +3,9 @@
 namespace AppBundle\Entity;
 
 /**
- * SkillSynonym
+ * City
  */
-class SkillSynonym
+class City
 {
     /**
      * @var integer
@@ -20,7 +20,7 @@ class SkillSynonym
     /**
      * @var string
      */
-    private $synonym;
+    private $name;
 
 
     /**
@@ -38,7 +38,7 @@ class SkillSynonym
      *
      * @param string $alias
      *
-     * @return SkillSynonym
+     * @return City
      */
     public function setAlias($alias)
     {
@@ -58,26 +58,27 @@ class SkillSynonym
     }
 
     /**
-     * Set synonym
+     * Set name
      *
-     * @param string $synonym
+     * @param string $name
      *
-     * @return SkillSynonym
+     * @return City
      */
-    public function setSynonym($synonym)
+    public function setName($name)
     {
-        $this->synonym = $synonym;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get synonym
+     * Get name
      *
      * @return string
      */
-    public function getSynonym()
+    public function getName()
     {
-        return $this->synonym;
+        return $this->name;
     }
 }
+
