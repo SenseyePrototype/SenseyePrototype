@@ -1,0 +1,109 @@
+services:
+    oauth.user_provider:
+        class: AppBundle\Service\OAuth\OAuthUserProvider
+        arguments:
+            - "@app.oauth.user_response_handler_provider"
+            - "@app.oauth.user_response_connector_provider"
+            - "@app.entity.manager.user"
+
+    app.oauth.user_response_mapper.google:
+        class: AppBundle\Service\OAuth\UserResponseMapper\GoogleResponseMapper
+
+    app.oauth.user_response_mapper.linkedin:
+        class: AppBundle\Service\OAuth\UserResponseMapper\LinkedinResponseMapper
+
+    app.oauth.user_response_mapper.github:
+        class: AppBundle\Service\OAuth\UserResponseMapper\GithubResponseMapper
+
+    app.oauth.user_response_mapper.bitbucket:
+        class: AppBundle\Service\OAuth\UserResponseMapper\BitbucketResponseMapper
+
+    app.oauth.user_response_mapper.facebook:
+        class: AppBundle\Service\OAuth\UserResponseMapper\FacebookResponseMapper
+
+    app.oauth.user_response_handler_provider:
+        class: AppBundle\Service\OAuth\UserResponseHandler\ResponseHandlerProvider
+
+    app.oauth.user_response_connector_provider:
+        class: AppBundle\Service\OAuth\UserResponseConnector\ResponseConnectorProvider
+
+    app.oauth.user_response_connector:
+        abstract: true
+        arguments:
+            - "@app.entity.manager.user"
+
+    app.oauth.user_response_connector_facebook:
+        parent: app.oauth.user_response_connector
+        class: AppBundle\Service\OAuth\UserResponseConnector\FacebookResponseConnector
+        tags:
+            - { name: app.oauth.user_response_connector, alias: facebook}
+
+    app.oauth.user_response_connector_google:
+        parent: app.oauth.user_response_connector
+        class: AppBundle\Service\OAuth\UserResponseConnector\GoogleResponseConnector
+        tags:
+            - { name: app.oauth.user_response_connector, alias: google}
+
+    app.oauth.user_response_connector_linkedin:
+        parent: app.oauth.user_response_connector
+        class: AppBundle\Service\OAuth\UserResponseConnector\LinkedinResponseConnector
+        tags:
+            - { name: app.oauth.user_response_connector, alias: linkedin}
+
+    app.oauth.user_response_connector_github:
+        parent: app.oauth.user_response_connector
+        class: AppBundle\Service\OAuth\UserResponseConnector\GithubResponseConnector
+        tags:
+            - { name: app.oauth.user_response_connector, alias: github}
+
+    app.oauth.user_response_connector_bitbucket:
+        parent: app.oauth.user_response_connector
+        class: AppBundle\Service\OAuth\UserResponseConnector\BitbucketResponseConnector
+        tags:
+            - { name: app.oauth.user_response_connector, alias: bitbucket}
+
+    app.oauth.user_response_handler:
+        abstract: true
+        arguments:
+            - "@app.entity.manager.user"
+            - "@session"
+
+    app.oauth.user_response_handler_facebook:
+        parent: app.oauth.user_response_handler
+        class: AppBundle\Service\OAuth\UserResponseHandler\FacebookResponseHandler
+        arguments:
+            - "@app.oauth.user_response_mapper.facebook"
+        tags:
+            - { name: app.oauth.user_response_handler, alias: facebook}
+
+    app.oauth.user_response_handler_google:
+        parent: app.oauth.user_response_handler
+        class: AppBundle\Service\OAuth\UserResponseHandler\GoogleResponseHandler
+        arguments:
+            - "@app.oauth.user_response_mapper.google"
+        tags:
+            - { name: app.oauth.user_response_handler, alias: google}
+
+    app.oauth.user_response_handler_linkedin:
+        parent: app.oauth.user_response_handler
+        class: AppBundle\Service\OAuth\UserResponseHandler\LinkedinResponseHandler
+        arguments:
+            - "@app.oauth.user_response_mapper.linkedin"
+        tags:
+            - { name: app.oauth.user_response_handler, alias: linkedin}
+
+    app.oauth.user_response_handler_github:
+        parent: app.oauth.user_response_handler
+        class: AppBundle\Service\OAuth\UserResponseHandler\GithubResponseHandler
+        arguments:
+            - "@app.oauth.user_response_mapper.github"
+        tags:
+            - { name: app.oauth.user_response_handler, alias: github}
+
+    app.oauth.user_response_handler_bitbucket:
+        parent: app.oauth.user_response_handler
+        class: AppBundle\Service\OAuth\UserResponseHandler\BitbucketResponseHandler
+        arguments:
+            - "@app.oauth.user_response_mapper.bitbucket"
+        tags:
+            - { name: app.oauth.user_response_handler, alias: bitbucket}

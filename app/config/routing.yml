@@ -7,3 +7,30 @@ search_developer_api:
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
+
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /connect
+
+hwi_oauth_connect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+    prefix:   /connect
+
+hwi_oauth_login:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix:   /login
+
+linkedin_login:
+    path: /login/oauth/check-linkedin
+
+bitbucket_login:
+    path: /login/oauth/check-bitbucket
+
+facebook_login:
+    path: /login/oauth/check-facebook
+
+google_login:
+    path: /login/oauth/check-google
+
+github_login:
+    path: /login/oauth/check-github

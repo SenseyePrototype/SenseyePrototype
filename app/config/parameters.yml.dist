@@ -22,3 +22,12 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    linkedin_client_id: 86c2dhhceamelz
+    linkedin_client_secret: eEqEKh34xNQxZt5S
+
+    google_client_id: 410509986407-p8u6uqni5lukc4vmve0ejqt919t3cl47.apps.googleusercontent.com
+    google_client_secret: iaKQ9lj5kCMAFO-eNeDaqQj0
+
+    facebook_clien_id: 989011077859705
+    facebook_client_secret: ff3139a5c938f20054672ad10914c29a
