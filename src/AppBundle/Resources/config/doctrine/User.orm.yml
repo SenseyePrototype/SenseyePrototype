@@ -1,0 +1,79 @@
+AppBundle\Entity\User:
+    type: entity
+    table: s_user
+    repositoryClass: AppBundle\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+
+    fields:
+        username:
+            type: string
+            length: 255
+        email:
+            type: string
+            length: 255
+            nullable: true
+        facebookId:
+            type: string
+            length: 32
+            column: facebook_id
+            nullable: true
+            unique: true
+        facebookAccessToken:
+            type: string
+            length: 255
+            nullable: true
+            column: facebook_access_token
+        googleId:
+            type: string
+            length: 32
+            column: google_id
+            nullable: true
+            unique: true
+        googleAccessToken:
+            type: string
+            length: 255
+            nullable: true
+            column: google_access_token
+        linkedinId:
+            type: string
+            length: 32
+            column: linkedin_id
+            nullable: true
+            unique: true
+        linkedinAccessToken:
+            type: string
+            length: 255
+            nullable: true
+            column: linkedin_access_token
+        bitbucketId:
+            type: string
+            length: 32
+            column: bitbucket_id
+            nullable: true
+            unique: true
+        bitbucketAccessToken:
+            type: string
+            length: 255
+            nullable: true
+            column: bitbucket_access_token
+        githubId:
+            type: string
+            length: 32
+            column: github_id
+            nullable: true
+            unique: true
+        githubAccessToken:
+            type: string
+            length: 255
+            nullable: true
+            column: github_access_token
+
+
+
+
