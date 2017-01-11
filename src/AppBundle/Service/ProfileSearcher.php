@@ -49,7 +49,7 @@ class ProfileSearcher
     {
         $searchable = $this->indexService->getProfile();
 
-        $query = $this->builder->build($criteria);
+        $query = $this->builder->buildSearchQuery($criteria);
 
         $pager = $this->pagerFactory->createSmartPager(
             new ElasticAdapter($searchable, $query),

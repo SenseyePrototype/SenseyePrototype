@@ -13,20 +13,11 @@ class ProfileSearchBuilder
      * @param ProfileSearchCriteria $criteria
      * @return Query
      */
-    public function build(ProfileSearchCriteria $criteria)
+    public function buildSearchQuery(ProfileSearchCriteria $criteria)
     {
         $boolQuery = new BoolQuery();
 
-        if ($criteria->getFulltext()) {
-            $match = new MultiMatch();
-            $match
-                ->setQuery($criteria->getFulltext())
-                ->setFields([
-                    'title',
-                    'description',
-                ]);
-            $boolQuery->addMust($match);
-        }
+        $this->attachFulltext($criteria, $boolQuery);
 
         foreach ($criteria->getRangeMap() as $name => $range) {
             if ($range->exists()) {
@@ -59,5 +50,47 @@ class ProfileSearchBuilder
         }
 
         return new Query($boolQuery);
+    }
+
+    public function buildCountQuery(ProfileSearchCriteria $criteria)
+    {
+        $boolQuery = new BoolQuery();
+
+        $this->attachFulltext($criteria, $boolQuery);
+
+        return new Query($boolQuery);
+    }
+
+    /**
+     * @param ProfileSearchCriteria $criteria
+     * @return array
+     */
+    public function getNameFilterMap(ProfileSearchCriteria $criteria)
+    {
+        $filterMap = [];
+
+        foreach ($criteria->getMultiMap() as $name => $list) {
+            $param = new Query\Terms();
+
+            $param->setTerms("$name.alias", array_column($list, 'alias'));
+
+            $filterMap[$name] = $param->toArray();
+        }
+
+        return $filterMap;
+    }
+
+    private function attachFulltext(ProfileSearchCriteria $criteria, BoolQuery $boolQuery)
+    {
+        if ($criteria->getFulltext()) {
+            $match = new MultiMatch();
+            $match
+                ->setQuery($criteria->getFulltext())
+                ->setFields([
+                    'title',
+                    'description',
+                ]);
+            $boolQuery->addMust($match);
+        }
     }
 }

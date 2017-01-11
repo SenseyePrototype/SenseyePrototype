@@ -3,6 +3,7 @@
 namespace AppBundle\Service;
 
 use AppBundle\Component\ProfileCounterResponse;
+use Elastica\Query;
 use Symfony\Component\HttpFoundation\Request;
 
 class ProfileCounter
@@ -50,9 +51,44 @@ class ProfileCounter
 
         $searchable = $this->indexService->getProfile();
 
-        $query = $this->builder->build($criteria);
+        $query = $this->builder->buildSearchQuery($criteria);
 
         $count = $searchable->count($query);
+
+        $filterNameMap = $this->builder->getNameFilterMap($criteria);
+
+        $query = new Query();
+
+        $query->setParam('aggs', [
+            'cities' => [
+                'terms' => [
+                    'field' => 'cities.alias',
+                    'size' => 5,
+                ],
+            ],
+        ]);
+
+        $response = $searchable->getIndex()->getClient()->request('profiles/_mapping/developer', 'PUT', [
+            'properties' => [
+                'cities' => [
+                    'properties' => [
+                        'alias' => [
+                            'type' => 'text',
+                            'fielddata' => true,
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+
+        dump($response);
+
+        $searchable->getIndex()->refresh();
+
+        dump($searchable->getMapping());
+        dump($searchable->getMapping()['developer']['properties']['cities']['properties']);
+
+        $aggregations = $searchable->search($query)->getAggregations();
 
         return new ProfileCounterResponse($count, [], [], []);
     }

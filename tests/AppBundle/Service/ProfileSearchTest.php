@@ -186,7 +186,7 @@ class ProfileSearchTestCase extends TestCase
 
     private function search(SearchableInterface $searchable, ProfileSearchCriteria $criteria)
     {
-        $query = $this->container->get('senseye.profile.search.builder')->build($criteria);
+        $query = $this->container->get('senseye.profile.search.builder')->buildSearchQuery($criteria);
 
         $resultSet = $searchable->search($query);
 
