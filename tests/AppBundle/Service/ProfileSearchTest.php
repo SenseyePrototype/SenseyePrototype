@@ -184,19 +184,6 @@ class ProfileSearchTestCase extends TestCase
         $this->assertSame(3, count($pager->getResults()));
     }
 
-    public function testCount()
-    {
-        $searcher = $this->container->get('senseye.profile.searcher');
-
-        $criteria = $this->getEmptyCriteria();
-
-        $this->assertSame(8, $searcher->count($criteria));
-
-        foreach ($this->getArchitectCriteria() as $criteria) {
-            $this->assertSame(1, $searcher->count($criteria));
-        }
-    }
-
     private function search(SearchableInterface $searchable, ProfileSearchCriteria $criteria)
     {
         $query = $this->container->get('senseye.profile.search.builder')->build($criteria);
