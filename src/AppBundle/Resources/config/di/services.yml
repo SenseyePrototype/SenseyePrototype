@@ -38,7 +38,8 @@ services:
         arguments:
             - '@senseye.profile.available.criteria.repository'
             - '@senseye.profile.search.request.analyzer'
-            - '@senseye.profile.searcher'
+            - '@senseye.developer.index'
+            - '@senseye.profile.search.builder'
 
     senseye.profile.criteria.container:
         class: 'AppBundle\Service\ProfileSearchCriteriaContainerService'

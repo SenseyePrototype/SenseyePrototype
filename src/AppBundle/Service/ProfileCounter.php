@@ -18,21 +18,28 @@ class ProfileCounter
     private $requestAnalyzer;
 
     /**
-     * @var ProfileSearcher
+     * @var DeveloperIndexService
      */
-    private $searcher;
+    private $indexService;
+
+    /**
+     * @var ProfileSearchBuilder
+     */
+    private $builder;
 
     /**
      * ProfileCounter constructor.
      * @param ProfileAvailableCriteriaRepository $criteriaRepository
      * @param ProfileSearchRequestAnalyzer $requestAnalyzer
-     * @param ProfileSearcher $searcher
+     * @param DeveloperIndexService $indexService
+     * @param ProfileSearchBuilder $builder
      */
-    public function __construct(ProfileAvailableCriteriaRepository $criteriaRepository, ProfileSearchRequestAnalyzer $requestAnalyzer, ProfileSearcher $searcher)
+    public function __construct(ProfileAvailableCriteriaRepository $criteriaRepository, ProfileSearchRequestAnalyzer $requestAnalyzer, DeveloperIndexService $indexService, ProfileSearchBuilder $builder)
     {
         $this->criteriaRepository = $criteriaRepository;
         $this->requestAnalyzer = $requestAnalyzer;
-        $this->searcher = $searcher;
+        $this->indexService = $indexService;
+        $this->builder = $builder;
     }
 
     public function getCounter(Request $request)
@@ -41,7 +48,11 @@ class ProfileCounter
 
         $criteria = $this->requestAnalyzer->analyze($available, $request);
 
-        $count = $this->searcher->count($criteria);
+        $searchable = $this->indexService->getProfile();
+
+        $query = $this->builder->build($criteria);
+
+        $count = $searchable->count($query);
 
         return new ProfileCounterResponse($count, [], [], []);
     }
