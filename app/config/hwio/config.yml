@@ -38,10 +38,10 @@ hwi_oauth:
                 auth_type: rerequest # Re-asking for Declined Permissions
         github:
             type:                github
-            client_id:           %github_clien_id%
-            client_secret:       %github_clien_id%
+            client_id:           %github_client_id%
+            client_secret:       %github_client_id%
             scope:               'user:email,public_repo'
         bitbucket:
             type:                bitbucket
-            client_id:           %bitbucket_clien_id%
-            client_secret:       %bitbucket_clien_id%
+            client_id:           %bitbucket_client_id%
+            client_secret:       %bitbucket_client_id%

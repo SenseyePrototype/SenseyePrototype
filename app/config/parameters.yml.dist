@@ -31,3 +31,6 @@ parameters:
 
     facebook_clien_id: 989011077859705
     facebook_client_secret: ff3139a5c938f20054672ad10914c29a
+
+    github_client_id: null
+    bitbucket_client_id: null
