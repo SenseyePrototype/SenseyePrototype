@@ -55,7 +55,7 @@ class ProfileCounter
 
         $count = $searchable->count($query);
 
-        $filterNameMap = $this->builder->getNameFilterMap($criteria);
+//        $filterNameMap = $this->builder->getNameFilterMap($criteria);
 
         $query = new Query();
 
@@ -81,15 +81,13 @@ class ProfileCounter
             ]
         ]);
 
-        dump($response);
-
-        $searchable->getIndex()->refresh();
-
-        dump($searchable->getMapping());
-        dump($searchable->getMapping()['developer']['properties']['cities']['properties']);
-
         $aggregations = $searchable->search($query)->getAggregations();
 
-        return new ProfileCounterResponse($count, [], [], []);
+        $multi = [];
+        foreach ($aggregations as $name => $aggregation) {
+            $multi[$name] = array_column($aggregation['buckets'], 'doc_count', 'key');
+        }
+
+        return new ProfileCounterResponse($count, $multi, [], []);
     }
 }

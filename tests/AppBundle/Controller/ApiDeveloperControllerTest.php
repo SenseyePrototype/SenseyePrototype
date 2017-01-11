@@ -18,7 +18,13 @@ class ApiDeveloperControllerTest extends WebTestCase
         $this->assertSame(
             [
                 'count' => 8,
-                'multi' => [],
+                'multi' => [
+                    'cities' => [
+                        'kiev' => 8,
+                        'lviv' => 2,
+                        'odessa' => 1,
+                    ],
+                ],
                 'must' => [],
                 'range' => [],
             ],
