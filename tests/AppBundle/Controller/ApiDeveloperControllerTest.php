@@ -17,7 +17,10 @@ class ApiDeveloperControllerTest extends WebTestCase
 
         $this->assertSame(
             [
-                'count' => 8
+                'count' => 8,
+                'multi' => [],
+                'must' => [],
+                'range' => [],
             ],
             json_decode($client->getResponse()->getContent(), true)
         );

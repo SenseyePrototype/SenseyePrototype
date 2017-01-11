@@ -24,12 +24,8 @@ class ApiDeveloperController extends Controller
      */
     public function countAction(Request $request)
     {
-        $available = $this->get('senseye.profile.available.criteria.repository')->get();
+        $counter = $this->get('senseye.profile.counter')->getCounter($request);
 
-        $criteria = $this->get('senseye.profile.search.request.analyzer')->analyze($available, $request);
-
-        return new JsonResponse([
-            'count' => $this->get('senseye.profile.searcher')->count($criteria),
-        ]);
+        return new JsonResponse($counter->getData());
     }
 }

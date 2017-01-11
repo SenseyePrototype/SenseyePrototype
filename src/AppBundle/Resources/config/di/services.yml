@@ -33,5 +33,12 @@ services:
         arguments:
             - '@senseye.developer.index'
 
+    senseye.profile.counter:
+        class: 'AppBundle\Service\ProfileCounter'
+        arguments:
+            - '@senseye.profile.available.criteria.repository'
+            - '@senseye.profile.search.request.analyzer'
+            - '@senseye.profile.searcher'
+
     senseye.profile.criteria.container:
         class: 'AppBundle\Service\ProfileSearchCriteriaContainerService'
