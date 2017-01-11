@@ -7,20 +7,20 @@ hwi_oauth:
     resource_owners:
         linkedin:
             type:           linkedin
-            client_id:      %linkedin_client_id%
-            client_secret:  %linkedin_client_secret%
+            client_id:      '%linkedin_client_id%'
+            client_secret:  '%linkedin_client_secret%'
             scope:          'r_basicprofile r_emailaddress'
         google:
             type:                google
-            client_id:           %google_client_id%
-            client_secret:       %google_client_secret%
+            client_id:           '%google_client_id%'
+            client_secret:       '%google_client_secret%'
             scope:               "email profile"
             options:
                 access_type:     offline
         facebook:
             type:                facebook
-            client_id:           %facebook_clien_id%
-            client_secret:       %facebook_client_secret%
+            client_id:           '%facebook_clien_id%'
+            client_secret:       '%facebook_client_secret%'
             scope:              "email,public_profile,user_birthday,user_friends,user_likes" #"email,public_profile,user_likes"
             infos_url:          "https://graph.facebook.com/me?fields=id,name,first_name,last_name,email,picture.type(large),gender,locale,birthday,friends,likes"
             paths:
@@ -38,10 +38,10 @@ hwi_oauth:
                 auth_type: rerequest # Re-asking for Declined Permissions
         github:
             type:                github
-            client_id:           %github_client_id%
-            client_secret:       %github_client_id%
+            client_id:           '%github_client_id%'
+            client_secret:       '%github_client_id%'
             scope:               'user:email,public_repo'
         bitbucket:
             type:                bitbucket
-            client_id:           %bitbucket_client_id%
-            client_secret:       %bitbucket_client_id%
+            client_id:           '%bitbucket_client_id%'
+            client_secret:       '%bitbucket_client_id%'
