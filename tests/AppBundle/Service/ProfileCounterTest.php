@@ -60,7 +60,16 @@ class ProfileCounterTest extends TestCase
                         'symfony' => 1,
                     ],
                 ],
-                'range' => [],
+                'range' => [
+                    'experience' => [
+                        'from' => 2,
+                        'to' => 7,
+                    ],
+                    'salary' => [
+                        'from' => 1500,
+                        'to' => 5000,
+                    ],
+                ],
             ],
         ];
 
@@ -115,7 +124,16 @@ class ProfileCounterTest extends TestCase
                         'symfony' => 1,
                     ],
                 ],
-                'range' => [],
+                'range' => [
+                    'experience' => [
+                        'from' => 2,
+                        'to' => 7,
+                    ],
+                    'salary' => [
+                        'from' => 1500,
+                        'to' => 5000,
+                    ],
+                ],
             ],
         ];
 
@@ -142,7 +160,16 @@ class ProfileCounterTest extends TestCase
                         'symfony' => 1,
                     ],
                 ],
-                'range' => [],
+                'range' => [
+                    'experience' => [
+                        'from' => 5,
+                        'to' => 5,
+                    ],
+                    'salary' => [
+                        'from' => 5000,
+                        'to' => 5000,
+                    ],
+                ],
             ],
         ];
     }

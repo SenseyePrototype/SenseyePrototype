@@ -45,7 +45,16 @@ class ApiDeveloperControllerTest extends WebTestCase
                         'symfony' => 1,
                     ],
                 ],
-                'range' => [],
+                'range' => [
+                    'experience' => [
+                        'from' => 2,
+                        'to' => 7,
+                    ],
+                    'salary' => [
+                        'from' => 1500,
+                        'to' => 5000,
+                    ],
+                ],
             ],
             json_decode($client->getResponse()->getContent(), true)
         );
