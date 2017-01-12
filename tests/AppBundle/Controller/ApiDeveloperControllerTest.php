@@ -46,13 +46,13 @@ class ApiDeveloperControllerTest extends WebTestCase
                     ],
                 ],
                 'range' => [
-                    'experience' => [
-                        'from' => 2,
-                        'to' => 7,
-                    ],
                     'salary' => [
                         'from' => 1500,
                         'to' => 5000,
+                    ],
+                    'experience' => [
+                        'from' => 2,
+                        'to' => 17,
                     ],
                 ],
             ],

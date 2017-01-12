@@ -51,6 +51,14 @@ class ProfileCounter
             $aggs[$name] = $this->getAggregation($name, $filterNameMap);
         }
 
+        foreach (array_keys($available->getRangeMap()) as $name) {
+            $aggs[$name] = [
+                'stats' => [
+                    'field' => $name,
+                ],
+            ];
+        }
+
         $query->setParam('aggs', $aggs);
 
         $aggregations = $searchable->search($query)->getAggregations();
@@ -67,7 +75,16 @@ class ProfileCounter
             $must[$name] = array_column($aggregation, 'doc_count', 'key');
         }
 
-        return new ProfileCounterResponse($count, $multi, $must, []);
+        $range = [];
+        foreach (array_keys($available->getRangeMap()) as $name) {
+            $aggregation = $aggregations[$name];
+            $range[$name] = [
+                'from' => (int)$aggregation['min'],
+                'to' => (int)$aggregation['max'],
+            ];
+        }
+
+        return new ProfileCounterResponse($count, $multi, $must, $range);
     }
 
     private function getAggregation($name, array $filter)
