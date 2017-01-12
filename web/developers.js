@@ -51,6 +51,21 @@ $(document).ready(function () {
         $empty.toggle(props.empty);
         $submit.toggle(props.submit);
     }
+    
+    function showConcreteCountMap($map, map) {
+        var param = $map.attr('data-param');
+        $('input', $map).each(function () {
+            var $input = $(this);
+            var alias = $input.attr('data-alias');
+            var count = map[param][alias] || 0;
+            $input.next('label').find('span.badge').html(count);
+        });
+    }
+
+    function showCountMap(response) {
+        showConcreteCountMap($multi, response.multi);
+        showConcreteCountMap($must, response.must);
+    }
 
     function getCount() {
         showCount({
@@ -70,6 +85,7 @@ $(document).ready(function () {
                     empty: response.count === 0,
                     count: response.count
                 });
+                showCountMap(response);
             }
         });
     }
