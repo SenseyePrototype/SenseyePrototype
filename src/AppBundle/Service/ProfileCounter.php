@@ -45,18 +45,16 @@ class ProfileCounter
         foreach (array_keys($available->getMultiMap()) as $name) {
             $filter = $filterNameMap;
             unset($filter[$name]);
-            $aggs[$name] = $this->getAggregation($name, $filter);
+            $aggs[$name] = $this->getAggregationTerms($name, $filter);
         }
         foreach (array_keys($available->getMustMap()) as $name) {
-            $aggs[$name] = $this->getAggregation($name, $filterNameMap);
+            $aggs[$name] = $this->getAggregationTerms($name, $filterNameMap);
         }
 
         foreach (array_keys($available->getRangeMap()) as $name) {
-            $aggs[$name] = [
-                'stats' => [
-                    'field' => $name,
-                ],
-            ];
+            $filter = $filterNameMap;
+            unset($filter[$name]);
+            $aggs[$name] = $this->getAggregationRange($name, $filter);
         }
 
         $query->setParam('aggs', $aggs);
@@ -77,7 +75,7 @@ class ProfileCounter
 
         $range = [];
         foreach (array_keys($available->getRangeMap()) as $name) {
-            $aggregation = $aggregations[$name];
+            $aggregation = $aggregations[$name][$name] ?? $aggregations[$name];
             $range[$name] = [
                 'from' => (int)$aggregation['min'],
                 'to' => (int)$aggregation['max'],
@@ -87,7 +85,7 @@ class ProfileCounter
         return new ProfileCounterResponse($count, $multi, $must, $range);
     }
 
-    private function getAggregation($name, array $filter)
+    private function getAggregationTerms($name, array $filter)
     {
         $terms = [
             'terms' => [
@@ -110,5 +108,29 @@ class ProfileCounter
         }
 
         return $terms;
+    }
+
+    private function getAggregationRange($name, array $filter)
+    {
+        $stats = [
+            'stats' => [
+                'field' => $name,
+            ],
+        ];
+
+        if ($filter) {
+            return [
+                'filter' => [
+                    'bool' => [
+                        'must' => array_values($filter),
+                    ],
+                ],
+                'aggs' => [
+                    $name => $stats,
+                ],
+            ];
+        }
+
+        return $stats;
     }
 }

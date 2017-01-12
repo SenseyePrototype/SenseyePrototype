@@ -85,6 +85,18 @@ class ProfileSearchBuilder
             $filterMap[$name] = $param->toArray();
         }
 
+        foreach ($criteria->getRangeMap() as $name => $range) {
+            if ($range->exists()) {
+                $queryRange = new Query\Range();
+                $param = array_filter([
+                    'gte' => $range->getFrom(),
+                    'lte' => $range->getTo(),
+                ]);
+                $queryRange->setParam($name, $param);
+                $filterMap[$name] = $queryRange->toArray();
+            }
+        }
+
         return $filterMap;
     }
 

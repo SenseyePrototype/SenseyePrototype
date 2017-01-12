@@ -27,10 +27,10 @@ class ProfileCounterTest extends TestCase
 
     public function dataProvider()
     {
-        $emptySearchCriteria = new ProfileSearchCriteria(null, [], [], new Range(), new Range());
+        $searchCriteria = new ProfileSearchCriteria(null, [], [], new Range(), new Range());
 
         yield [
-            $emptySearchCriteria,
+            $searchCriteria,
             [
                 'count' => 8,
                 'multi' => [
@@ -168,6 +168,62 @@ class ProfileCounterTest extends TestCase
                     'experience' => [
                         'from' => 5,
                         'to' => 5,
+                    ],
+                ],
+            ],
+        ];
+
+        $searchCriteria = new ProfileSearchCriteria(
+            'develop',
+            [
+                'cities' => [
+                    [
+                        'alias' => 'kiev',
+                    ],
+                ],
+            ],
+            [
+                'skills' => [
+                    [
+                        'alias' => 'git',
+                    ],
+                ],
+            ],
+            new Range(1000, 3000),
+            new Range(2, 15)
+        );
+
+        yield [
+            $searchCriteria,
+            [
+                'count' => 6,
+                'multi' => [
+                    'cities' => [
+                        'kiev' => 6,
+                        'lviv' => 2,
+                    ],
+                ],
+                'must' => [
+                    'skills' => [
+                        'git' => 6,
+                        'java' => 2,
+                        'css' => 1,
+                        'golang' => 1,
+                        'html' => 1,
+                        'javascript' => 1,
+                        'less' => 1,
+                        'sass' => 1,
+                        'swift' => 1,
+                    ],
+                ],
+                'range' => [
+                    'salary' => [
+                        'from' => 1500,
+                        'to' => 5000,
+                    ],
+                    'experience' => [
+                        'from' => 2,
+                        'to' => 7,
                     ],
                 ],
             ],
