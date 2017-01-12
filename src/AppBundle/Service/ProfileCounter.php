@@ -2,22 +2,12 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\Component\ProfileAvailableCriteria;
 use AppBundle\Component\ProfileCounterResponse;
-use Elastica\Query;
-use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Component\ProfileSearchCriteria;
 
 class ProfileCounter
 {
-    /**
-     * @var ProfileAvailableCriteriaRepository
-     */
-    private $criteriaRepository;
-
-    /**
-     * @var ProfileSearchRequestAnalyzer
-     */
-    private $requestAnalyzer;
-
     /**
      * @var DeveloperIndexService
      */
@@ -30,25 +20,17 @@ class ProfileCounter
 
     /**
      * ProfileCounter constructor.
-     * @param ProfileAvailableCriteriaRepository $criteriaRepository
-     * @param ProfileSearchRequestAnalyzer $requestAnalyzer
      * @param DeveloperIndexService $indexService
      * @param ProfileSearchBuilder $builder
      */
-    public function __construct(ProfileAvailableCriteriaRepository $criteriaRepository, ProfileSearchRequestAnalyzer $requestAnalyzer, DeveloperIndexService $indexService, ProfileSearchBuilder $builder)
+    public function __construct(DeveloperIndexService $indexService, ProfileSearchBuilder $builder)
     {
-        $this->criteriaRepository = $criteriaRepository;
-        $this->requestAnalyzer = $requestAnalyzer;
         $this->indexService = $indexService;
         $this->builder = $builder;
     }
 
-    public function getCounter(Request $request)
+    public function getCounter(ProfileAvailableCriteria $available, ProfileSearchCriteria $criteria)
     {
-        $available = $this->criteriaRepository->get();
-
-        $criteria = $this->requestAnalyzer->analyze($available, $request);
-
         $searchable = $this->indexService->getProfile();
 
         $query = $this->builder->buildSearchQuery($criteria);

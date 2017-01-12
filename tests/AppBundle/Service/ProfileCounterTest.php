@@ -2,6 +2,8 @@
 
 namespace Tests\AppBundle\Service;
 
+use AppBundle\Component\ProfileSearchCriteria;
+use AppBundle\Component\Range;
 use Symfony\Component\HttpFoundation\Request;
 
 class ProfileCounterTest extends TestCase
@@ -9,8 +11,11 @@ class ProfileCounterTest extends TestCase
     public function test()
     {
         $counterService = $this->container->get('senseye.profile.counter');
+        $available = $this->container->get('senseye.profile.available.criteria.repository')->get();
 
-        $counterResponse = $counterService->getCounter(new Request());
+        $emptySearchCriteria = new ProfileSearchCriteria(null, [], [], new Range(), new Range());;
+
+        $counterResponse = $counterService->getCounter($available, $emptySearchCriteria);
 
         $this->assertSame(
             [
