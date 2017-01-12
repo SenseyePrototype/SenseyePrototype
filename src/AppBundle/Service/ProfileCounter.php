@@ -55,22 +55,21 @@ class ProfileCounter
 
         $count = $searchable->count($query);
 
-//        $filterNameMap = $this->builder->getNameFilterMap($criteria);
+        $filterNameMap = $this->builder->getNameFilterMap($criteria);
 
         $query = $this->builder->buildCountQuery($criteria);
 
-        $query->setParam('aggs', [
-            'cities' => [
-                'terms' => [
-                    'field' => 'cities.alias',
-                ],
-            ],
-            'skills' => [
-                'terms' => [
-                    'field' => 'skills.alias',
-                ],
-            ],
-        ]);
+        $aggs = [];
+        foreach (array_keys($available->getMultiMap()) as $name) {
+            $filter = $filterNameMap;
+            unset($filter[$name]);
+            $aggs[$name] = $this->getAggregation($name, $filter);
+        }
+        foreach (array_keys($available->getMustMap()) as $name) {
+            $aggs[$name] = $this->getAggregation($name, $filterNameMap);
+        }
+
+        $query->setParam('aggs', $aggs);
 
         $aggregations = $searchable->search($query)->getAggregations();
 
@@ -85,5 +84,29 @@ class ProfileCounter
         }
 
         return new ProfileCounterResponse($count, $multi, $must, []);
+    }
+
+    private function getAggregation($name, array $filter)
+    {
+        $terms = [
+            'terms' => [
+                'field' => "$name.alias",
+            ],
+        ];
+
+        if ($filter) {
+            return [
+                'filter' => [
+                    'bool' => [
+                        'must' => array_values($filter),
+                    ],
+                ],
+                'aggs' => [
+                    $name => $terms,
+                ],
+            ];
+        }
+
+        return $terms;
     }
 }
