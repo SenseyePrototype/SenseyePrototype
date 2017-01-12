@@ -77,6 +77,14 @@ class ProfileSearchBuilder
             $filterMap[$name] = $param->toArray();
         }
 
+        foreach ($criteria->getMustMap() as $name => $list) {
+            $param = new Query\Terms();
+
+            $param->setTerms("$name.alias", array_column($list, 'alias'));
+
+            $filterMap[$name] = $param->toArray();
+        }
+
         return $filterMap;
     }
 

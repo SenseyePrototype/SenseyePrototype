@@ -57,7 +57,8 @@ class ProfileCounter
 
         $multi = [];
         foreach (array_keys($available->getMultiMap()) as $name) {
-            $multi[$name] = array_column($aggregations[$name]['buckets'], 'doc_count', 'key');
+            $aggregation = $aggregations[$name]['buckets'] ?? $aggregations[$name][$name]['buckets'];
+            $multi[$name] = array_column($aggregation, 'doc_count', 'key');
         }
 
         $must = [];
