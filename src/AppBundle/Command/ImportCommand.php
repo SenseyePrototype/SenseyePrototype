@@ -74,6 +74,78 @@ class ImportCommand extends ContainerAwareCommand
         } catch (\Exception $e) {
         }
 
+        $index->create();
+        $searchable->setMapping([
+            'hash_code' => [
+                'type' => 'long',
+            ],
+            'title' => [
+                'type' => 'text',
+            ],
+            'cities' => [
+                'properties' => [
+                    'alias' => [
+                        'type' => 'text',
+                        'index' => 'not_analyzed',
+                        'fielddata' => true,
+                    ],
+                    'name' => [
+                        'type' => 'text',
+                        'index' => 'no',
+                    ],
+                ],
+            ],
+            'description' => [
+                'type' => 'text',
+            ],
+            'salary' => [
+                'type' => 'long',
+            ],
+            'experience' => [
+                'type' => 'long',
+            ],
+            'profiles' => [
+                'properties' => [
+                    'alias' => [
+                        'type' => 'text',
+                        'index' => 'not_analyzed',
+                    ],
+                    'link' => [
+                        'type' => 'text',
+                        'index' => 'no',
+                    ],
+                    'name' => [
+                        'type' => 'text',
+                        'index' => 'no',
+                    ],
+                    'verified' => [
+                        'type' => 'boolean',
+                    ],
+                ],
+            ],
+            'link' => [
+                'type' => 'text',
+                'index' => 'no',
+            ],
+            'created' => [
+                'type' => 'text',
+                'index' => 'no',
+            ],
+            'skills' => [
+                'properties' => [
+                    'alias' => [
+                        'type' => 'text',
+                        'fielddata' => true,
+                        'index' => 'not_analyzed',
+                    ],
+                    'name' => [
+                        'type' => 'text',
+                        'index' => 'no',
+                    ],
+                ],
+            ],
+        ]);
+
         $documents = [];
         foreach ($profiles as $profile) {
             $profileSkills = array_flip(json_decode($profile['skills'], true));
