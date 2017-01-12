@@ -68,17 +68,6 @@ class ProfileCounter
             ],
         ]);
 
-        $response = $searchable->setMapping([
-            'cities' => [
-                'properties' => [
-                    'alias' => [
-                        'type' => 'text',
-                        'fielddata' => true,
-                    ]
-                ]
-            ],
-        ]);
-
         $aggregations = $searchable->search($query)->getAggregations();
 
         $multi = [];

@@ -17,6 +17,77 @@ class ProfileSearchTestCase extends TestCase
 
         $this->clearIndex($index);
 
+        $index->create();
+        $searchable->setMapping([
+            'hash_code' => [
+                'type' => 'long',
+            ],
+            'title' => [
+                'type' => 'text',
+            ],
+            'cities' => [
+                'properties' => [
+                    'alias' => [
+                        'type' => 'text',
+                        'index' => 'not_analyzed',
+                        'fielddata' => true,
+                    ],
+                    'name' => [
+                        'type' => 'text',
+                        'index' => 'no',
+                    ],
+                ],
+            ],
+            'description' => [
+                'type' => 'text',
+            ],
+            'salary' => [
+                'type' => 'long',
+            ],
+            'experience' => [
+                'type' => 'long',
+            ],
+            'profiles' => [
+                'properties' => [
+                    'alias' => [
+                        'type' => 'text',
+                        'index' => 'not_analyzed',
+                    ],
+                    'link' => [
+                        'type' => 'text',
+                        'index' => 'no',
+                    ],
+                    'name' => [
+                        'type' => 'text',
+                        'index' => 'no',
+                    ],
+                    'verified' => [
+                        'type' => 'boolean',
+                    ],
+                ],
+            ],
+            'link' => [
+                'type' => 'text',
+                'index' => 'no',
+            ],
+            'created' => [
+                'type' => 'text',
+                'index' => 'no',
+            ],
+            'skills' => [
+                'properties' => [
+                    'alias' => [
+                        'type' => 'text',
+                        'index' => 'not_analyzed',
+                    ],
+                    'name' => [
+                        'type' => 'text',
+                        'index' => 'no',
+                    ],
+                ],
+            ],
+        ]);
+
         $architect = [
             'hash_code' => 1,
             'title' => 'PHP Architect',
