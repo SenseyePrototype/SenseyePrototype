@@ -74,6 +74,7 @@ class ProfileCounter
         $terms = [
             'terms' => [
                 'field' => "$name.alias",
+                'size' => 1000,
             ],
         ];
 
