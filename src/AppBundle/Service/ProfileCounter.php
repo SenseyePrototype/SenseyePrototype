@@ -62,7 +62,8 @@ class ProfileCounter
 
         $must = [];
         foreach (array_keys($available->getMustMap()) as $name) {
-            $must[$name] = array_column($aggregations[$name]['buckets'], 'doc_count', 'key');
+            $aggregation = $aggregations[$name]['buckets'] ?? $aggregations[$name][$name]['buckets'];
+            $must[$name] = array_column($aggregation, 'doc_count', 'key');
         }
 
         return new ProfileCounterResponse($count, $multi, $must, []);
