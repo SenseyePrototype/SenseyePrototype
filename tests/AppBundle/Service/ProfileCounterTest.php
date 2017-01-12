@@ -4,20 +4,33 @@ namespace Tests\AppBundle\Service;
 
 use AppBundle\Component\ProfileSearchCriteria;
 use AppBundle\Component\Range;
-use Symfony\Component\HttpFoundation\Request;
 
 class ProfileCounterTest extends TestCase
 {
-    public function test()
+    /**
+     * @dataProvider dataProvider
+     * @param ProfileSearchCriteria $searchCriteria
+     * @param array $expected
+     */
+    public function test(ProfileSearchCriteria $searchCriteria, array $expected)
     {
         $counterService = $this->container->get('senseye.profile.counter');
         $available = $this->container->get('senseye.profile.available.criteria.repository')->get();
 
-        $emptySearchCriteria = new ProfileSearchCriteria(null, [], [], new Range(), new Range());;
-
-        $counterResponse = $counterService->getCounter($available, $emptySearchCriteria);
+        $counterResponse = $counterService->getCounter($available, $searchCriteria);
 
         $this->assertSame(
+            $expected,
+            $counterResponse->getData()
+        );
+    }
+
+    public function dataProvider()
+    {
+        $emptySearchCriteria = new ProfileSearchCriteria(null, [], [], new Range(), new Range());
+
+        yield [
+            $emptySearchCriteria,
             [
                 'count' => 8,
                 'multi' => [
@@ -43,7 +56,6 @@ class ProfileCounterTest extends TestCase
                 ],
                 'range' => [],
             ],
-            $counterResponse->getData()
-        );
+        ];
     }
 }
