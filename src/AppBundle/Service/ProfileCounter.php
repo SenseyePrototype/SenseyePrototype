@@ -57,7 +57,7 @@ class ProfileCounter
 
 //        $filterNameMap = $this->builder->getNameFilterMap($criteria);
 
-        $query = new Query();
+        $query = $this->builder->buildCountQuery($criteria);
 
         $query->setParam('aggs', [
             'cities' => [
