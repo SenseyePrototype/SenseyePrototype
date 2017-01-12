@@ -228,5 +228,50 @@ class ProfileCounterTest extends TestCase
                 ],
             ],
         ];
+
+        $searchCriteria = new ProfileSearchCriteria(
+            null,
+            [],
+            [
+                'skills' => [
+                    [
+                        'alias' => 'java',
+                    ],
+                ],
+            ],
+            new Range(),
+            new Range()
+        );
+
+        yield [
+            $searchCriteria,
+            [
+                'count' => 2,
+                'multi' => [
+                    'cities' => [
+                        'kiev' => 2,
+                        'lviv' => 1,
+
+                    ],
+                ],
+                'must' => [
+                    'skills' => [
+                        'git' => 2,
+                        'java' => 2,
+
+                    ],
+                ],
+                'range' => [
+                    'salary' => [
+                        'from' => 1500,
+                        'to' => 2000,
+                    ],
+                    'experience' => [
+                        'from' => 2,
+                        'to' => 3,
+                    ],
+                ],
+            ],
+        ];
     }
 }
