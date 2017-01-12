@@ -78,6 +78,7 @@ class ProfileSearchTestCase extends TestCase
                 'properties' => [
                     'alias' => [
                         'type' => 'text',
+                        'fielddata' => true,
                         'index' => 'not_analyzed',
                     ],
                     'name' => [

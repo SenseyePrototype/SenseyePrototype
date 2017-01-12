@@ -25,7 +25,20 @@ class ApiDeveloperControllerTest extends WebTestCase
                         'odessa' => 1,
                     ],
                 ],
-                'must' => [],
+                'must' => [
+                    'skills' => [
+                        'git' => 8,
+                        'java' => 2,
+                        'javascript' => 2,
+                        'cpp' => 1,
+                        'css' => 1,
+                        'elasticsearch' => 1,
+                        'golang' => 1,
+                        'html' => 1,
+                        'less' => 1,
+                        'mysql' => 1,
+                    ],
+                ],
                 'range' => [],
             ],
             json_decode($client->getResponse()->getContent(), true)

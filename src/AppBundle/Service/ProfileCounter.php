@@ -63,7 +63,11 @@ class ProfileCounter
             'cities' => [
                 'terms' => [
                     'field' => 'cities.alias',
-                    'size' => 5,
+                ],
+            ],
+            'skills' => [
+                'terms' => [
+                    'field' => 'skills.alias',
                 ],
             ],
         ]);
@@ -71,10 +75,15 @@ class ProfileCounter
         $aggregations = $searchable->search($query)->getAggregations();
 
         $multi = [];
-        foreach ($aggregations as $name => $aggregation) {
-            $multi[$name] = array_column($aggregation['buckets'], 'doc_count', 'key');
+        foreach (array_keys($available->getMultiMap()) as $name) {
+            $multi[$name] = array_column($aggregations[$name]['buckets'], 'doc_count', 'key');
         }
 
-        return new ProfileCounterResponse($count, $multi, [], []);
+        $must = [];
+        foreach (array_keys($available->getMustMap()) as $name) {
+            $must[$name] = array_column($aggregations[$name]['buckets'], 'doc_count', 'key');
+        }
+
+        return new ProfileCounterResponse($count, $multi, $must, []);
     }
 }
