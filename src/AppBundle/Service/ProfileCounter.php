@@ -68,17 +68,15 @@ class ProfileCounter
             ],
         ]);
 
-        $response = $searchable->getIndex()->getClient()->request('profiles/_mapping/developer', 'PUT', [
-            'properties' => [
-                'cities' => [
-                    'properties' => [
-                        'alias' => [
-                            'type' => 'text',
-                            'fielddata' => true,
-                        ]
+        $response = $searchable->setMapping([
+            'cities' => [
+                'properties' => [
+                    'alias' => [
+                        'type' => 'text',
+                        'fielddata' => true,
                     ]
                 ]
-            ]
+            ],
         ]);
 
         $aggregations = $searchable->search($query)->getAggregations();
