@@ -38,7 +38,7 @@
                             {% set reference = 'city' ~ city['alias'] %}
                             <p>
                                 <input type="checkbox" id="{{ reference }}" data-alias="{{ city['alias'] }}" {% if city['checked'] %}checked="checked"{% endif %} />
-                                <label for="{{ reference }}">{{ city['name'] }}</label>
+                                <label for="{{ reference }}">{{ city['name'] }} <span class="badge"></span></label>
                             </p>
                         {% endfor %}
                     </div>
@@ -86,12 +86,12 @@
                 #}
                 <div class="block">
                     <div class="name">{{ 'skills'|trans }}</div>
-                    <div class="elements js-search-criteria-multi" data-param="skills">
+                    <div class="elements js-search-criteria-must" data-param="skills">
                         {% for skill in profileCriteriaContainer.getSkills() %}
                             {% set reference = 'skill' ~ skill['alias'] %}
                             <p>
                                 <input type="checkbox" id="{{ reference }}" data-alias="{{ skill['alias'] }}" {% if skill['checked'] %}checked="checked"{% endif %} />
-                                <label for="{{ reference }}">{{ skill['name'] }}</label>
+                                <label for="{{ reference }}">{{ skill['name'] }} <span class="badge"></span></label>
                             </p>
                         {% endfor %}
                     </div>
@@ -164,5 +164,5 @@
 {% block javascripts %}
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-    <script src="{{ asset('developers.js') }}"></script>
+    <script src="{{ asset('developers.js') }}?v=1"></script>
 {% endblock %}

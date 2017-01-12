@@ -1,6 +1,8 @@
 $(document).ready(function () {
     var $range = $('.js-search-criteria-range');
     var $multi = $('.js-search-criteria-multi');
+    var $must = $('.js-search-criteria-must');
+    var $all = $multi.add($must);
     var $search = $('.js-search-criteria-fulltext');
     var $hint = $('#js-count-hint');
     var $loader = $('.js-count-loader', $hint);
@@ -12,7 +14,7 @@ $(document).ready(function () {
     function getCriteria() {
         var criteria = [];
 
-        $multi.each(function () {
+        $all.each(function () {
             var $this = $(this);
             var list = [];
             $('input:checked', $this).each(function () {
@@ -74,7 +76,7 @@ $(document).ready(function () {
 
     $(document).on('click', '.js-search-submit', search);
     $($submit).on('click', search);
-    $('input', $multi).on('change', function () {
+    $('input', $all).on('change', function () {
         setCountOffset($(this).offset().top - $container.offset().top);
         getCount();
     });
