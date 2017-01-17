@@ -4,8 +4,6 @@ services:
         arguments:
             - host: '%elastic_host%'
               port: '%elastic_port%'
-              username: '%elastic_username%'
-              password: '%elastic_password%'
 
     senseye.developer.index:
         class: 'AppBundle\Service\DeveloperIndexService'

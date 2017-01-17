@@ -12,8 +12,6 @@ parameters:
 
     elastic_host:     localhost
     elastic_port:     9200
-    elastic_username: elastic
-    elastic_password: elastic
 
     mailer_transport:  smtp
     mailer_host:       localhost
