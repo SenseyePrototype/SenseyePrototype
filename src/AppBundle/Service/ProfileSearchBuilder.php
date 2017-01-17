@@ -78,11 +78,13 @@ class ProfileSearchBuilder
         }
 
         foreach ($criteria->getMustMap() as $name => $list) {
-            $param = new Query\Terms();
+            foreach ($list as $item) {
+                $param = new Query\Term();
 
-            $param->setTerms("$name.alias", array_column($list, 'alias'));
+                $param->setTerm("$name.alias", $item['alias']);
 
-            $filterMap[$name] = $param->toArray();
+                $filterMap[] = $param->toArray();
+            }
         }
 
         foreach ($criteria->getRangeMap() as $name => $range) {
