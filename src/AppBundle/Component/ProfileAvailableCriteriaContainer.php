@@ -5,14 +5,14 @@ namespace AppBundle\Component;
 class ProfileAvailableCriteriaContainer
 {
     /**
-     * @var ProfileAvailableCriteria
-     */
-    private $available;
-
-    /**
      * @var ProfileSearchCriteria
      */
     private $selected;
+
+    /**
+     * @var ProfileCriteriaAggregation
+     */
+    private $aggregation;
 
     /**
      * @var array
@@ -21,14 +21,14 @@ class ProfileAvailableCriteriaContainer
 
     /**
      * ProfileAvailableCriteriaContainer constructor.
-     * @param ProfileAvailableCriteria $available
      * @param ProfileSearchCriteria $selected
+     * @param ProfileCriteriaAggregation $aggregation
      * @param array $multi
      */
-    public function __construct(ProfileAvailableCriteria $available, ProfileSearchCriteria $selected, array $multi)
+    public function __construct(ProfileSearchCriteria $selected, ProfileCriteriaAggregation $aggregation, array $multi)
     {
-        $this->available = $available;
         $this->selected = $selected;
+        $this->aggregation = $aggregation;
         $this->multi = $multi;
     }
 
@@ -53,7 +53,7 @@ class ProfileAvailableCriteriaContainer
      */
     public function getExperience()
     {
-        return $this->available->getRangeMap()['experience'];
+        return $this->aggregation->getRange()['experience'];
     }
 
     /**
@@ -69,7 +69,7 @@ class ProfileAvailableCriteriaContainer
      */
     public function getSalary()
     {
-        return $this->available->getRangeMap()['salary'];
+        return $this->aggregation->getRange()['salary'];
     }
 
     /**

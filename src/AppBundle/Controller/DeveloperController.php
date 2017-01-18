@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Component\ProfileAvailableCriteriaContainer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -16,12 +15,14 @@ class DeveloperController extends Controller
 
         $profileResponse = $this->get('senseye.profile.searcher')->search($criteria, 1, 17);
 
+        $aggregation = $this->get('senseye.profile.counter')->getAggregation($available, $criteria);
+
         return $this->render('AppBundle:Developer:list.html.twig', [
             'profiles' => $profileResponse->getResults(),
             'pager' => $profileResponse->getPager(),
             'profileCriteriaContainer' => $this
                 ->get('senseye.profile.criteria.container')
-                ->merge($available, $criteria),
+                ->merge($available, $criteria, $aggregation),
         ]);
     }
 }

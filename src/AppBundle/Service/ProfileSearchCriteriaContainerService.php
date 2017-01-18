@@ -4,23 +4,35 @@ namespace AppBundle\Service;
 
 use AppBundle\Component\ProfileAvailableCriteria;
 use AppBundle\Component\ProfileAvailableCriteriaContainer;
+use AppBundle\Component\ProfileCriteriaAggregation;
 use AppBundle\Component\ProfileSearchCriteria;
 
 class ProfileSearchCriteriaContainerService
 {
-    public function merge(ProfileAvailableCriteria $availableCriteria, ProfileSearchCriteria $searchCriteria)
-    {
+    public function merge(
+        ProfileAvailableCriteria $availableCriteria,
+        ProfileSearchCriteria $searchCriteria,
+        ProfileCriteriaAggregation $aggregation
+    ) {
         return new ProfileAvailableCriteriaContainer(
-            $availableCriteria,
             $searchCriteria,
+            $aggregation,
             array_merge(
-                $this->mergeMap($availableCriteria->getMultiMap(), $searchCriteria->getMultiMap()),
-                $this->mergeMap($availableCriteria->getMustMap(), $searchCriteria->getMustMap())
+                $this->mergeMap(
+                    $availableCriteria->getMultiMap(),
+                    $searchCriteria->getMultiMap(),
+                    $aggregation->getMulti()
+                ),
+                $this->mergeMap(
+                    $availableCriteria->getMustMap(),
+                    $searchCriteria->getMustMap(),
+                    $aggregation->getMust()
+                )
             )
         );
     }
 
-    private function mergeMap(array $availableMap, array $selectedMap)
+    private function mergeMap(array $availableMap, array $selectedMap, array $countMap)
     {
         $result = [];
 
@@ -33,6 +45,7 @@ class ProfileSearchCriteriaContainerService
 
             foreach ($availableAliasMap as $alias => $criteria) {
                 $criteria['checked'] = isset($selectedAliasMap[$alias]);
+                $criteria['count'] = $countMap[$criteriaName][$alias] ?? 0;
                 $merge[] = $criteria;
             }
 

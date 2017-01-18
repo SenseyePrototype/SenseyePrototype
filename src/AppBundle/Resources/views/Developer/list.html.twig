@@ -38,7 +38,7 @@
                             {% set reference = 'city' ~ city['alias'] %}
                             <p>
                                 <input type="checkbox" id="{{ reference }}" data-alias="{{ city['alias'] }}" {% if city['checked'] %}checked="checked"{% endif %} />
-                                <label for="{{ reference }}">{{ city['name'] }} <span class="badge"></span></label>
+                                <label for="{{ reference }}">{{ city['name'] }} <span class="badge">{{ city['count'] }}</span></label>
                             </p>
                         {% endfor %}
                     </div>
@@ -91,7 +91,7 @@
                             {% set reference = 'skill' ~ skill['alias'] %}
                             <p>
                                 <input type="checkbox" id="{{ reference }}" data-alias="{{ skill['alias'] }}" {% if skill['checked'] %}checked="checked"{% endif %} />
-                                <label for="{{ reference }}">{{ skill['name'] }} <span class="badge"></span></label>
+                                <label for="{{ reference }}">{{ skill['name'] }} <span class="badge">{{ skill['count'] }}</span></label>
                             </p>
                         {% endfor %}
                     </div>
