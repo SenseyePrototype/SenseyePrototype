@@ -10,42 +10,28 @@ class ProfileCounterResponse
     private $count;
 
     /**
-     * @var array
+     * @var ProfileCriteriaAggregation
      */
-    private $multi;
-
-    /**
-     * @var array
-     */
-    private $must;
-
-    /**
-     * @var array
-     */
-    private $range;
+    private $aggregation;
 
     /**
      * ProfileCounterResponse constructor.
      * @param int $count
-     * @param array $multi
-     * @param array $must
-     * @param array $range
+     * @param ProfileCriteriaAggregation $aggregation
      */
-    public function __construct($count, array $multi, array $must, array $range)
+    public function __construct($count, ProfileCriteriaAggregation $aggregation)
     {
         $this->count = $count;
-        $this->multi = $multi;
-        $this->must = $must;
-        $this->range = $range;
+        $this->aggregation = $aggregation;
     }
 
     public function getData()
     {
         return [
             'count' => $this->count,
-            'multi' => $this->multi,
-            'must' => $this->must,
-            'range' => $this->range,
+            'multi' => $this->aggregation->getMulti(),
+            'must' => $this->aggregation->getMust(),
+            'range' => $this->aggregation->getRange(),
         ];
     }
 }

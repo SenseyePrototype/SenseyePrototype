@@ -4,6 +4,7 @@ namespace AppBundle\Service;
 
 use AppBundle\Component\ProfileAvailableCriteria;
 use AppBundle\Component\ProfileCounterResponse;
+use AppBundle\Component\ProfileCriteriaAggregation;
 use AppBundle\Component\ProfileSearchCriteria;
 
 class ProfileCounter
@@ -82,7 +83,7 @@ class ProfileCounter
             ];
         }
 
-        return new ProfileCounterResponse($count, $multi, $must, $range);
+        return new ProfileCounterResponse($count, new ProfileCriteriaAggregation($multi, $must, $range));
     }
 
     private function getAggregationTerms($name, array $filter)
