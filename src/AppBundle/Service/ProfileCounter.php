@@ -32,12 +32,18 @@ class ProfileCounter
 
     public function getCounter(ProfileAvailableCriteria $available, ProfileSearchCriteria $criteria)
     {
-        $searchable = $this->indexService->getProfile();
-
         $query = $this->builder->buildSearchQuery($criteria);
 
-        $count = $searchable->count($query);
+        $count = $this->indexService->getProfile()->count($query);
 
+        return new ProfileCounterResponse(
+            $count,
+            $this->getAggregation($available, $criteria)
+        );
+    }
+
+    public function getAggregation(ProfileAvailableCriteria $available, ProfileSearchCriteria $criteria)
+    {
         $filterNameMap = $this->builder->getNameFilterMap($criteria);
 
         $query = $this->builder->buildCountQuery($criteria);
@@ -60,7 +66,7 @@ class ProfileCounter
 
         $query->setParam('aggs', $aggs);
 
-        $aggregations = $searchable->search($query)->getAggregations();
+        $aggregations = $this->indexService->getProfile()->search($query)->getAggregations();
 
         $multi = [];
         foreach (array_keys($available->getMultiMap()) as $name) {
@@ -83,7 +89,7 @@ class ProfileCounter
             ];
         }
 
-        return new ProfileCounterResponse($count, new ProfileCriteriaAggregation($multi, $must, $range));
+        return new ProfileCriteriaAggregation($multi, $must, $range);
     }
 
     private function getAggregationTerms($name, array $filter)
