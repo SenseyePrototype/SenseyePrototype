@@ -2,7 +2,7 @@
 <html lang="ru">
     <head>
         <meta charset="UTF-8" />
-        <title>{{ 'seo.title'|trans }}</title>
+        <title>{{ title|default('seo.title'|trans) }}</title>
         <meta property="og:site_name" content="{{ 'seo.title'|trans }}" />
         <meta name="description" content="{{ 'seo.description'|trans }}" />
         <meta name="keywords" content="{{ 'seo.keywords'|trans }}" />

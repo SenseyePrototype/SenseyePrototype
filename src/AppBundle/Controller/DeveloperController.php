@@ -25,6 +25,7 @@ class DeveloperController extends Controller
             'profileCriteriaContainer' => $this
                 ->get('senseye.profile.criteria.container')
                 ->merge($available, $criteria, $aggregation),
+            'title' => $this->get('senseye.seo')->getByCityAlias($cityAlias),
         ]);
     }
 

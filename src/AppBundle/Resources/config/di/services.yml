@@ -39,3 +39,6 @@ services:
 
     senseye.profile.criteria.container:
         class: 'AppBundle\Service\ProfileSearchCriteriaContainerService'
+
+    senseye.seo:
+        class: 'AppBundle\Service\SeoService'
