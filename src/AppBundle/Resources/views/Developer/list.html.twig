@@ -38,7 +38,7 @@
                             {% set reference = 'city' ~ city['alias'] %}
                             <p>
                                 <input type="checkbox" id="{{ reference }}" data-alias="{{ city['alias'] }}" {% if city['checked'] %}checked="checked"{% endif %} />
-                                <label for="{{ reference }}">{{ city['name'] }} <span class="badge">{{ city['count'] }}</span></label>
+                                <label for="{{ reference }}"><a href="{{ path('developers.city.page', {city: city['alias']}) }}" style="text-decoration: none;">{{ city['name'] }}</a><span class="badge">{{ city['count'] }}</span></label>
                             </p>
                         {% endfor %}
                     </div>

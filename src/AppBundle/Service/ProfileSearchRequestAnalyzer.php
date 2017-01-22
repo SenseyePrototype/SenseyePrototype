@@ -20,6 +20,35 @@ class ProfileSearchRequestAnalyzer
         );
     }
 
+    public function analyzeCity(ProfileAvailableCriteria $available, $cityAlias)
+    {
+        $multi = $available->getMultiMap();
+        $cities = array_column($multi['cities'], null, 'alias');
+
+        if (empty($cities[$cityAlias])) {
+            return null;
+        }
+
+        $range = new Range();
+
+        return new ProfileSearchCriteria(
+            null,
+            [
+                'cities' => [
+                    $cities[$cityAlias]
+                ]
+            ],
+            [],
+            $range,
+            $range
+        );
+    }
+
+    /**
+     * @param array $map
+     * @param Request $request
+     * @return array
+     */
     private function intersect(array $map, Request $request)
     {
         $result = [];
@@ -40,6 +69,12 @@ class ProfileSearchRequestAnalyzer
         return $result;
     }
 
+    /**
+     * @param array $rangeMap
+     * @param Request $request
+     * @param $key
+     * @return Range
+     */
     private function getRange(array $rangeMap, Request $request, $key)
     {
         $salary = $request->query->get($key);

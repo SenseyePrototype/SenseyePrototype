@@ -37,7 +37,7 @@ $(document).ready(function () {
     }
 
     function search() {
-        location.href = location.pathname + getCriteria();
+        window.location.href = '/developers' + getCriteria();
     }
 
     function setCountOffset(top) {
@@ -91,7 +91,7 @@ $(document).ready(function () {
     }
 
     $(document).on('click', '.js-search-submit', search);
-    $($submit).on('click', search);
+    $submit.on('click', search);
     $('input', $all).on('change', function () {
         setCountOffset($(this).offset().top - $container.offset().top);
         getCount();

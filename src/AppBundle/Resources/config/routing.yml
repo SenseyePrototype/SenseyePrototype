@@ -3,6 +3,13 @@ intro:
     defaults: { _controller: AppBundle:Intro:index }
     methods: ['GET']
 
+developers.city.page:
+    path:     /developers/{city}
+    defaults: { _controller: AppBundle:Developer:city }
+    methods: ['GET']
+    requirements:
+        city: '[A-z-]+'
+
 developers.page:
     path:     /developers
     defaults: { _controller: AppBundle:Developer:list }
