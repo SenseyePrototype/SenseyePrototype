@@ -1,4 +1,6 @@
 {# @var pager \Pagerfanta\Pagerfanta #}
+{# @var generator callable #}
+{% if pager.getNbPages() > 1 %}
 <div class="row">
     <div class="col s12">
         <ul class="pagination">
@@ -30,3 +32,4 @@
         </ul>
     </div>
 </div>
+{% endif %}

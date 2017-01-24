@@ -24,7 +24,13 @@ class View implements ViewInterface
 
     public function render(PagerfantaInterface $pagerfanta, $routeGenerator, array $options = array())
     {
-        return $this->templating->render('@App/Developer/block/pagination.html.twig');
+        return $this->templating->render(
+            '@App/Developer/block/pagination.html.twig',
+            [
+                'pager' => $pagerfanta,
+                'generator' => $routeGenerator,
+            ]
+        );
     }
 
     public function getName()
