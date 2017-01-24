@@ -12,11 +12,13 @@ class DeveloperController extends Controller
     {
         $cityAlias = strtolower($city);
 
+        $page = max((int)$request->query->get('page'), 1);
+
         $available = $this->get('senseye.profile.available.criteria.repository')->get();
 
         $criteria = $this->get('senseye.profile.search.request.analyzer')->analyzeCity($available, $cityAlias);
 
-        $profileResponse = $this->get('senseye.profile.searcher')->search($criteria, 1, 17);
+        $profileResponse = $this->get('senseye.profile.searcher')->search($criteria, $page, 17);
 
         $aggregation = $this->get('senseye.profile.counter')->getAggregation($available, $criteria);
 
@@ -33,11 +35,13 @@ class DeveloperController extends Controller
 
     public function listAction(Request $request)
     {
+        $page = max((int)$request->query->get('page'), 1);
+
         $available = $this->get('senseye.profile.available.criteria.repository')->get();
 
         $criteria = $this->get('senseye.profile.search.request.analyzer')->analyze($available, $request);
 
-        $profileResponse = $this->get('senseye.profile.searcher')->search($criteria, 1, 17);
+        $profileResponse = $this->get('senseye.profile.searcher')->search($criteria, $page, 17);
 
         $aggregation = $this->get('senseye.profile.counter')->getAggregation($available, $criteria);
 
