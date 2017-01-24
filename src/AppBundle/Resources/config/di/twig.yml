@@ -1,0 +1,7 @@
+services:
+    pagerfanta.view.first:
+        class: 'AppBundle\Component\Pager\View'
+        arguments:
+            - '@templating'
+        public: false
+        tags: [{ name: 'pagerfanta.view', alias: 'first' }]

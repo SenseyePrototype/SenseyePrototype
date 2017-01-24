@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Component\Pager\PagerBridge;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -21,7 +22,8 @@ class DeveloperController extends Controller
 
         return $this->render('AppBundle:Developer:list.html.twig', [
             'profiles' => $profileResponse->getResults(),
-            'pager' => $profileResponse->getPager(),
+            'count' => $profileResponse->getPager()->getCount(),
+            'pager' => new PagerBridge($profileResponse->getPager()),
             'profileCriteriaContainer' => $this
                 ->get('senseye.profile.criteria.container')
                 ->merge($available, $criteria, $aggregation),
@@ -41,7 +43,8 @@ class DeveloperController extends Controller
 
         return $this->render('AppBundle:Developer:list.html.twig', [
             'profiles' => $profileResponse->getResults(),
-            'pager' => $profileResponse->getPager(),
+            'count' => $profileResponse->getPager()->getCount(),
+            'pager' => new PagerBridge($profileResponse->getPager()),
             'profileCriteriaContainer' => $this
                 ->get('senseye.profile.criteria.container')
                 ->merge($available, $criteria, $aggregation),

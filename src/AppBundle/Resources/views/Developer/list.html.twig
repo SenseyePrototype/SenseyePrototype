@@ -1,5 +1,6 @@
-{# @var pager \ReenExeCubeTime\LightPaginator\Pager #}
 {# @var profileCriteriaContainer \AppBundle\Component\ProfileAvailableCriteriaContainer #}
+{# @var count int #}
+{# @var pager \Pagerfanta\Pagerfanta #}
 {% extends '::base.html.twig' %}
 {% block stylesheets %}
     <!-- Compiled and minified CSS -->
@@ -141,7 +142,7 @@
             </div>
             <div class="col s9">
                 <div class="col s12">
-                    <h5 class="left-align">{{ 'found_choice'|transchoice(pager.getCount()) }}</h5>
+                    <h5 class="left-align">{{ 'found_choice'|transchoice(count) }}</h5>
                 </div>
                 <div class="row">
                     <div class="col s12">
@@ -156,7 +157,7 @@
                 <div class="row">
                     {% include '@App/Developer/block/profiles.html.twig' %}
                 </div>
-                {% include '@App/Developer/block/pagination.html.twig' %}
+                {{ pagerfanta(pager, 'first') }}
             </div>
         </div>
     </div>
