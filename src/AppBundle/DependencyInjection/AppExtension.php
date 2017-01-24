@@ -26,6 +26,5 @@ class AppExtension extends Extension
         $loader->load('di/services.yml');
         $loader->load('di/oauth.yml');
         $loader->load('di/entity_manager.yml');
-        $loader->load('di/twig.yml');
     }
 }

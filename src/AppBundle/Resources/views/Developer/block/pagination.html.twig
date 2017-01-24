@@ -1,11 +1,11 @@
 {# @var pager \Pagerfanta\Pagerfanta #}
-{# @var generator callable #}
 {% if pager.getNbPages() > 1 %}
 <div class="row">
     <div class="col s12">
         <ul class="pagination">
-            <li class="disabled">
-                <a href="#!">
+            {% set previous = pager.hasPreviousPage() %}
+            <li class="{% if previous %}waves-effect{% else %}disabled{% endif %}">
+                <a href="{% if previous %}{{ pagerfanta_page_url(pager.getPreviousPage()) }}{% else %}javascript:void(0);{% endif %}">
                     <i class="zmdi zmdi-chevron-left"></i>
                 </a>
             </li>
