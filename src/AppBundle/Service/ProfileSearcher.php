@@ -45,11 +45,17 @@ class ProfileSearcher
      * @param int $limit
      * @return ProfileSearchResponse
      */
-    public function search(ProfileSearchCriteria $criteria, $page = 1, $limit = 7)
+    public function search(ProfileSearchCriteria $criteria, $page, $limit)
     {
         $searchable = $this->indexService->getProfile();
 
         $query = $this->builder->buildSearchQuery($criteria);
+
+        $offset = ($page - 1) * $limit;
+
+        if ($offset >= 10000) {
+            $page = 1;
+        }
 
         $pager = $this->pagerFactory->createSmartPager(
             new ElasticAdapter($searchable, $query),

@@ -37,7 +37,7 @@ class ElasticAdapter implements AdapterInterface
 
     public function getCount()
     {
-        return $this->result->getTotalHits();
+        return min($this->result->getTotalHits(), 10000);
     }
 
     public function getSlice($offset, $length)
