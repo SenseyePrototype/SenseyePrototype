@@ -62,9 +62,23 @@ $(document).ready(function () {
         });
     }
 
-    function showCountMap(response) {
+    function updateCountMap(response) {
         showConcreteCountMap($multi, response.multi);
         showConcreteCountMap($must, response.must);
+    }
+
+    function updateRange(response) {
+        $range.each(function () {
+            var $this = $(this);
+            var param = $this.attr('data-param');
+
+            if (response.range.hasOwnProperty(param)) {
+                var range = response.range[param];
+
+                $('.js-range-from', $this).attr('placeholder', range.from);
+                $('.js-range-to', $this).attr('placeholder', range.to);
+            }
+        });
     }
 
     function getCount() {
@@ -85,7 +99,8 @@ $(document).ready(function () {
                     empty: response.count === 0,
                     count: response.count
                 });
-                showCountMap(response);
+                updateCountMap(response);
+                updateRange(response);
             }
         });
     }
