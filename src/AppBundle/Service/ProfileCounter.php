@@ -81,11 +81,11 @@ class ProfileCounter
         }
 
         $range = [];
-        foreach (array_keys($available->getRangeMap()) as $name) {
+        foreach ($available->getRangeMap() as $name => $availableRange) {
             $aggregation = $aggregations[$name][$name] ?? $aggregations[$name];
             $range[$name] = [
-                'from' => (int)$aggregation['min'],
-                'to' => (int)$aggregation['max'],
+                'from' => (int)$aggregation['min'] ?: $availableRange['from'],
+                'to' => (int)$aggregation['max'] ?: $availableRange['to'],
             ];
         }
 
