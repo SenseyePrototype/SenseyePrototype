@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use Doctrine\DBAL\Connection;
+
 /**
  * CityRepository
  *
@@ -10,4 +12,27 @@ namespace AppBundle\Repository;
  */
 class CityRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function add(array $list)
+    {
+        $table = $this
+            ->getEntityManager()
+            ->getClassMetadata('AppBundle:City')
+            ->getTableName();
+
+        /* @var $connection Connection */
+        $connection = $this->getEntityManager()->getConnection();
+
+        $connection->exec("TRUNCATE TABLE `$table`;`");
+
+        $statement = $connection->prepare("
+            INSERT INTO `$table`(`alias`, `name`)
+            VALUE (:alias, :name);
+        ");
+
+        $connection->beginTransaction();
+        foreach ($list as $city) {
+            $statement->execute($city);
+        }
+        $connection->commit();
+    }
 }
