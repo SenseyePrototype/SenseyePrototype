@@ -7,3 +7,10 @@
     ga('create', 'UA-80707389-1', 'auto');
     ga('send', 'pageview');
 </script>
+<script>
+    window.onerror = function (message) {
+        ga('send', 'exception', {
+            exDescription: message
+        });
+    };
+</script>
