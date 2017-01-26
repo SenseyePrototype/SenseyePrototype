@@ -2,19 +2,19 @@
 {% set pages = pager.getNbPages() %}
 {% if pages > 1 %}
     {% set current = pager.getCurrentPage() %}
-    {% set prev = pager.hasPreviousPage() %}
-    {% set next = pager.hasNextPage() %}
+    {% set prev = pager.hasPreviousPage() ? pager.getPreviousPage() %}
+    {% set next = pager.hasNextPage() ? pager.getNextPage() %}
     <div class="row">
         <div class="col s12">
             <ul class="pagination">
                 <li class="{% if prev %}waves-effect{% else %}disabled{% endif %}">
-                    <a href="{% if prev %}{{ pagerfanta_page_url(pager, pager.getPreviousPage()) }}{% else %}javascript:void(0);{% endif %}">
+                    <a href="{% if prev %}{{ pagerfanta_page_url(pager, prev) }}{% else %}javascript:void(0);{% endif %}">
                         <i class="zmdi zmdi-chevron-left"></i>
                     </a>
                 </li>
 
                 {% set step = 3 %}
-                {% set range = min(current, step) %}
+                {% set range = min(step, pages) %}
 
                 {% for page in 1..range %}
                     {% if page == current %}
@@ -25,6 +25,9 @@
                 {% endfor %}
 
                 {% set complete = range %}
+                {% if current == complete %}
+                    <li class="waves-effect"><a href="{{ pagerfanta_page_url(pager, next) }}">{{ next }}</a></li>
+                {% endif %}
 
                 {% if current > (step + 2) %}
                     <li class="disabled"><a>.</a></li>
@@ -65,7 +68,7 @@
                 {% endif %}
 
                 <li class="{% if next %}waves-effect{% else %}disabled{% endif %}">
-                    <a href="{% if next %}{{ pagerfanta_page_url(pager, pager.getNextPage()) }}{% else %}javascript:void(0);{% endif %}">
+                    <a href="{% if next %}{{ pagerfanta_page_url(pager, next) }}{% else %}javascript:void(0);{% endif %}">
                         <i class="zmdi zmdi-chevron-right"></i>
                     </a>
                 </li>
