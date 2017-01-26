@@ -39,7 +39,7 @@ hwi_oauth:
         github:
             type:                github
             client_id:           '%github_client_id%'
-            client_secret:       '%github_client_id%'
+            client_secret:       '%github_client_secret%'
             scope:               'user:email,public_repo'
         bitbucket:
             type:                bitbucket
