@@ -1,3 +1,7 @@
+app_developer_profile:
+    resource: "@AppBundle/Resources/config/routing/developerprofile.yml"
+    prefix:   /developer/profile
+
 intro:
     path: /
     defaults: { _controller: AppBundle:Intro:index }

@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Developerprofile</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ developerProfile.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ developerProfile.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ developerProfile.description }}</td>
+            </tr>
+            <tr>
+                <th>Salary</th>
+                <td>{{ developerProfile.salary }}</td>
+            </tr>
+            <tr>
+                <th>Experience</th>
+                <td>{{ developerProfile.experience }}</td>
+            </tr>
+            <tr>
+                <th>Assert</th>
+                <td>{{ developerProfile.assert }}</td>
+            </tr>
+            <tr>
+                <th>Expect</th>
+                <td>{{ developerProfile.expect }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('developer_profile_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('developer_profile_edit', { 'id': developerProfile.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

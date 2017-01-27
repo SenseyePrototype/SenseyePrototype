@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Developerprofiles list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Salary</th>
+                <th>Experience</th>
+                <th>Assert</th>
+                <th>Expect</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for developerProfile in developerProfiles %}
+            <tr>
+                <td><a href="{{ path('developer_profile_show', { 'id': developerProfile.id }) }}">{{ developerProfile.id }}</a></td>
+                <td>{{ developerProfile.title }}</td>
+                <td>{{ developerProfile.description }}</td>
+                <td>{{ developerProfile.salary }}</td>
+                <td>{{ developerProfile.experience }}</td>
+                <td>{{ developerProfile.assert }}</td>
+                <td>{{ developerProfile.expect }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('developer_profile_show', { 'id': developerProfile.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('developer_profile_edit', { 'id': developerProfile.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('developer_profile_new') }}">Create a new developerProfile</a>
+        </li>
+    </ul>
+{% endblock %}
