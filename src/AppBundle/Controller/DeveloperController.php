@@ -18,6 +18,10 @@ class DeveloperController extends Controller
 
         $criteria = $this->get('senseye.profile.search.request.analyzer')->analyzeCity($available, $cityAlias);
 
+        if (empty($criteria)) {
+            return $this->redirectToRoute('developers.page');
+        }
+
         $profileResponse = $this->get('senseye.profile.searcher')->search($criteria, $page, 17);
 
         $aggregation = $this->get('senseye.profile.counter')->getAggregation($available, $criteria);
