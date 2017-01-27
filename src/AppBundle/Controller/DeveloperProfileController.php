@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Developerprofile controller.
+ * DeveloperProfile controller.
  *
  */
 class DeveloperProfileController extends Controller
@@ -33,11 +33,12 @@ class DeveloperProfileController extends Controller
      */
     public function newAction(Request $request)
     {
-        $developerProfile = new Developerprofile();
+        $developerProfile = new DeveloperProfile();
         $form = $this->createForm('AppBundle\Form\DeveloperProfileType', $developerProfile);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $developerProfile->setUser($this->getUser());
             $em = $this->getDoctrine()->getManager();
             $em->persist($developerProfile);
             $em->flush($developerProfile);

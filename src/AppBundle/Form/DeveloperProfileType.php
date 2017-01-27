@@ -13,9 +13,15 @@ class DeveloperProfileType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title')->add('description')->add('salary')->add('experience')->add('assert')->add('expect')->add('user')        ;
+        $builder
+            ->add('title')
+            ->add('description')
+            ->add('salary')
+            ->add('experience')
+            ->add('assert')
+            ->add('expect');
     }
-    
+
     /**
      * {@inheritdoc}
      */
