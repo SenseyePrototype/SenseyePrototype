@@ -1,0 +1,24 @@
+developer_profile_index:
+    path:     /
+    defaults: { _controller: "AppBundle:DeveloperProfile:index" }
+    methods:  GET
+
+developer_profile_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:DeveloperProfile:show" }
+    methods:  GET
+
+developer_profile_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:DeveloperProfile:new" }
+    methods:  [GET, POST]
+
+developer_profile_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:DeveloperProfile:edit" }
+    methods:  [GET, POST]
+
+developer_profile_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:DeveloperProfile:delete" }
+    methods:  DELETE
