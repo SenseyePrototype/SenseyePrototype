@@ -12,7 +12,6 @@ AppBundle\Entity\SkillSynonym:
     id:
         id:
             type: integer
-            nullable: false
             unsigned: true
             id: true
             generator:

@@ -1,0 +1,47 @@
+AppBundle\Entity\DeveloperProfile:
+    type: entity
+    table: s_developer_profile
+    repositoryClass: AppBundle\Repository\DeveloperProfileRepository
+
+    indexes:
+        USER_ID_INDEX:
+            columns:
+                - user_id
+
+    manyToOne:
+        user:
+            targetEntity: AppBundle\Entity\User
+            inversedBy: developerProfiles
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+            fetch: EXTRA_LAZY
+
+    id:
+        id:
+            type: integer
+            unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 255
+        description:
+            type: text
+            nullable: true
+        salary:
+            type: integer
+            nullable: false
+        experience:
+            type: integer
+            nullable: false
+        assert:
+            type: string
+            nullable: true
+        expect:
+            type: text
+            nullable: true
