@@ -7,3 +7,9 @@
 ##### PageSpeed Insights
 * [/](https://developers.google.com/speed/pagespeed/insights/?url=senseye.com.ua)
 * [/developers](https://developers.google.com/speed/pagespeed/insights/?url=senseye.com.ua/developers)
+
+##### Development
+Для создания сущностей в БД:
+```bash
+php bin/console doctrine:schema:update --force
+```
