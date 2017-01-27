@@ -2,7 +2,7 @@
 
 namespace AppBundle\Entity\Manager;
 
-use AppBundle\Entity\Repository\UserRepository;
+use AppBundle\Repository\UserRepository;
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 
