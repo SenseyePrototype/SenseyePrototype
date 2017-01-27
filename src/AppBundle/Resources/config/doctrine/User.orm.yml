@@ -2,6 +2,12 @@ AppBundle\Entity\User:
     type: entity
     table: s_user
     repositoryClass: AppBundle\Repository\UserRepository
+
+    oneToMany:
+        developerProfiles:
+            targetEntity: AppBundle\Entity\DeveloperProfile
+            mappedBy: user
+
     id:
         id:
             type: integer

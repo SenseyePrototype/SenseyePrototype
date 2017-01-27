@@ -6,12 +6,14 @@
         <meta property="og:site_name" content="{{ 'seo.title'|trans }}" />
         <meta name="description" content="{{ 'seo.description'|trans }}" />
         <meta name="keywords" content="{{ 'seo.keywords'|trans }}" />
-        {% include 'analytics.html.twig' %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta property="og:site_name" content="{{ 'seo.title'|trans }}">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
         {% block body %}{% endblock %}
+        {% include 'analytics.html.twig' %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>

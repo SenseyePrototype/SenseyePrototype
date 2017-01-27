@@ -2,32 +2,24 @@
 
 namespace AppBundle\Entity\Manager;
 
-use AppBundle\Repository\UserRepository;
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 
 class UserManager
 {
-
     /**
      * @var EntityManager
      */
-    private $entityManager;
-
-    /**
-     * @var UserRepository
-     */
-    private $userRepository;
+    private $manager;
 
     /**
      * UserManager constructor.
      *
-     * @param EntityManager $entityManager
+     * @param EntityManager $manager
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManager $manager)
     {
-        $this->entityManager = $entityManager;
-        $this->userRepository = $entityManager->getRepository('AppBundle:User');
+        $this->manager = $manager;
     }
 
     /**
@@ -37,7 +29,7 @@ class UserManager
      */
     public function findOneByFacebookId($id)
     {
-        return $this->userRepository->findOneBy(['facebookId' => $id]);
+        return $this->getRepository()->findOneBy(['facebookId' => $id]);
     }
 
     /**
@@ -47,7 +39,7 @@ class UserManager
      */
     public function findOneByGoogleId($id)
     {
-        return $this->userRepository->findOneBy(['googleId' => $id]);
+        return $this->getRepository()->findOneBy(['googleId' => $id]);
     }
 
     /**
@@ -57,7 +49,7 @@ class UserManager
      */
     public function findOneByLinkedinId($id)
     {
-        return $this->userRepository->findOneBy(['linkedinId' => $id]);
+        return $this->getRepository()->findOneBy(['linkedinId' => $id]);
     }
 
     /**
@@ -67,7 +59,7 @@ class UserManager
      */
     public function findOneByGithubId($id)
     {
-        return $this->userRepository->findOneBy(['githubId' => $id]);
+        return $this->getRepository()->findOneBy(['githubId' => $id]);
     }
 
     /**
@@ -77,7 +69,7 @@ class UserManager
      */
     public function findOneByBitbucketId($id)
     {
-        return $this->userRepository->findOneBy(['bitbucketId' => $id]);
+        return $this->getRepository()->findOneBy(['bitbucketId' => $id]);
     }
 
     /**
@@ -87,7 +79,7 @@ class UserManager
      */
     public function findUserByUsername($username)
     {
-        return $this->userRepository->findOneBy(['username' => $username]);
+        return $this->getRepository()->findOneBy(['username' => $username]);
     }
 
     /**
@@ -97,18 +89,28 @@ class UserManager
      */
     public function findUserByEmail($email)
     {
-        return $this->userRepository->findOneBy(['email' => $email]);
+        return $this->getRepository()->findOneBy(['email' => $email]);
     }
 
     /**
      * @param User $user
+     * @return User
      */
     public function save(User $user)
     {
-        $this->entityManager->persist($user);
-        $this->entityManager->flush($user);
+        $this->manager->persist($user);
+        $this->manager->flush($user);
 
         return $user;
     }
 
+    public function refresh(User $user)
+    {
+        return $this->getRepository()->find($user->getId());
+    }
+
+    private function getRepository()
+    {
+        return $this->manager->getRepository('AppBundle:User');
+    }
 }

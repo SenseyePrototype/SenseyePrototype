@@ -129,7 +129,7 @@ class OAuthUserProvider implements UserProviderInterface, AccountConnectorInterf
      */
     public function refreshUser(UserInterface $user)
     {
-        return $user;
+        return $this->userManager->refresh($user);
     }
 
     /**

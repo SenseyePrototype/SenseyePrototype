@@ -389,4 +389,50 @@ class User implements UserInterface
     {
         $this->email = $email;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $developerProfiles;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->developerProfiles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add developerProfile
+     *
+     * @param \AppBundle\Entity\DeveloperProfile $developerProfile
+     *
+     * @return User
+     */
+    public function addDeveloperProfile(\AppBundle\Entity\DeveloperProfile $developerProfile)
+    {
+        $this->developerProfiles[] = $developerProfile;
+
+        return $this;
+    }
+
+    /**
+     * Remove developerProfile
+     *
+     * @param \AppBundle\Entity\DeveloperProfile $developerProfile
+     */
+    public function removeDeveloperProfile(\AppBundle\Entity\DeveloperProfile $developerProfile)
+    {
+        $this->developerProfiles->removeElement($developerProfile);
+    }
+
+    /**
+     * Get developerProfiles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDeveloperProfiles()
+    {
+        return $this->developerProfiles;
+    }
 }
