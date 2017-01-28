@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\DeveloperProfile;
+use AppBundle\Entity\DeveloperProfileSkillLink;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -41,7 +42,21 @@ class DeveloperProfileController extends Controller
             $developerProfile->setUser($this->getUser());
             $em = $this->getDoctrine()->getManager();
             $em->persist($developerProfile);
-            $em->flush($developerProfile);
+
+            $skill = $this->getDoctrine()->getRepository('AppBundle:Skill')->find(1);
+
+            $developerProfileSkillLink = new DeveloperProfileSkillLink();
+            $developerProfileSkillLink
+                ->setDeveloperProfile($developerProfile)
+                ->setPosition(1)
+                ->setExperience(1)
+                ->setSkill($skill)
+                ->setScore(8)
+            ;
+
+            $em->persist($developerProfileSkillLink);
+
+            $em->flush();
 
             return $this->redirectToRoute('developer_profile_show', array('id' => $developerProfile->getId()));
         }
