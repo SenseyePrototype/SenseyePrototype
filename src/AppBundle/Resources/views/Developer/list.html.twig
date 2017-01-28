@@ -1,6 +1,9 @@
 {# @var profileCriteriaContainer \AppBundle\Component\ProfileAvailableCriteriaContainer #}
 {# @var count int #}
 {# @var pager \Pagerfanta\Pagerfanta #}
+{% if pager.getCurrentPage() > 1 %}
+    {% set canonical = pagerfanta_page_url(pager, 1, {omitFirstPage: true}) %}
+{% endif %}
 {% extends '::base.html.twig' %}
 {% block stylesheets %}
     <!-- Compiled and minified CSS -->

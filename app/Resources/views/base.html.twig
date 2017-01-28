@@ -9,6 +9,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta property="og:site_name" content="{{ 'seo.title'|trans }}">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {% if canonical is defined %}
+            <link rel="canonical" href="{{ canonical }}">
+        {% endif %}
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
