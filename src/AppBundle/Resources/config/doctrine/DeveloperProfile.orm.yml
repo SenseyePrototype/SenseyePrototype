@@ -8,6 +8,12 @@ AppBundle\Entity\DeveloperProfile:
             columns:
                 - user_id
 
+    oneToMany:
+        skillLinks:
+            targetEntity: AppBundle\Entity\DeveloperProfileSkillLink
+            mappedBy: developerProfile
+            fetch: EXTRA_LAZY
+
     manyToOne:
         user:
             targetEntity: AppBundle\Entity\User
@@ -36,9 +42,11 @@ AppBundle\Entity\DeveloperProfile:
         salary:
             type: integer
             nullable: false
+            unsigned: true
         experience:
             type: integer
             nullable: false
+            unsigned: true
         assert:
             type: string
             nullable: true

@@ -1,0 +1,38 @@
+AppBundle\Entity\DeveloperProfileSkillLink:
+    type: entity
+    table: s_developer_profile_skill_link
+
+    id:
+        id:
+            type: integer
+            unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+
+    manyToOne:
+        developerProfile:
+            targetEntity: AppBundle\Entity\DeveloperProfile
+            inversedBy: skillLinks
+            fetch: EXTRA_LAZY
+            joinColumn:
+                name: developer_id
+                referencedColumnName: id
+
+        skill:
+            targetEntity: AppBundle\Entity\Skill
+            fetch: EXTRA_LAZY
+            joinColumn:
+                name: skill_id
+                referencedColumnName: id
+
+    fields:
+        position:
+            type: integer
+            unsigned: true
+        score:
+            type: integer
+            unsigned: true
+        experience:
+            type: integer
+            unsigned: true
