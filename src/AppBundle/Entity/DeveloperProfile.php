@@ -225,5 +225,50 @@ class DeveloperProfile
     {
         return $this->user;
     }
-}
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $skillLinks;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->skillLinks = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add skillLink
+     *
+     * @param \AppBundle\Entity\DeveloperProfileSkillLink $skillLink
+     *
+     * @return DeveloperProfile
+     */
+    public function addSkillLink(\AppBundle\Entity\DeveloperProfileSkillLink $skillLink)
+    {
+        $this->skillLinks[] = $skillLink;
+
+        return $this;
+    }
+
+    /**
+     * Remove skillLink
+     *
+     * @param \AppBundle\Entity\DeveloperProfileSkillLink $skillLink
+     */
+    public function removeSkillLink(\AppBundle\Entity\DeveloperProfileSkillLink $skillLink)
+    {
+        $this->skillLinks->removeElement($skillLink);
+    }
+
+    /**
+     * Get skillLinks
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSkillLinks()
+    {
+        return $this->skillLinks;
+    }
+}

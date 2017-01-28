@@ -1,0 +1,29 @@
+AppBundle\Entity\Skill:
+    type: entity
+    table: s_skill
+    repositoryClass: AppBundle\Repository\SkillRepository
+
+    uniqueConstraints:
+        UNIQUE_ALIAS:
+            columns:
+                - alias
+
+    id:
+        id:
+            type: integer
+            unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+
+    fields:
+        alias:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        name:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
