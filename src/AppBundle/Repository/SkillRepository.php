@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use Doctrine\DBAL\Connection;
+
 /**
  * SkillRepository
  *
@@ -10,4 +12,27 @@ namespace AppBundle\Repository;
  */
 class SkillRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function add(array $list)
+    {
+        $table = $this
+            ->getEntityManager()
+            ->getClassMetadata('AppBundle:Skill')
+            ->getTableName();
+
+        /* @var $connection Connection */
+        $connection = $this->getEntityManager()->getConnection();
+
+        $connection->exec("DELETE FROM `$table`;`");
+
+        $statement = $connection->prepare("
+            INSERT INTO `$table`(`alias`, `name`)
+            VALUE (:alias, :name);
+        ");
+
+        $connection->beginTransaction();
+        foreach ($list as $skill) {
+            $statement->execute($skill);
+        }
+        $connection->commit();
+    }
 }

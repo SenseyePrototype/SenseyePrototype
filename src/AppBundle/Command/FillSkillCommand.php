@@ -3,6 +3,7 @@
 namespace AppBundle\Command;
 
 use AppBundle\Repository\SkillPriorityRepository;
+use AppBundle\Repository\SkillRepository;
 use AppBundle\Repository\SkillSynonymRepository;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -18,6 +19,23 @@ class FillSkillCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $doctrine = $this->getContainer()->get('doctrine');
+
+        /* @var $repository SkillRepository */
+        $repository = $doctrine->getRepository('AppBundle:Skill');
+        $repository->add([
+            [
+                'alias' => 'php',
+                'name' => 'PHP',
+            ],
+            [
+                'alias' => 'mysql',
+                'name' => 'MySQL',
+            ],
+            [
+                'alias' => 'git',
+                'name' => 'Git',
+            ],
+        ]);
 
         /* @var $priority SkillPriorityRepository */
         $priority = $doctrine->getRepository('AppBundle:SkillPriority');
@@ -43,7 +61,6 @@ class FillSkillCommand extends ContainerAwareCommand
 
         /* @var $synonym SkillSynonymRepository */
         $synonym = $doctrine->getRepository('AppBundle:SkillSynonym');
-
         $synonym->add([
             'php' => ['php5', 'php7'],
             'golang' => ['go'],
