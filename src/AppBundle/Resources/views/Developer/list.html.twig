@@ -18,8 +18,14 @@
         <div class="nav-wrapper">
             <a href="{{ path('developers.page') }}" class="brand-logo left">Senseye</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="javascript:void(0);" class="js-auth-open">Sign up</a></li>
-                <li><a href="javascript:void(0);" class="js-auth-open">Sign in</a></li>
+                {# @var user \AppBundle\Entity\User #}
+                {% set user = app.getUser() %}
+                {% if user %}
+                    <li><a href="javascript:void(0);">{{ user.getUsername() }}</a></li>
+                {% else %}
+                    <li><a href="javascript:void(0);" class="js-auth-open">Sign up</a></li>
+                    <li><a href="javascript:void(0);" class="js-auth-open">Sign in</a></li>
+                {% endif %}
             </ul>
         </div>
     </nav>
@@ -34,16 +40,18 @@
             Register with
         </div>
         <div class="soc-elements">
-            <a href="javascript:void(0);" class="soc btn-floating waves-effect waves-light">
-                <i class="zmdi zmdi-facebook"></i>
-            </a>
-            <a href="javascript:void(0);" class="soc btn-floating waves-effect waves-light">
-                <i class="zmdi zmdi-google"></i>
-            </a>
-            <a href="javascript:void(0);" class="soc btn-floating waves-effect waves-light">
-                <i class="zmdi zmdi-linkedin"></i>
-            </a>
-            <a href="javascript:void(0);" class="soc btn-floating waves-effect waves-light">
+            {#
+                <a href="javascript:void(0);" class="soc btn-floating waves-effect waves-light">
+                    <i class="zmdi zmdi-facebook"></i>
+                </a>
+                <a href="javascript:void(0);" class="soc btn-floating waves-effect waves-light">
+                    <i class="zmdi zmdi-google"></i>
+                </a>
+                <a href="javascript:void(0);" class="soc btn-floating waves-effect waves-light">
+                    <i class="zmdi zmdi-linkedin"></i>
+                </a>
+            #}
+            <a href="{{ hwi_oauth_login_url('github') }}" class="soc btn-floating waves-effect waves-light">
                 <i class="zmdi zmdi-github-alt"></i>
             </a>
         </div>
