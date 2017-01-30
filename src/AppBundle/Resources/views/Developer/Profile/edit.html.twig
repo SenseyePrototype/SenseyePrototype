@@ -1,3 +1,5 @@
+{# @var form \Symfony\Component\Form\FormView #}
+{# @var form \AppBundle\Entity\DeveloperProfile #}
 {% extends '::base.html.twig' %}
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
@@ -12,7 +14,7 @@
             <div class="nav-wrapper">
                 <a href="{{ path('developers.page') }}" class="brand-logo left">Senseye</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="javascript:void(0);">{{ app.getUser().getUsername() }}<span class="new badge red" data-badge-caption="Не опубликован"></span></a></li>
+                    <li><a href="javascript:void(0);">{{ app.getUser().getUsername() }}{#<span class="new badge red" data-badge-caption="Не опубликован"></span>#}</a></li>
                 </ul>
             </div>
         </nav>
@@ -37,23 +39,40 @@
                 <div class="col s9">
                     <div class="input-field col s12">
                         <i class="material-icons prefix zmdi zmdi-account"></i>
-                        <input id="title" type="text" class="validate">
-                        <label for="title">Должность</label>
+                        {{ form_widget(form.title, {'attr': {'class': 'validate'}}) }}
+                        {{ form_label(form.title, 'profile.title'|trans) }}
                     </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix zmdi zmdi-money"></i>
-                        <input id="salary" type="number" class="validate">
-                        <label for="salary">Зарплата не ниже</label>
+                        {{ form_widget(form.salary, {
+                            'attr': {
+                                'type': 'number',
+                                'step': 100,
+                                'class': 'validate'
+                            }}
+                        ) }}
+                        {{ form_label(form.salary, 'salary'|trans) }}
                     </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix zmdi zmdi-quote"></i>
-                        <textarea id="discription" type="text" class="materialize-textarea validate"></textarea>
-                        <label for="discription">Описание</label>
+                        {{ form_widget(form.description, {
+                            'attr': {
+                                'type': 'number',
+                                'step': 100,
+                                'class': 'materialize-textarea validate'
+                            }}
+                        ) }}
+                        {{ form_label(form.description, 'profile.description'|trans) }}
                     </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix zmdi zmdi-functions"></i>
-                        <input id="exp" type="number" class="validate">
-                        <label for="exp">Опыт</label>
+                        {{ form_widget(form.experience, {
+                            'attr': {
+                                'type': 'number',
+                                'class': 'validate'
+                            }}
+                        ) }}
+                        {{ form_label(form.experience, 'experience'|trans) }}
                     </div>
                     <div class="input-field col s12">
                         <input type="checkbox" id="publish" checked="checked" />

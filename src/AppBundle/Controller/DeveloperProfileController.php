@@ -20,7 +20,18 @@ class DeveloperProfileController extends BaseController
             return $this->redirectToRoute('developers.page');
         }
 
-        return $this->render('@App/Developer/Profile/edit.html.twig');
+        $developerProfile = $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:DeveloperProfile')
+            ->findOneBy([
+                'user' => $user
+            ]);
+
+        $form = $this->createForm('AppBundle\Form\DeveloperProfileType', $developerProfile);
+
+        return $this->render('@App/Developer/Profile/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**

@@ -16,3 +16,7 @@ seo:
     title: 'Senseye – поиск программистов'
     description: 'Поиск программистов'
     keywords: 'поиск резюме'
+
+profile:
+    title: 'Должность'
+    description: 'Описание'
