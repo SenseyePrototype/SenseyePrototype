@@ -26,4 +26,4 @@ developer_profile_delete:
 developer_profile:
     path:     /edit
     defaults: { _controller: "AppBundle:DeveloperProfile:edit" }
-    methods:  GET
+    methods:  [GET, POST]

@@ -37,6 +37,7 @@
                     </div>
                 </div>
                 <div class="col s9">
+                    {{ form_start(form) }}
                     <div class="input-field col s12">
                         <i class="material-icons prefix zmdi zmdi-account"></i>
                         {{ form_widget(form.title, {'attr': {'class': 'validate'}}) }}
@@ -85,6 +86,7 @@
                             {{ 'action.save'|trans }}
                         </button>
                     </div>
+                    {{ form_end(form) }}
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class DeveloperProfileController extends BaseController
 {
-    public function editAction()
+    public function editAction(Request $request)
     {
         $user = $this->getUser();
 
@@ -28,6 +28,14 @@ class DeveloperProfileController extends BaseController
             ]);
 
         $form = $this->createForm('AppBundle\Form\DeveloperProfileType', $developerProfile);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $developerProfile->setUser($this->getUser());
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($developerProfile);
+            $em->flush($developerProfile);
+        }
 
         return $this->render('@App/Developer/Profile/edit.html.twig', [
             'form' => $form->createView(),
