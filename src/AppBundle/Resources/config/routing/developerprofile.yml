@@ -15,10 +15,15 @@ developer_profile_new:
 
 developer_profile_edit:
     path:     /{id}/edit
-    defaults: { _controller: "AppBundle:DeveloperProfile:edit" }
+    defaults: { _controller: "AppBundle:DeveloperProfile:editById" }
     methods:  [GET, POST]
 
 developer_profile_delete:
     path:     /{id}/delete
     defaults: { _controller: "AppBundle:DeveloperProfile:delete" }
     methods:  DELETE
+
+developer_profile:
+    path:     /edit
+    defaults: { _controller: "AppBundle:DeveloperProfile:edit" }
+    methods:  GET

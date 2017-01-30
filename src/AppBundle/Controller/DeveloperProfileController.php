@@ -13,6 +13,11 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class DeveloperProfileController extends Controller
 {
+    public function editAction()
+    {
+        return $this->render('@App/Developer/Profile/edit.html.twig');
+    }
+
     /**
      * Lists all developerProfile entities.
      *
@@ -85,7 +90,7 @@ class DeveloperProfileController extends Controller
      * Displays a form to edit an existing developerProfile entity.
      *
      */
-    public function editAction(Request $request, DeveloperProfile $developerProfile)
+    public function editByIdAction(Request $request, DeveloperProfile $developerProfile)
     {
         $deleteForm = $this->createDeleteForm($developerProfile);
         $editForm = $this->createForm('AppBundle\Form\DeveloperProfileType', $developerProfile);
