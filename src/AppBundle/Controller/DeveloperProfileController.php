@@ -4,17 +4,22 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\DeveloperProfile;
 use AppBundle\Entity\DeveloperProfileSkillLink;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * DeveloperProfile controller.
  *
  */
-class DeveloperProfileController extends Controller
+class DeveloperProfileController extends BaseController
 {
     public function editAction()
     {
+        $user = $this->getUser();
+
+        if (empty($user)) {
+            return $this->redirectToRoute('developers.page');
+        }
+
         return $this->render('@App/Developer/Profile/edit.html.twig');
     }
 

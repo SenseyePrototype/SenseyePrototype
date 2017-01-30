@@ -10,12 +10,9 @@
     <section class="navigation z-depth-2">
         <nav class="container">
             <div class="nav-wrapper">
-                <a href="javascript:void(0);" class="brand-logo left">Senseye</a>
+                <a href="{{ path('developers.page') }}" class="brand-logo left">Senseye</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="javascript:void(0);" class="js-auth-open">Sign up</a></li>
-                    <li><a href="javascript:void(0);" class="js-auth-open">Sign in</a></li>
-                    <li><a href="profile.html">Alex</a></li>
-                    <li><a href="profile.html">Alex<span class="new badge red" data-badge-caption="Не опубликован"></span></a></li>
+                    <li><a href="javascript:void(0);">{{ app.getUser().getUsername() }}<span class="new badge red" data-badge-caption="Не опубликован"></span></a></li>
                 </ul>
             </div>
         </nav>
