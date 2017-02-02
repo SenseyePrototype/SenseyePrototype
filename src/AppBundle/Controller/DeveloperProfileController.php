@@ -104,11 +104,8 @@ class DeveloperProfileController extends BaseController
      */
     public function showAction(DeveloperProfile $developerProfile)
     {
-        $deleteForm = $this->createDeleteForm($developerProfile);
-
         return $this->render('developerprofile/show.html.twig', array(
             'developerProfile' => $developerProfile,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -118,7 +115,6 @@ class DeveloperProfileController extends BaseController
      */
     public function editByIdAction(Request $request, DeveloperProfile $developerProfile)
     {
-        $deleteForm = $this->createDeleteForm($developerProfile);
         $editForm = $this->createForm('AppBundle\Form\DeveloperProfileType', $developerProfile);
         $editForm->handleRequest($request);
 
@@ -131,41 +127,6 @@ class DeveloperProfileController extends BaseController
         return $this->render('developerprofile/edit.html.twig', array(
             'developerProfile' => $developerProfile,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
-    }
-
-    /**
-     * Deletes a developerProfile entity.
-     *
-     */
-    public function deleteAction(Request $request, DeveloperProfile $developerProfile)
-    {
-        $form = $this->createDeleteForm($developerProfile);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($developerProfile);
-            $em->flush($developerProfile);
-        }
-
-        return $this->redirectToRoute('developer_profile_index');
-    }
-
-    /**
-     * Creates a form to delete a developerProfile entity.
-     *
-     * @param DeveloperProfile $developerProfile The developerProfile entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(DeveloperProfile $developerProfile)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('developer_profile_delete', array('id' => $developerProfile->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
 }
