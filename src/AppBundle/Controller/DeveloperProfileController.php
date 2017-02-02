@@ -20,14 +20,17 @@ class DeveloperProfileController extends BaseController
             return $this->redirectToRoute('developers.page');
         }
 
-        $storeDeveloperProfile = $this
+        $developerProfile = $this
             ->getDoctrine()
             ->getRepository('AppBundle:DeveloperProfile')
             ->findOneBy([
                 'user' => $user
             ]);
 
-        $developerProfile = $storeDeveloperProfile ?: new DeveloperProfile();
+        if (empty($developerProfile)) {
+            $developerProfile = new DeveloperProfile();
+            $developerProfile->setPublished(true);
+        }
 
         $form = $this->createForm('AppBundle\Form\DeveloperProfileType', $developerProfile);
         $form->handleRequest($request);
