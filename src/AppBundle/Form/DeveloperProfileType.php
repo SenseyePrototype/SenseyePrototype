@@ -19,7 +19,9 @@ class DeveloperProfileType extends AbstractType
             ->add('salary')
             ->add('experience')
             ->add('assert')
-            ->add('expect');
+            ->add('expect')
+            ->add('published')
+        ;
     }
 
     /**
