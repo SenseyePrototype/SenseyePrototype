@@ -55,7 +55,7 @@
                         {{ form_label(form.salary, 'salary'|trans) }}
                     </div>
                     <div class="input-field col s12">
-                        <i class="material-icons prefix zmdi zmdi-quote"></i>
+                        <i class="material-icons prefix zmdi zmdi-brush"></i>
                         {{ form_widget(form.description, {
                             'attr': {
                                 'class': 'materialize-textarea validate'
@@ -74,7 +74,7 @@
                         {{ form_label(form.experience, 'experience'|trans) }}
                     </div>
                     <div class="input-field col s12">
-                        <i class="material-icons prefix"></i>
+                        <i class="material-icons prefix zmdi zmdi-shield-check"></i>
                         {{ form_widget(form.assert, {
                             'attr': {
                                 'class': 'validate'
@@ -83,7 +83,7 @@
                         {{ form_label(form.assert, 'profile.assert'|trans) }}
                     </div>
                     <div class="input-field col s12">
-                        <i class="material-icons prefix"></i>
+                        <i class="material-icons prefix zmdi zmdi-puzzle-piece"></i>
                         {{ form_widget(form.expect, {
                             'attr': {
                                 'class': 'materialize-textarea validate'
@@ -93,7 +93,7 @@
                     </div>
                     <div class="input-field col s12">
                         {{ form_widget(form.published) }}
-                        <label for="{{ form.published.vars.id }}"><i class="zmdi zmdi-cloud-upload"></i>{{ 'action.publish'|trans }}</label>
+                        <label for="{{ form.published.vars.id }}"><i class="zmdi zmdi-cloud-upload"></i> {{ 'action.publish'|trans }}</label>
                     </div>
                     <div class="input-field col s12 padding-top">
                         <button class="btn waves-effect waves-light" type="submit" name="action">
