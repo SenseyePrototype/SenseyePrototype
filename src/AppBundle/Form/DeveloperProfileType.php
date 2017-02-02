@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class DeveloperProfileType extends AbstractType
 {
@@ -15,11 +16,20 @@ class DeveloperProfileType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('description')
+            ->add('description', TextareaType::class, [
+                'empty_data' => '',
+                'required' => false,
+            ])
             ->add('salary')
             ->add('experience')
-            ->add('assert')
-            ->add('expect')
+            ->add('assert', TextareaType::class, [
+                'empty_data' => '',
+                'required' => false,
+            ])
+            ->add('expect', TextareaType::class, [
+                'empty_data' => '',
+                'required' => false,
+            ])
             ->add('published')
         ;
     }
