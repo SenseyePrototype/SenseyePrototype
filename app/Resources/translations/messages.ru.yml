@@ -20,6 +20,8 @@ seo:
 profile:
     title: 'Должность'
     description: 'Описание'
+    assert: 'Обязательно в вакансии'
+    expect: 'Ожидание от вакансии'
 
 action:
     save: 'Сохранить'

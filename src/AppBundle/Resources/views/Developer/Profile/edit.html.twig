@@ -58,8 +58,6 @@
                         <i class="material-icons prefix zmdi zmdi-quote"></i>
                         {{ form_widget(form.description, {
                             'attr': {
-                                'type': 'number',
-                                'step': 100,
                                 'class': 'materialize-textarea validate'
                             }}
                         ) }}
@@ -74,6 +72,24 @@
                             }}
                         ) }}
                         {{ form_label(form.experience, 'experience'|trans) }}
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix"></i>
+                        {{ form_widget(form.assert, {
+                            'attr': {
+                                'class': 'validate'
+                            }}
+                        ) }}
+                        {{ form_label(form.assert, 'profile.assert'|trans) }}
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix"></i>
+                        {{ form_widget(form.expect, {
+                            'attr': {
+                                'class': 'materialize-textarea validate'
+                            }}
+                        ) }}
+                        {{ form_label(form.expect, 'profile.expect'|trans) }}
                     </div>
                     <div class="input-field col s12">
                         <input type="checkbox" id="publish" checked="checked" />
