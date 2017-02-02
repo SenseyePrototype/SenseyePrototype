@@ -13,3 +13,8 @@
 ```bash
 php bin/console doctrine:schema:update --force
 ```
+
+Для создания сущностей в PHP:
+```bash
+php bin/console doctrine:generate:entities AppBundle --no-backup
+```

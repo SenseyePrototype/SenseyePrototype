@@ -43,10 +43,27 @@ class DeveloperProfile
     private $expect;
 
     /**
+     * @var boolean
+     */
+    private $published;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $skillLinks;
+
+    /**
      * @var \AppBundle\Entity\User
      */
     private $user;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->skillLinks = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -203,39 +220,27 @@ class DeveloperProfile
     }
 
     /**
-     * Set user
+     * Set published
      *
-     * @param \AppBundle\Entity\User $user
+     * @param boolean $published
      *
      * @return DeveloperProfile
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setPublished($published)
     {
-        $this->user = $user;
+        $this->published = $published;
 
         return $this;
     }
 
     /**
-     * Get user
+     * Get published
      *
-     * @return \AppBundle\Entity\User
+     * @return boolean
      */
-    public function getUser()
+    public function getPublished()
     {
-        return $this->user;
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $skillLinks;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->skillLinks = new \Doctrine\Common\Collections\ArrayCollection();
+        return $this->published;
     }
 
     /**
@@ -271,4 +276,29 @@ class DeveloperProfile
     {
         return $this->skillLinks;
     }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return DeveloperProfile
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }
+

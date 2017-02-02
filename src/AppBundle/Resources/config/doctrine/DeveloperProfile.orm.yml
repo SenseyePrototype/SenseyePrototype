@@ -38,7 +38,7 @@ AppBundle\Entity\DeveloperProfile:
             length: 255
         description:
             type: text
-            nullable: true
+            nullable: false
         salary:
             type: integer
             nullable: false
@@ -49,7 +49,10 @@ AppBundle\Entity\DeveloperProfile:
             unsigned: true
         assert:
             type: string
-            nullable: true
+            nullable: false
         expect:
             type: text
-            nullable: true
+            nullable: false
+        published:
+            type: boolean
+            nullable: false
