@@ -1,5 +1,6 @@
 {# @var form \Symfony\Component\Form\FormView #}
 {# @var form \AppBundle\Entity\DeveloperProfile #}
+{# @var exists bool #}
 {% extends '::base.html.twig' %}
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
@@ -26,15 +27,17 @@
                     <div class="block">
                         <a href="javascript:void(0);" class="name">{{ 'profile'|trans }}</a>
                     </div>
-                    <div class="block">
-                        <a href="javascript:void(0);" class="name">{{ 'skills'|trans }}</a>
-                    </div>
-                    <div class="block">
-                        <a href="javascript:void(0);" class="name">{{ 'contacts'|trans }}</a>
-                    </div>
-                    <div class="block">
-                        <a href="javascript:void(0);" class="name">{{ 'logout'|trans }}</a>
-                    </div>
+                    {% if exists %}
+                        <div class="block">
+                            <a href="javascript:void(0);" class="name">{{ 'skills'|trans }}</a>
+                        </div>
+                        <div class="block">
+                            <a href="javascript:void(0);" class="name">{{ 'contacts'|trans }}</a>
+                        </div>
+                        <div class="block">
+                            <a href="javascript:void(0);" class="name">{{ 'logout'|trans }}</a>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="col s9">
                     {{ form_start(form) }}

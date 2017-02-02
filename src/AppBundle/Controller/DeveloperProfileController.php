@@ -44,6 +44,7 @@ class DeveloperProfileController extends BaseController
 
         return $this->render('@App/Developer/Profile/edit.html.twig', [
             'form' => $form->createView(),
+            'exists' => (bool)$developerProfile->getId(),
         ]);
     }
 
