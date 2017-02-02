@@ -17,7 +17,7 @@ seo:
     description: 'Поиск программистов'
     keywords: 'поиск резюме'
 
-profile:
+profile_parameters:
     title: 'Должность'
     description: 'Описание'
     assert: 'Обязательно в вакансии'
@@ -26,3 +26,7 @@ profile:
 action:
     save: 'Сохранить'
     publish: 'Опубликовать'
+
+profile: 'Профиль'
+contacts: 'Контакты'
+logout: 'Выйти'
