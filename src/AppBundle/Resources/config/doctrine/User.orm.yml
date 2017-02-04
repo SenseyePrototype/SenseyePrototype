@@ -79,7 +79,12 @@ AppBundle\Entity\User:
             length: 255
             nullable: true
             column: github_access_token
-
+        created:
+            type: datetime
+            nullable: false
+        updated:
+            type: datetime
+            nullable: false
 
 
 
