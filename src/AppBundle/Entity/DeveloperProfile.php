@@ -48,6 +48,16 @@ class DeveloperProfile
     private $published;
 
     /**
+     * @var \DateTime
+     */
+    private $created;
+
+    /**
+     * @var \DateTime
+     */
+    private $updated;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $skillLinks;
@@ -300,5 +310,52 @@ class DeveloperProfile
     {
         return $this->user;
     }
-}
 
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     *
+     * @return DeveloperProfile
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * Set updated
+     *
+     * @param \DateTime $updated
+     *
+     * @return DeveloperProfile
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Get updated
+     *
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+}

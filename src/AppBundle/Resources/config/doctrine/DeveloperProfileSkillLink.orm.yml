@@ -15,16 +15,20 @@ AppBundle\Entity\DeveloperProfileSkillLink:
             targetEntity: AppBundle\Entity\DeveloperProfile
             inversedBy: skillLinks
             fetch: EXTRA_LAZY
-            joinColumn:
-                name: developer_id
-                referencedColumnName: id
+            joinColumns:
+                -
+                    name: developer_id
+                    nullable: false
+                    referencedColumnName: id
 
         skill:
             targetEntity: AppBundle\Entity\Skill
             fetch: EXTRA_LAZY
-            joinColumn:
-                name: skill_id
-                referencedColumnName: id
+            joinColumns:
+                -
+                    name: skill_id
+                    nullable: false
+                    referencedColumnName: id
 
     fields:
         position:
@@ -36,3 +40,9 @@ AppBundle\Entity\DeveloperProfileSkillLink:
         experience:
             type: integer
             unsigned: true
+        created:
+            type: datetime
+            nullable: false
+        updated:
+            type: datetime
+            nullable: false
