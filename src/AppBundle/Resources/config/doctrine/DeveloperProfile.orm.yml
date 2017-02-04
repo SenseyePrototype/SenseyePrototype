@@ -58,3 +58,9 @@ AppBundle\Entity\DeveloperProfile:
         published:
             type: boolean
             nullable: false
+        created:
+            type: datetime
+            nullable: false
+        updated:
+            type: datetime
+            nullable: false
