@@ -23,9 +23,14 @@ class GithubResponseMapper implements ResponseMapperInterface
         UserInterface $user
     ): UserInterface
     {
-        $user->setUsername($response->getNickname());
-        $user->setGithubId($response->getUsername());
-        $user->setGithubAccessToken($response->getAccessToken());
+        $now = new \DateTime();
+
+        $user
+            ->setUsername($response->getNickname())
+            ->setGithubId($response->getUsername())
+            ->setGithubAccessToken($response->getAccessToken())
+            ->setCreated($now)
+            ->setUpdated($now);
 
         return $user;
     }
