@@ -27,16 +27,21 @@ class DeveloperProfileController extends BaseController
                 'user' => $user
             ]);
 
+        $now = new \DateTime();
+
         if (empty($developerProfile)) {
             $developerProfile = new DeveloperProfile();
-            $developerProfile->setPublished(true);
+            $developerProfile
+                ->setUser($this->getUser())
+                ->setCreated($now)
+                ->setPublished(true);
         }
 
         $form = $this->createForm('AppBundle\Form\DeveloperProfileType', $developerProfile);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $developerProfile->setUser($this->getUser());
+            $developerProfile->setUpdated($now);
             $em = $this->getDoctrine()->getManager();
             $em->persist($developerProfile);
             $em->flush($developerProfile);
