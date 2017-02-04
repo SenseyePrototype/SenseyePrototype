@@ -18,9 +18,11 @@ AppBundle\Entity\DeveloperProfile:
         user:
             targetEntity: AppBundle\Entity\User
             inversedBy: developerProfiles
-            joinColumn:
-                name: user_id
-                referencedColumnName: id
+            joinColumns:
+                -
+                    name: user_id
+                    nullable: false
+                    referencedColumnName: id
             fetch: EXTRA_LAZY
 
     id:
