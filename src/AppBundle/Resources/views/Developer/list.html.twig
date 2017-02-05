@@ -122,18 +122,6 @@
                     </div>
                 #}
                 <div class="block">
-                    <div class="name">{{ 'skills'|trans }}</div>
-                    <div class="elements js-search-criteria-must" data-param="skills">
-                        {% for skill in profileCriteriaContainer.getSkills() %}
-                            {% set reference = 'skill' ~ skill['alias'] %}
-                            <p>
-                                <input type="checkbox" id="{{ reference }}" data-alias="{{ skill['alias'] }}" {% if skill['checked'] %}checked="checked"{% endif %} />
-                                <label for="{{ reference }}">{{ skill['name'] }} <span class="badge">{{ skill['count'] }}</span></label>
-                            </p>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="block">
                     <div class="name">{{ 'salary'|trans }}</div>
                     <div class="elements js-search-criteria-range" data-param="salary">
                         <div class="row">
@@ -149,6 +137,18 @@
                                 <label for="salary-to">{{ 'to'|trans }}</label>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="name">{{ 'skills'|trans }}</div>
+                    <div class="elements js-search-criteria-must" data-param="skills">
+                        {% for skill in profileCriteriaContainer.getSkills() %}
+                            {% set reference = 'skill' ~ skill['alias'] %}
+                            <p>
+                                <input type="checkbox" id="{{ reference }}" data-alias="{{ skill['alias'] }}" {% if skill['checked'] %}checked="checked"{% endif %} />
+                                <label for="{{ reference }}">{{ skill['name'] }} <span class="badge">{{ skill['count'] }}</span></label>
+                            </p>
+                        {% endfor %}
                     </div>
                 </div>
                 {#

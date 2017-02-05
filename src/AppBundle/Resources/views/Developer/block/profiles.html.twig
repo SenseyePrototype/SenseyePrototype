@@ -5,7 +5,9 @@
             <div class="title">
                 <a href="{{ profile.getLink() }}?from=senseye" target="_blank">{{ profile.getTitle() }}</a>
             </div>
-            <div class="post-date">27 ноября 2016</div>
+            {#
+                <div class="post-date">27 ноября 2016</div>
+            #}
         </div>
         <div class="col s12 user-criteria">
             <div class="el location">
@@ -31,10 +33,12 @@
                 <div class="el z-depth-3">{{ skill['name'] }}</div>
             {% endfor %}
         </div>
-        <div class="link-original">
-            <a href="/">
-                <i class="zmdi zmdi-link"></i> Vergo
-            </a>
-        </div>
+        {#
+            <div class="link-original">
+                <a href="/">
+                    <i class="zmdi zmdi-link"></i> Senseye
+                </a>
+            </div>
+        #}
     </div>
 {% endfor %}
