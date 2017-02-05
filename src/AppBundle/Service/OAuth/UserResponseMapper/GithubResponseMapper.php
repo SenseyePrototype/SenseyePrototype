@@ -29,6 +29,7 @@ class GithubResponseMapper implements ResponseMapperInterface
             ->setUsername($response->getNickname())
             ->setGithubId($response->getUsername())
             ->setGithubAccessToken($response->getAccessToken())
+            ->setEmail($response->getEmail())
             ->setCreated($now)
             ->setUpdated($now);
 

@@ -23,8 +23,15 @@ class LinkedinResponseMapper implements ResponseMapperInterface
         UserInterface $user
     ): UserInterface
     {
-        $user->setLinkedinId($response->getUsername());
-        $user->setLinkedinAccessToken($response->getAccessToken());
+        $now = new \DateTime();
+
+        $user
+            ->setUsername($response->getNickname())
+            ->setLinkedinId($response->getUsername())
+            ->setLinkedinAccessToken($response->getAccessToken())
+            ->setEmail($response->getEmail())
+            ->setCreated($now)
+            ->setUpdated($now);
 
         return $user;
     }
