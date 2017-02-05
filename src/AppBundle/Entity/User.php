@@ -82,6 +82,19 @@ class User implements UserInterface
     private $updated;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $developerProfiles;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->developerProfiles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * @TODO store array of roles instead of static array
      *
      * @return array
@@ -394,22 +407,13 @@ class User implements UserInterface
 
     /**
      * @param string $email
+     * @return $this
      */
     public function setEmail(string $email)
     {
         $this->email = $email;
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $developerProfiles;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->developerProfiles = new \Doctrine\Common\Collections\ArrayCollection();
+        return $this;
     }
 
     /**
