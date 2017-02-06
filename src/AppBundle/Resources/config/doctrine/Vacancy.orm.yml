@@ -1,0 +1,41 @@
+AppBundle\Entity\Vacancy:
+    type: entity
+    table: s_vacancy
+    repositoryClass: AppBundle\Repository\VacancyRepository
+
+    manyToOne:
+        creator:
+            targetEntity: AppBundle\Entity\User
+            joinColumns:
+                -
+                    name: user_id
+                    nullable: false
+                    referencedColumnName: id
+            fetch: EXTRA_LAZY
+
+    id:
+        id:
+            type: integer
+            unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 255
+        description:
+            type: text
+            nullable: false
+        salary:
+            type: integer
+            nullable: false
+            unsigned: true
+        created:
+            type: datetime
+            nullable: false
+        updated:
+            type: datetime
+            nullable: false
