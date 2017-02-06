@@ -23,9 +23,15 @@ class GoogleResponseMapper implements ResponseMapperInterface
         UserInterface $user
     ): UserInterface
     {
-        $user->setUsername($response->getNickname());
-        $user->setGoogleId($response->getUsername());
-        $user->setGoogleAccessToken($response->getAccessToken());
+        $now = new \DateTime();
+
+        $user
+            ->setUsername($response->getNickname())
+            ->setGoogleId($response->getUsername())
+            ->setGoogleAccessToken($response->getAccessToken())
+            ->setEmail($response->getEmail())
+            ->setCreated($now)
+            ->setUpdated($now);
 
         return $user;
     }
