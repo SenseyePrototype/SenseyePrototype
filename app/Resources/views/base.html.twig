@@ -1,13 +1,13 @@
 <!DOCTYPE html>
+{# @var seo array #}
 <html lang="ru">
     <head>
         <meta charset="UTF-8" />
-        <title>{{ title|default('seo.title'|trans) }}</title>
+        <title>{{ seo.title|default('seo.title'|trans) }}</title>
         <meta property="og:site_name" content="{{ 'seo.title'|trans }}" />
-        <meta name="description" content="{{ 'seo.description'|trans }}" />
-        <meta name="keywords" content="{{ 'seo.keywords'|trans }}" />
+        <meta name="description" content="{{ seo.description|default('seo.description'|trans) }}" />
+        <meta name="keywords" content="{{ seo.keywords|default('seo.keywords'|trans) }}" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta property="og:site_name" content="{{ 'seo.title'|trans }}">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         {% if canonical is defined %}
             <link rel="canonical" href="http://senseye.com.ua{{ canonical }}">
