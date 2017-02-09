@@ -7,24 +7,96 @@ class SeoService
     public function getByCityAlias($alias)
     {
         $map = [
-            'kyiv' => 'Поиск программистов в Киеве',
-            'kharkiv' => 'Поиск программистов в Харькове',
-            'lviv' => 'Поиск программистов в Львове',
-            'dnipro' => 'Поиск программистов в Днепропетровске',
-            'odesa' => 'Поиск программистов в Одессе',
-            'ukraine' => 'Поиск программистов в Украине',
-            'vinnytsya' => 'Поиск программистов в Виннице',
-            'mykolaiv' => 'Поиск программистов в Николаеве',
-            'zaporizhzhya' => 'Поиск программистов в Запорожье',
-            'khmelnytskyi' => 'Поиск программистов в Хмельницком',
-            'ivano-frankivsk' => 'Поиск программистов в Ивано-Франковске',
-            'cherkasy' => 'Поиск программистов в Черкассах',
-            'chernivtsi' => 'Поиск программистов в Черновцах',
-            'zhytomyr' => 'Поиск программистов в Житомире',
-            'chernihiv' => 'Поиск программистов в Чернигове',
-            'simferopol' => 'Поиск программистов в Симферополе',
-            'donetsk' => 'Поиск программистов в Донецке',
-            'sevastopol' => 'Поиск программистов в Севастополе',
+            'kyiv' => [
+                'title' => 'Поиск программистов в Киеве',
+                'description' => '',
+                'keywords' => '',
+            ],
+            'kharkiv' => [
+                'title' => 'Поиск программистов в Харькове',
+                'description' => '',
+                'keywords' => '',
+            ],
+            'lviv' => [
+                'title' => 'Поиск программистов в Львове',
+                'description' => '',
+                'keywords' => '',
+            ],
+            'dnipro' => [
+                'title' => 'Поиск программистов в Днепропетровске',
+                'description' => '',
+                'keywords' => '',
+            ],
+            'odesa' => [
+                'title' => 'Поиск программистов в Одессе',
+                'description' => '',
+                'keywords' => '',
+            ],
+            'ukraine' => [
+                'title' => 'Поиск программистов в Украине',
+                'description' => '',
+                'keywords' => '',
+            ],
+            'vinnytsya' => [
+                'title' => 'Поиск программистов в Виннице',
+                'description' => '',
+                'keywords' => '',
+            ],
+            'mykolaiv' => [
+                'title' => 'Поиск программистов в Николаеве',
+                'description' => '',
+                'keywords' => '',
+            ],
+            'zaporizhzhya' => [
+                'title' => 'Поиск программистов в Запорожье',
+                'description' => '',
+                'keywords' => '',
+            ],
+            'khmelnytskyi' => [
+                'title' => 'Поиск программистов в Хмельницком',
+                'description' => '',
+                'keywords' => '',
+            ],
+            'ivano-frankivsk' => [
+                'title' => 'Поиск программистов в Ивано-Франковске',
+                'description' => '',
+                'keywords' => '',
+            ],
+            'cherkasy' => [
+                'title' => 'Поиск программистов в Черкассах',
+                'description' => '',
+                'keywords' => '',
+            ],
+            'chernivtsi' => [
+                'title' => 'Поиск программистов в Черновцах',
+                'description' => '',
+                'keywords' => '',
+            ],
+            'zhytomyr' => [
+                'title' => 'Поиск программистов в Житомире',
+                'description' => '',
+                'keywords' => '',
+            ],
+            'chernihiv' => [
+                'title' => 'Поиск программистов в Чернигове',
+                'description' => '',
+                'keywords' => '',
+            ],
+            'simferopol' => [
+                'title' => 'Поиск программистов в Симферополе',
+                'description' => '',
+                'keywords' => '',
+            ],
+            'donetsk' => [
+                'title' => 'Поиск программистов в Донецке',
+                'description' => '',
+                'keywords' => '',
+            ],
+            'sevastopol' => [
+                'title' => 'Поиск программистов в Севастополе',
+                'description' => '',
+                'keywords' => '',
+            ],
         ];
 
         return $map[$alias] ?? null;
