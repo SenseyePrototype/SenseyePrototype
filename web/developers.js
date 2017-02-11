@@ -121,7 +121,7 @@ $(document).ready(function () {
         });
     });
     $search.add($range).on('keyup', function (event) {
-        if (event.keyCode === 0b1101) {
+        if (event.keyCode === 13) {
             search();
         }
     });
