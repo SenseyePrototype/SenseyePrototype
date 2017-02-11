@@ -8,7 +8,12 @@
     ga('send', 'pageview');
 </script>
 <script>
-    window.onerror = function (message) {
+    window.onerror = function (message, url, line) {
+        window.jslogger && window.jslogger.log({
+            message: message,
+            url: url,
+            line: line
+        });
         ga('send', 'exception', {
             exDescription: message
         });
