@@ -89,7 +89,8 @@ class ProfileSearchRequestAnalyzer
                 ? $sourceFrom
                 : null;
 
-            $to = $sourceTo >= $from
+            $to = $sourceTo
+                && $sourceTo >= $from
                 && $rangeMap[$key]['from'] <= $sourceTo
                 && $sourceTo < $rangeMap[$key]['to']
                 ? $sourceTo
