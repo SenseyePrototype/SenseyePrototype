@@ -23,7 +23,7 @@ AppBundle\Entity\DeveloperProfileSkillLink:
 
         skill:
             targetEntity: AppBundle\Entity\Skill
-            fetch: EXTRA_LAZY
+            fetch: EAGER
             joinColumns:
                 -
                     name: skill_id

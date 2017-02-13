@@ -53,7 +53,7 @@ class DeveloperProfileController extends BaseController
         ]);
     }
 
-    public function skillsAction(Request $request)
+    public function skillsAction()
     {
         $user = $this->getUser();
 
