@@ -22,3 +22,8 @@ developer_profile:
     path:     /edit
     defaults: { _controller: "AppBundle:DeveloperProfile:edit" }
     methods:  [GET, POST]
+
+developer_profile_skills:
+    path:     /skills
+    defaults: { _controller: "AppBundle:DeveloperProfile:skills" }
+    methods:  [GET]

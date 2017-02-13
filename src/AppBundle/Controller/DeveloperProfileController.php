@@ -53,6 +53,28 @@ class DeveloperProfileController extends BaseController
         ]);
     }
 
+    public function skillsAction(Request $request)
+    {
+        $user = $this->getUser();
+
+        if (empty($user)) {
+            return $this->redirectToRoute('developers.page');
+        }
+
+        $developerProfile = $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:DeveloperProfile')
+            ->findOneBy([
+                'user' => $user
+            ]);
+
+        if (empty($developerProfile)) {
+            return $this->redirectToRoute('developer_profile_edit');
+        }
+
+        return $this->render('@App/Developer/Profile/skills.html.twig', []);
+    }
+
     /**
      * Lists all developerProfile entities.
      *

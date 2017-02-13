@@ -1,0 +1,137 @@
+{# @var form \Symfony\Component\Form\FormView #}
+{# @var form \AppBundle\Entity\DeveloperProfile #}
+{# @var exists bool #}
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link href="https://cdn.rawgit.com/SenseyePrototype/senseyeprototype.github.io/master/css/list.css" type="text/css" rel="stylesheet"/>
+    <link href="https://cdn.rawgit.com/SenseyePrototype/senseyeprototype.github.io/master/css/profile.css" type="text/css" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+    <section class="navigation z-depth-2">
+        <nav class="container">
+            <div class="nav-wrapper">
+                <a href="{{ path('developers.page') }}" class="brand-logo left">Senseye</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="javascript:void(0);">{{ app.getUser().getUsername() }}{#<span class="new badge red" data-badge-caption="Не опубликован"></span>#}</a></li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+    <section class="content profile">
+        <div class="container">
+            <div class="row">
+                <div class="col s3 left-menu">
+                    <div class="block">
+                        <a href="javascript:void(0);" class="name">{{ 'profile'|trans }}</a>
+                    </div>
+                    <div class="block">
+                        <a href="javascript:void(0);" class="name">{{ 'skills'|trans }}</a>
+                    </div>
+                    <div class="block">
+                        <a href="javascript:void(0);" class="name">{{ 'contacts'|trans }}</a>
+                    </div>
+                    <div class="block">
+                        <a href="javascript:void(0);" class="name">{{ 'logout'|trans }}</a>
+                    </div>
+                </div>
+                <div class="col s9">
+                    <h5>Укажите ваши умения</h5>
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="row">
+                                <div class="input-field col s10">
+                                    <i class="material-icons prefix"><i class="zmdi zmdi-puzzle-piece"></i></i>
+                                    <input type="text" id="autocomplete-input" class="autocomplete" placeholder="Git">
+                                    <label for="autocomplete-input">Навыки</label>
+                                </div>
+
+                                <div class="input-field col s2">
+                                    <button class="btn waves-effect waves-light" type="submit" name="action">
+                                        Добавить
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12 skills">
+                            <div class="skill col s12">
+                                <div class="col s2">
+                                    Git
+                                </div>
+                                <div class="col s8">
+                                    <div class="point active"></div>
+                                    <div class="point active"></div>
+                                    <div class="point active"></div>
+                                    <div class="point active"></div>
+                                    <div class="point active"></div>
+                                    <div class="point active"></div>
+                                    <div class="point active"></div>
+                                    <div class="point"></div>
+                                    <div class="point"></div>
+                                    <div class="point"></div>
+                                </div>
+                                <div class="col s2">
+                                    <div class="close">
+                                        <a href="#"><i class="zmdi zmdi-close"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill col s12">
+                                <div class="col s2">
+                                    Jira
+                                </div>
+                                <div class="col s8">
+                                    <div class="point active"></div>
+                                    <div class="point active"></div>
+                                    <div class="point active"></div>
+                                    <div class="point active"></div>
+                                    <div class="point active"></div>
+                                    <div class="point active"></div>
+                                    <div class="point active"></div>
+                                    <div class="point"></div>
+                                    <div class="point"></div>
+                                    <div class="point"></div>
+                                </div>
+                                <div class="col s2">
+                                    <div class="close">
+                                        <a href="#"><i class="zmdi zmdi-close"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill col s12">
+                                <div class="col s2">
+                                    Laravel
+                                </div>
+                                <div class="col s8">
+                                    <div class="point active"></div>
+                                    <div class="point active"></div>
+                                    <div class="point active"></div>
+                                    <div class="point active"></div>
+                                    <div class="point active"></div>
+                                    <div class="point active"></div>
+                                    <div class="point"></div>
+                                    <div class="point"></div>
+                                    <div class="point"></div>
+                                    <div class="point"></div>
+                                </div>
+                                <div class="col s2">
+                                    <div class="close">
+                                        <a href="#"><i class="zmdi zmdi-close"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script src="{{ asset('skills.js') }}"></script>
+{% endblock %}
