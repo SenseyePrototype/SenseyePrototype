@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\DeveloperProfile;
 use AppBundle\Entity\DeveloperProfileSkillLink;
+use AppBundle\Entity\Skill;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -70,6 +71,35 @@ class DeveloperProfileController extends BaseController
 
         if (empty($developerProfile)) {
             return $this->redirectToRoute('developer_profile_edit');
+        }
+
+        if ($developerProfile->getSkillLinks()->isEmpty()) {
+            $skills = $this
+                ->getDoctrine()
+                ->getRepository(Skill::class)
+                ->findAll();
+
+            $now = new \DateTime();
+
+            $manager = $this->getDoctrine()->getManager();
+
+            foreach ($skills as $position => $skill) {
+                $link = new DeveloperProfileSkillLink();
+
+                $link
+                    ->setDeveloperProfile($developerProfile)
+                    ->setSkill($skill)
+                    ->setScore(7)
+                    ->setPosition($position)
+                    ->setExperience(1)
+                    ->setCreated($now)
+                    ->setUpdated($now);
+
+                $manager->persist($link);
+                $developerProfile->addSkillLink($link);
+            }
+
+            $manager->flush();
         }
 
         return $this->render('@App/Developer/Profile/skills.html.twig', []);
