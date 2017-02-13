@@ -1,6 +1,4 @@
-{# @var form \Symfony\Component\Form\FormView #}
-{# @var form \AppBundle\Entity\DeveloperProfile #}
-{# @var exists bool #}
+{# @var profile \AppBundle\Entity\DeveloperProfile #}
 {% extends '::base.html.twig' %}
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
@@ -56,72 +54,27 @@
                             </div>
                         </div>
                         <div class="col s12 skills">
-                            <div class="skill col s12">
-                                <div class="col s2">
-                                    Git
-                                </div>
-                                <div class="col s8">
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point"></div>
-                                    <div class="point"></div>
-                                    <div class="point"></div>
-                                </div>
-                                <div class="col s2">
-                                    <div class="close">
-                                        <a href="#"><i class="zmdi zmdi-close"></i></a>
+                            {# @var skillLink \AppBundle\Entity\DeveloperProfileSkillLink #}
+                            {% for skillLink in profile.getSkillLinks() %}
+                                {# @var skill \AppBundle\Entity\Skill #}
+                                {% set skill = skillLink.getSkill() %}
+                                <div class="skill col s12">
+                                    <div class="col s2">
+                                        {{ skill.getName() }}
+                                    </div>
+                                    <div class="col s8">
+                                        {% set score = skillLink.getScore() %}
+                                        {% for point in 1..10 %}
+                                            <div class="point {% if point <= score %}active{% endif %}"></div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="col s2">
+                                        <div class="close">
+                                            <a href="javascript:void(0);"><i class="zmdi zmdi-close"></i></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="skill col s12">
-                                <div class="col s2">
-                                    Jira
-                                </div>
-                                <div class="col s8">
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point"></div>
-                                    <div class="point"></div>
-                                    <div class="point"></div>
-                                </div>
-                                <div class="col s2">
-                                    <div class="close">
-                                        <a href="#"><i class="zmdi zmdi-close"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="skill col s12">
-                                <div class="col s2">
-                                    Laravel
-                                </div>
-                                <div class="col s8">
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point"></div>
-                                    <div class="point"></div>
-                                    <div class="point"></div>
-                                    <div class="point"></div>
-                                </div>
-                                <div class="col s2">
-                                    <div class="close">
-                                        <a href="#"><i class="zmdi zmdi-close"></i></a>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

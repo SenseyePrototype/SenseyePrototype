@@ -102,7 +102,9 @@ class DeveloperProfileController extends BaseController
             $manager->flush();
         }
 
-        return $this->render('@App/Developer/Profile/skills.html.twig', []);
+        return $this->render('@App/Developer/Profile/skills.html.twig', [
+            'profile' => $developerProfile,
+        ]);
     }
 
     /**
