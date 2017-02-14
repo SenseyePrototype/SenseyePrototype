@@ -23,7 +23,7 @@ class DeveloperProfileController extends BaseController
 
         $developerProfile = $this
             ->getDoctrine()
-            ->getRepository('AppBundle:DeveloperProfile')
+            ->getRepository(DeveloperProfile::class)
             ->findOneBy([
                 'user' => $user
             ]);
@@ -64,7 +64,7 @@ class DeveloperProfileController extends BaseController
 
         $developerProfile = $this
             ->getDoctrine()
-            ->getRepository('AppBundle:DeveloperProfile')
+            ->getRepository(DeveloperProfile::class)
             ->findOneBy([
                 'user' => $user
             ]);
@@ -115,7 +115,7 @@ class DeveloperProfileController extends BaseController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $developerProfiles = $em->getRepository('AppBundle:DeveloperProfile')->findAll();
+        $developerProfiles = $em->getRepository(DeveloperProfile::class)->findAll();
 
         return $this->render('developerprofile/index.html.twig', array(
             'developerProfiles' => $developerProfiles,
