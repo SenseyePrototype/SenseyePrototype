@@ -102,8 +102,19 @@ class DeveloperProfileController extends BaseController
             $manager->flush();
         }
 
+        $skills = $this
+            ->getDoctrine()
+            ->getRepository(Skill::class)
+            ->findAll();
+
+        $names = [];
+        foreach ($skills as $skill) {
+            $names[] = $skill->getName();
+        }
+
         return $this->render('@App/Developer/Profile/skills.html.twig', [
             'profile' => $developerProfile,
+            'skills' => $names,
         ]);
     }
 

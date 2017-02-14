@@ -1,10 +1,14 @@
-$(document).ready(function(){
+$(document).ready(function () {
+    var data = {};
+    for (var index in skills) {
+        data[skills[index]] = null;
+    }
+
     $('input.autocomplete').autocomplete({
-        data: {
-            "CSS": null,
-            "HTML": null,
-            "Git": 'https://git-scm.com/images/logos/downloads/Git-Icon-Black.png'
-        },
-        limit: 20 // The max amount of results that can be shown at once. Default: Infinity.
+        data: data,
+        limit: 20,
+        onAutocomplete: function (name) {
+
+        }
     });
 });
