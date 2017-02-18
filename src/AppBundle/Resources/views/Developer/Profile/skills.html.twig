@@ -86,9 +86,7 @@
 
 {% block javascripts %}
     <script>
-        var skills = {{ skills|json_encode }};
+        var skills = {{ skills|json_encode|raw }};
     </script>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-    <script src="{{ asset('skills.js') }}"></script>
+    <script src="{{ asset('js/dist/skills.js') }}"></script>
 {% endblock %}
