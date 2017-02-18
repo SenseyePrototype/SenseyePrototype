@@ -1,0 +1,17 @@
+{
+  "presets": [
+    "react",
+    "es2015",
+    "airbnb"
+  ],
+  "plugins": [
+    [
+      "module-resolver", {
+        "alias": {
+          "tic-tac-toe": "./core",
+          "reen": "./react-js/js"
+        }
+      }
+    ]
+  ]
+}
