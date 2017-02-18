@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import material from 'materialize-css';
+import api from 'senseye/api';
 
 const skills = global.skills;
 
@@ -17,7 +18,9 @@ $(global.document).ready(function () {
         data: data,
         limit: 20,
         onAutocomplete: function (name) {
-
+            if (skills.hasOwnProperty(name)) {
+                api.addSkill(skills[name]);
+            }
         }
     });
 });
