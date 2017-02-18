@@ -2,3 +2,8 @@ api.developers.count:
     path:     /api/v1/developers/count.json
     defaults: { _controller: AppBundle:ApiDeveloper:count }
     methods: ['GET']
+
+api.developer.profile.skill.add:
+    path:     /api/v1/developer/profile/skill/add.json
+    defaults: { _controller: AppBundle:ApiDeveloperProfile:addSkill }
+    methods: ['POST']

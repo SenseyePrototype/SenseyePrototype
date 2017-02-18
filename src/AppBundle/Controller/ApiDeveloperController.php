@@ -12,6 +12,7 @@ class ApiDeveloperController extends Controller
     /**
      * @ApiDoc(
      *      description="Developers count by criteria",
+     *      section="developer-search",
      *      parameters={
      *          {"name": "skills", "dataType": "string", "required": false, "description": "aliases separated my comma"},
      *          {"name": "cities", "dataType": "string", "required": false, "description": "aliases separated my comma"},

@@ -73,12 +73,12 @@ class DeveloperProfileController extends BaseController
             return $this->redirectToRoute('developer_profile_edit');
         }
 
-        if ($developerProfile->getSkillLinks()->isEmpty()) {
-            $skills = $this
-                ->getDoctrine()
-                ->getRepository(Skill::class)
-                ->findAll();
+        $skills = $this
+            ->getDoctrine()
+            ->getRepository(Skill::class)
+            ->findAll();
 
+        if ($developerProfile->getSkillLinks()->isEmpty()) {
             $now = new \DateTime();
 
             $manager = $this->getDoctrine()->getManager();
@@ -101,11 +101,6 @@ class DeveloperProfileController extends BaseController
 
             $manager->flush();
         }
-
-        $skills = $this
-            ->getDoctrine()
-            ->getRepository(Skill::class)
-            ->findAll();
 
         $names = [];
         foreach ($skills as $skill) {
