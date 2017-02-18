@@ -5,8 +5,10 @@ const skills = global.skills;
 
 $(global.document).ready(function () {
     let data = {};
-    for (let index in skills) {
-        data[skills[index]] = null;
+    for (let name in skills) {
+        if (skills.hasOwnProperty(name)) {
+            data[name] = null;
+        }
     }
 
     let $autocomplete = $('.js-skill-autocomplete');

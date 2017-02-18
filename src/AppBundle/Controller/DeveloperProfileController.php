@@ -104,7 +104,7 @@ class DeveloperProfileController extends BaseController
 
         $names = [];
         foreach ($skills as $skill) {
-            $names[] = $skill->getName();
+            $names[$skill->getName()] = $skill->getAlias();
         }
 
         return $this->render('@App/Developer/Profile/skills.html.twig', [
