@@ -9,7 +9,9 @@ $(global.document).ready(function () {
         data[skills[index]] = null;
     }
 
-    $('input.autocomplete').autocomplete({
+    let $autocomplete = $('.js-skill-autocomplete');
+
+    $autocomplete.autocomplete({
         data: data,
         limit: 20,
         onAutocomplete: function (name) {
