@@ -3,8 +3,8 @@ import $ from 'jquery';
 export default {
     addSkill: function (alias, success) {
         $.ajax({
-            method: 'POST',
-            url: '/api/v1/developer/profile/skill/add.json',
+            method: 'PUT',
+            url: '/api/v1/developer/profile/skill.json',
             data: {
                 alias
             },

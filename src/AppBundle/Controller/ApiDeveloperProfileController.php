@@ -24,21 +24,9 @@ class ApiDeveloperProfileController extends Controller
     {
         $alias = $request->request->get('alias');
 
-        $user = $this->getUser();
+        $developerProfile = $this->getProfile();
 
-        $developerProfile = $this
-            ->getDoctrine()
-            ->getRepository(DeveloperProfile::class)
-            ->findOneBy([
-                'user' => $user
-            ]);
-
-        $skill = $this
-            ->getDoctrine()
-            ->getRepository(Skill::class)
-            ->findOneBy([
-                'alias' => $alias,
-            ]);
+        $skill = $this->getSkill($alias);
 
         $now = new \DateTime();
 
@@ -61,5 +49,46 @@ class ApiDeveloperProfileController extends Controller
         $manager->flush();
 
         return new JsonResponse([]);
+    }
+
+    /**
+     * @ApiDoc(
+     *      description="Developer profile delete skill",
+     *      section="developer-profile",
+     * )
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function deleteSkillAction(Request $request)
+    {
+        $alias = $request->request->get('alias');
+
+        $developerProfile = $this->getProfile();
+
+        $skill = $this->getSkill($alias);
+
+        return new JsonResponse([]);
+    }
+
+    private function getProfile()
+    {
+        $user = $this->getUser();
+
+        return $this
+            ->getDoctrine()
+            ->getRepository(DeveloperProfile::class)
+            ->findOneBy([
+                'user' => $user
+            ]);
+    }
+
+    private function getSkill($alias)
+    {
+        return $this
+            ->getDoctrine()
+            ->getRepository(Skill::class)
+            ->findOneBy([
+                'alias' => $alias,
+            ]);
     }
 }

@@ -4,6 +4,11 @@ api.developers.count:
     methods: ['GET']
 
 api.developer.profile.skill.add:
-    path:     /api/v1/developer/profile/skill/add.json
+    path:     /api/v1/developer/profile/skill.json
     defaults: { _controller: AppBundle:ApiDeveloperProfile:addSkill }
-    methods: ['POST']
+    methods: ['PUT']
+
+api.developer.profile.skill.delete:
+    path:     /api/v1/developer/profile/skill.json
+    defaults: { _controller: AppBundle:ApiDeveloperProfile:deleteSkill }
+    methods: ['DELETE']
