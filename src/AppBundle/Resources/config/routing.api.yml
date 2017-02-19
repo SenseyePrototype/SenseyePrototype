@@ -8,6 +8,11 @@ api.developer.profile.skill.add:
     defaults: { _controller: AppBundle:ApiDeveloperProfile:addSkill }
     methods: ['PUT']
 
+api.developer.profile.skill.update:
+    path:     /api/v1/developer/profile/skill.json
+    defaults: { _controller: AppBundle:ApiDeveloperProfile:updateSkill }
+    methods: ['POST']
+
 api.developer.profile.skill.delete:
     path:     /api/v1/developer/profile/skill.json
     defaults: { _controller: AppBundle:ApiDeveloperProfile:deleteSkill }

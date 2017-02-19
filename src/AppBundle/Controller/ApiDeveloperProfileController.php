@@ -75,6 +75,23 @@ class ApiDeveloperProfileController extends Controller
         return new JsonResponse([]);
     }
 
+    public function updateSkillAction(Request $request)
+    {
+        $alias = $request->request->get('alias');
+        $score = $request->request->get('score');
+
+        $developerProfile = $this->getProfile();
+
+        $skill = $this->getSkill($alias);
+
+        $this
+            ->getDoctrine()
+            ->getRepository(DeveloperProfile::class)
+            ->updateSkill($developerProfile, $skill, $score);
+
+        return new JsonResponse([]);
+    }
+
     private function getProfile()
     {
         $user = $this->getUser();

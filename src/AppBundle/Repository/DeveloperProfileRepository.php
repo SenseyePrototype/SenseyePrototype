@@ -30,4 +30,23 @@ class DeveloperProfileRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->execute();
     }
+
+    public function updateSkill(DeveloperProfile $developerProfile, Skill $skill, $score)
+    {
+        $this
+            ->getEntityManager()
+            ->createQueryBuilder()
+            ->update(DeveloperProfileSkillLink::class, 'dpsl')
+            ->set('dpsl.score', $score)
+            ->where(
+                'dpsl.developerProfile = :developerProfile',
+                'dpsl.skill = :skill'
+            )
+            ->setParameters([
+                'developerProfile' => $developerProfile,
+                'skill' => $skill,
+            ])
+            ->getQuery()
+            ->execute();
+    }
 }

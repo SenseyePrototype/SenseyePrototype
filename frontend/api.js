@@ -14,6 +14,18 @@ export default {
         })
     },
 
+    updateSkill: function (alias, score, success) {
+        $.ajax({
+            method: 'POST',
+            url: path,
+            data: {
+                alias,
+                score
+            },
+            success
+        })
+    },
+
     deleteSkill: function (alias, success) {
         $.ajax({
             method: 'DELETE',

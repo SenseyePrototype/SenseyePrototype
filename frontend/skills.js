@@ -63,9 +63,16 @@ $(global.document).ready(function () {
 
     $skills.on('click', '.point', function () {
         let $point = $(this);
+        let $skill = $point.closest('.js-skill');
+        let $score = $point.prevAll().add($point);
+        const name = $skill.find('.js-name').html();
 
-        $point.nextAll().removeClass('active');
-        $point.prevAll().addClass('active');
-        $point.addClass('active');
+        if (exists(name)) {
+            const score = $score.length;
+            api.updateSkill(skills[name], score, function () {
+                $point.nextAll().removeClass('active');
+                $score.addClass('active');
+            })
+        }
     });
 });
