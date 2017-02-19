@@ -8,6 +8,10 @@ $(global.document).ready(function () {
     let $skills = $('.js-skill-list');
     let $complete = $('.js-skill-autocomplete');
 
+    function exists(name) {
+        return skills.hasOwnProperty(name);
+    }
+
     function renderSkill(name) {
         const template = $('#js-skill-template').html();
 
@@ -19,7 +23,7 @@ $(global.document).ready(function () {
     }
 
     function addSkill(name) {
-        if (skills.hasOwnProperty(name)) {
+        if (exists(name)) {
             api.addSkill(skills[name], function () {
                 renderSkill(name);
                 $complete.val('');
@@ -47,11 +51,18 @@ $(global.document).ready(function () {
     });
 
     $skills.on('click', '.js-delete', function () {
-        $(this).closest('.js-skill').remove();
+        let $skill = $(this).closest('.js-skill');
+        const name = $skill.find('.js-name').html();
+
+        if (exists(name)) {
+            api.deleteSkill(skills[name], function () {
+                $skill.remove();
+            })
+        }
     });
 
     $skills.on('click', '.point', function () {
-        var $point = $(this);
+        let $point = $(this);
 
         $point.nextAll().removeClass('active');
         $point.prevAll().addClass('active');

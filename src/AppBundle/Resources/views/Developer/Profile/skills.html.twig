@@ -60,9 +60,7 @@
                                 {# @var skill \AppBundle\Entity\Skill #}
                                 {% set skill = skillLink.getSkill() %}
                                 <div class="skill col s12 js-skill ">
-                                    <div class="col s2 js-name">
-                                        {{ skill.getName() }}
-                                    </div>
+                                    <div class="col s2 js-name">{{ skill.getName() }}</div>
                                     <div class="col s8">
                                         {% set score = skillLink.getScore() %}
                                         {% for point in 1..10 %}

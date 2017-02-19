@@ -1,6 +1,9 @@
 <?php
 
 namespace AppBundle\Repository;
+use AppBundle\Entity\DeveloperProfile;
+use AppBundle\Entity\DeveloperProfileSkillLink;
+use AppBundle\Entity\Skill;
 
 /**
  * DeveloperProfileRepository
@@ -10,4 +13,21 @@ namespace AppBundle\Repository;
  */
 class DeveloperProfileRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function deleteSkill(DeveloperProfile $developerProfile, Skill $skill)
+    {
+        $this
+            ->getEntityManager()
+            ->createQueryBuilder()
+            ->delete(DeveloperProfileSkillLink::class, 'dpsl')
+            ->where(
+                'dpsl.developerProfile = :developerProfile',
+                'dpsl.skill = :skill'
+            )
+            ->setParameters([
+                'developerProfile' => $developerProfile,
+                'skill' => $skill,
+            ])
+            ->getQuery()
+            ->execute();
+    }
 }

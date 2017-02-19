@@ -37,7 +37,7 @@ class ApiDeveloperProfileController extends Controller
         $link
             ->setDeveloperProfile($developerProfile)
             ->setSkill($skill)
-            ->setScore(7)
+            ->setScore(1)
             ->setPosition(1)
             ->setExperience(1)
             ->setCreated($now)
@@ -66,6 +66,11 @@ class ApiDeveloperProfileController extends Controller
         $developerProfile = $this->getProfile();
 
         $skill = $this->getSkill($alias);
+
+        $this
+            ->getDoctrine()
+            ->getRepository(DeveloperProfile::class)
+            ->deleteSkill($developerProfile, $skill);
 
         return new JsonResponse([]);
     }
