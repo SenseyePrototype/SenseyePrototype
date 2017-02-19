@@ -78,30 +78,6 @@ class DeveloperProfileController extends BaseController
             ->getRepository(Skill::class)
             ->findAll();
 
-        if ($developerProfile->getSkillLinks()->isEmpty()) {
-            $now = new \DateTime();
-
-            $manager = $this->getDoctrine()->getManager();
-
-            foreach ($skills as $position => $skill) {
-                $link = new DeveloperProfileSkillLink();
-
-                $link
-                    ->setDeveloperProfile($developerProfile)
-                    ->setSkill($skill)
-                    ->setScore(7)
-                    ->setPosition($position)
-                    ->setExperience(1)
-                    ->setCreated($now)
-                    ->setUpdated($now);
-
-                $manager->persist($link);
-                $developerProfile->addSkillLink($link);
-            }
-
-            $manager->flush();
-        }
-
         $names = [];
         foreach ($skills as $skill) {
             $names[$skill->getName()] = $skill->getAlias();
