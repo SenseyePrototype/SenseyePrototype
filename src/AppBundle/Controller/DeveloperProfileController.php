@@ -73,35 +73,6 @@ class DeveloperProfileController extends BaseController
             return $this->redirectToRoute('developer_profile_edit');
         }
 
-        if ($developerProfile->getSkillLinks()->isEmpty()) {
-            $skills = $this
-                ->getDoctrine()
-                ->getRepository(Skill::class)
-                ->findAll();
-
-            $now = new \DateTime();
-
-            $manager = $this->getDoctrine()->getManager();
-
-            foreach ($skills as $position => $skill) {
-                $link = new DeveloperProfileSkillLink();
-
-                $link
-                    ->setDeveloperProfile($developerProfile)
-                    ->setSkill($skill)
-                    ->setScore(7)
-                    ->setPosition($position)
-                    ->setExperience(1)
-                    ->setCreated($now)
-                    ->setUpdated($now);
-
-                $manager->persist($link);
-                $developerProfile->addSkillLink($link);
-            }
-
-            $manager->flush();
-        }
-
         $skills = $this
             ->getDoctrine()
             ->getRepository(Skill::class)
@@ -109,7 +80,7 @@ class DeveloperProfileController extends BaseController
 
         $names = [];
         foreach ($skills as $skill) {
-            $names[] = $skill->getName();
+            $names[$skill->getName()] = $skill->getAlias();
         }
 
         return $this->render('@App/Developer/Profile/skills.html.twig', [
