@@ -58,4 +58,9 @@ class DeveloperController extends Controller
                 ->merge($available, $criteria, $aggregation),
         ]);
     }
+
+    public function profileAction()
+    {
+        return $this->render('@App/Developer/Profile/public.html.twig');
+    }
 }

@@ -18,3 +18,8 @@ developers.page:
     path:     /developers
     defaults: { _controller: AppBundle:Developer:list }
     methods: ['GET']
+
+developer:
+    path:     /developer
+    defaults: { _controller: AppBundle:Developer:profile }
+    methods: ['GET']

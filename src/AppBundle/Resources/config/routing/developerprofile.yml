@@ -1,8 +1,3 @@
-developer_profile_index:
-    path:     /
-    defaults: { _controller: "AppBundle:DeveloperProfile:index" }
-    methods:  GET
-
 developer_profile_show:
     path:     /{id}/show
     defaults: { _controller: "AppBundle:DeveloperProfile:show" }
