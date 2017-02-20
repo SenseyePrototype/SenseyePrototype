@@ -66,7 +66,10 @@ class ProfileSearcher
         $profiles = [];
         /* @var $result Result */
         foreach ($pager->getResults() as $result) {
-            $profiles[] = new Profile($result->getSource());
+            $profiles[] = new Profile(
+                $result->getId(),
+                $result->getSource()
+            );
         }
 
         return new ProfileSearchResponse($pager, $profiles);

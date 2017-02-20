@@ -5,17 +5,29 @@ namespace AppBundle\Component;
 class Profile implements ProfileInterface
 {
     /**
-     * @var
+     * @var string
+     */
+    private $id;
+
+    /**
+     * @var array
      */
     private $data;
 
     /**
      * Profile constructor.
-     * @param $data
+     * @param $id
+     * @param array $data
      */
-    public function __construct($data)
+    public function __construct($id, array $data)
     {
+        $this->id = $id;
         $this->data = $data;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     public function getTitle()

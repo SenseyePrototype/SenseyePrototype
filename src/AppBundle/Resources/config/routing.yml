@@ -20,6 +20,8 @@ developers.page:
     methods: ['GET']
 
 developer:
-    path:     /developer
+    path:     /developer/{id}
     defaults: { _controller: AppBundle:Developer:profile }
     methods: ['GET']
+    requirements:
+        id: '\d+'

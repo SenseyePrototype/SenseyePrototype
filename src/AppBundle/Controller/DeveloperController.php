@@ -59,7 +59,7 @@ class DeveloperController extends Controller
         ]);
     }
 
-    public function profileAction()
+    public function profileAction($id)
     {
         return $this->render('@App/Developer/Profile/public.html.twig');
     }

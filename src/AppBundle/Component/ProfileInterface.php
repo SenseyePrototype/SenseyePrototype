@@ -7,6 +7,11 @@ interface ProfileInterface
     /**
      * @return string
      */
+    public function getId();
+
+    /**
+     * @return string
+     */
     public function getTitle();
 
     /**
