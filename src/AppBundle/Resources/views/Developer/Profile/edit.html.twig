@@ -67,7 +67,7 @@
                         {{ form_label(form.description, 'profile_parameters.description'|trans) }}
                     </div>
                     <div class="input-field col s12">
-                        <i class="material-icons prefix zmdi-graduation-cap"></i>
+                        <i class="material-icons prefix zmdi zmdi-graduation-cap"></i>
                         {{ form_widget(form.experience, {
                             'attr': {
                                 'type': 'number',
@@ -78,7 +78,7 @@
                     </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix zmdi zmdi-shield-check"></i>
-                        {{ form_widget(form.assert, {
+                        {{ form_widget(form.assert,
                             'attr': {
                                 'class': 'materialize-textarea validate'
                             }}
