@@ -6,6 +6,7 @@ use AppBundle\Component\Adapter\ElasticAdapter;
 use AppBundle\Component\Profile;
 use AppBundle\Component\ProfileSearchCriteria;
 use AppBundle\Component\ProfileSearchResponse;
+use Elastica\Request;
 use Elastica\Result;
 use ReenExeCubeTime\LightPaginator\CompleteFactory;
 
@@ -73,5 +74,21 @@ class ProfileSearcher
         }
 
         return new ProfileSearchResponse($pager, $profiles);
+    }
+
+    /**
+     * @param $id
+     * @return Profile
+     */
+    public function find($id)
+    {
+        $searchable = $this->indexService->getProfile();
+
+        $document = $searchable->getDocument($id);
+
+        return new Profile(
+            $document->getId(),
+            $document->getData()
+        );
     }
 }

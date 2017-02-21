@@ -22,6 +22,7 @@ intro:
 
 profile_parameters:
     title: 'Должность'
+    city: 'Ваш город'
     description: 'Описание'
     assert: 'Обязательно в вакансии'
     expect: 'Ожидание от вакансии'

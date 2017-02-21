@@ -1,3 +1,4 @@
+{# @var profile \AppBundle\Component\Profile #}
 {% extends '::base.html.twig' %}
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
@@ -7,138 +8,85 @@
 {% endblock %}
 
 {% block body %}
-    <section class="navigation z-depth-2">
-        <nav class="container">
-            <div class="nav-wrapper">
-                <a href="javascript:void(0);" class="brand-logo left">Senseye</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="javascript:void(0);" class="js-auth-open">Sign up</a></li>
-                    <li><a href="javascript:void(0);" class="js-auth-open">Sign in</a></li>
-                    <li><a href="profile.html">Alex</a></li>
-                    <li>
-                        <a href="profile.html">
-                            Alex<span class="new badge red" data-badge-caption="Не опубликован"></span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </section>
+    {% include '@App/Developer/block/navigation.html.twig' %}
     {% include '@App/Developer/block/social-auth.html.twig' %}
     <section class="content profile">
         <div class="container">
             <div class="row">
                 <div class="col s10 offset-s1 view z-depth-3">
-                    <div class="post-date">27 ноября 2016</div>
-                    <h4 class="center-align">Full Stack Web Dev</h4>
+                    {#
+                        <div class="post-date">27 ноября 2016</div>
+                    #}
+                    <h4 class="center-align">{{ profile.getTitle() }}</h4>
                     <div class="field col s12">
-                        <div class="title col s12">
-                            Вознаграждение
-                        </div>
+                        <div class="title col s12">{{ 'salary'|trans }}</div>
                         <div class="col s12">
-                            <i class="zmdi zmdi-money"></i> 5000$
+                            <i class="zmdi zmdi-money"></i> {{ profile.getSalary() }}$
                         </div>
                     </div>
                     <div class="field col s12">
                         <div class="title col s12">
-                            Ваш город
+                            {{ 'profile_parameters.city'|trans }}
                         </div>
                         <div class="col s12">
-                            <i class="zmdi zmdi-pin"></i> Киев
+                            <i class="zmdi zmdi-pin"></i> {{ profile.getCities()[0]['name'] }}
                         </div>
                     </div>
                     <div class="field col s12">
                         <div class="title col s12">
-                            Описание
+                            {{ 'profile_parameters.description'|trans }}
                         </div>
                         <div class="col s12">
-                            <i class="zmdi zmdi-assignment"></i> I'm a 25 y.o. web developer focusing on PHP5, MySQL, NodeJS, CSS3, jQuery and JS. I am experienced in architecting and developing large scale web applications and delivering on-time.
+                            <i class="zmdi zmdi-assignment"></i> {{ profile.getDescription() }}
                         </div>
                     </div>
                     <div class="field col s12">
                         <div class="title col s12">
-                            Опыт
+                            {{ 'experience'|trans }}
                         </div>
                         <div class="col s12">
-                            <i class="zmdi zmdi-graduation-cap"></i> 6 year
+                            <i class="zmdi zmdi-graduation-cap"></i> {{ 'experience_choice'|transchoice(profile.getExperience()) }}
                         </div>
                     </div>
-                    <div class="field col s12">
-                        <div class="title col s12">
-                            Обязательно в вакансии
-                        </div>
-                        <div class="col s12">
-                            <i class="zmdi zmdi-shield-check"></i> Love
-                        </div>
-                    </div>
-                    <div class="field col s12">
-                        <div class="title col s12">
-                            Ожидание от вакансии
-                        </div>
-                        <div class="col s12">
-                            <i class="zmdi zmdi-puzzle-piece"></i> On Beach with my mac
-                        </div>
-                    </div>
-                    <div class="field col s12">
-                        <div class="title col s12">
-                            Навыки
-                        </div>
-                        <div class="col s12 skills js-skill-list">
-                            <div class="skill col s12 js-skill">
-                                <div class="col s2">
-                                    Git
-                                </div>
-                                <div class="col s10">
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point"></div>
-                                    <div class="point"></div>
-                                    <div class="point"></div>
-                                </div>
+                    {#
+                        <div class="field col s12">
+                            <div class="title col s12">
+                                {{ 'profile_parameters.assert'|trans }}
                             </div>
-                            <div class="skill col s12 js-skill">
-                                <div class="col s2">
-                                    Jira
-                                </div>
-                                <div class="col s10">
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point"></div>
-                                    <div class="point"></div>
-                                    <div class="point"></div>
-                                </div>
+                            <div class="col s12">
+                                <i class="zmdi zmdi-shield-check"></i> Love
                             </div>
-                            <div class="skill col s12 js-skill">
-                                <div class="col s2">
-                                    Laravel
-                                </div>
-                                <div class="col s10">
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point active"></div>
-                                    <div class="point"></div>
-                                    <div class="point"></div>
-                                    <div class="point"></div>
-                                    <div class="point"></div>
-                                </div>
+                        </div>
+                        <div class="field col s12">
+                            <div class="title col s12">
+                                {{ 'profile_parameters.expect'|trans }}
                             </div>
-
+                            <div class="col s12">
+                                <i class="zmdi zmdi-puzzle-piece"></i> On Beach with my mac
+                            </div>
+                        </div>
+                    #}
+                    <div class="field col s12">
+                        <div class="title col s12">
+                            {{ 'skills'|trans }}
+                        </div>
+                        <div class="col s12 skills">
+                            {% for index, skill in profile.getSkills() %}
+                                <div class="skill col s12">
+                                    <div class="col s2">
+                                        {{ skill['name'] }}
+                                    </div>
+                                    {% set score = max(10 - index, 2) %}
+                                    <div class="col s10">
+                                        {% for active in 1..10 %}
+                                            <div class="point {% if active <= score %}active{% endif %}"></div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endfor %}
                             <div class="link-original">
-                                <a href="/">
-                                    <i class="zmdi zmdi-link"></i> Vergo
+                                <a href="{{ profile.getLink() }}?from=senseye">
+                                    <i class="zmdi zmdi-link"></i> Original
                                 </a>
                             </div>
                         </div>

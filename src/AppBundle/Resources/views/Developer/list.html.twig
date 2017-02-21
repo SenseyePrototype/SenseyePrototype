@@ -13,23 +13,7 @@
 {% endblock %}
 
 {% block body %}
-<section class="navigation z-depth-2">
-    <nav class="container">
-        <div class="nav-wrapper">
-            <a href="{{ path('intro') }}" class="brand-logo left">Senseye</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                {# @var user \AppBundle\Entity\User #}
-                {% set user = app.getUser() %}
-                {% if user %}
-                    <li><a href="{{ path('developer_profile') }}">{{ user.getUsername() }}</a></li>
-                {% else %}
-                    <li><a href="javascript:void(0);" class="js-auth-open">Sign up</a></li>
-                    <li><a href="javascript:void(0);" class="js-auth-open">Sign in</a></li>
-                {% endif %}
-            </ul>
-        </div>
-    </nav>
-</section>
+{% include '@App/Developer/block/navigation.html.twig' %}
 {% include '@App/Developer/block/social-auth.html.twig' %}
 <section class="content">
     <div class="js-container container">
