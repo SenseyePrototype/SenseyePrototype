@@ -1,24 +1,9 @@
-developer_profile_show:
-    path:     /{id}/show
-    defaults: { _controller: "AppBundle:DeveloperProfile:show" }
-    methods:  GET
-
-developer_profile_new:
-    path:     /new
-    defaults: { _controller: "AppBundle:DeveloperProfile:new" }
-    methods:  [GET, POST]
-
-developer_profile_edit:
-    path:     /{id}/edit
-    defaults: { _controller: "AppBundle:DeveloperProfile:editById" }
-    methods:  [GET, POST]
-
-developer_profile:
+developer.profile:
     path:     /edit
-    defaults: { _controller: "AppBundle:DeveloperProfile:edit" }
-    methods:  [GET, POST]
+    defaults: { _controller: 'AppBundle:DeveloperProfile:edit' }
+    methods:  ['GET', 'POST']
 
-developer_profile_skills:
+developer.profile.skills:
     path:     /skills
-    defaults: { _controller: "AppBundle:DeveloperProfile:skills" }
-    methods:  [GET]
+    defaults: { _controller: 'AppBundle:DeveloperProfile:skills' }
+    methods:  ['GET']
