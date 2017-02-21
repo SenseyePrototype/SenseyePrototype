@@ -1,9 +1,9 @@
-developer.profile:
+developer.profile.edit:
     path:     /edit
     defaults: { _controller: 'AppBundle:DeveloperProfile:edit' }
     methods:  ['GET', 'POST']
 
-developer.profile.skills:
-    path:     /skills
+developer.profile.edit.skills:
+    path:     /edit/skills
     defaults: { _controller: 'AppBundle:DeveloperProfile:skills' }
     methods:  ['GET']

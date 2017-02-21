@@ -19,6 +19,13 @@ developers.page:
     defaults: { _controller: AppBundle:Developer:list }
     methods: ['GET']
 
+developer.profile:
+    path:     /developer/{id}
+    defaults: { _controller: AppBundle:Developer:profile }
+    methods: ['GET']
+    requirements:
+        id: '\d+'
+
 developer.external:
     path:     /developer/external/{id}
     defaults: { _controller: AppBundle:Developer:external }
