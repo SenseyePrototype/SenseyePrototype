@@ -45,6 +45,16 @@ interface ProfileInterface
     public function getExperience();
 
     /**
+     * @return string
+     */
+    public function getAssert();
+
+    /**
+     * @return string
+     */
+    public function getExpect();
+
+    /**
      * @return \DateTimeInterface
      */
     public function getCreated();

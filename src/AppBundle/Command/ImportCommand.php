@@ -104,6 +104,12 @@ class ImportCommand extends ContainerAwareCommand
             'experience' => [
                 'type' => 'long',
             ],
+            'expect' => [
+                'type' => 'text',
+            ],
+            'assert' => [
+                'type' => 'text',
+            ],
             'profiles' => [
                 'properties' => [
                     'alias' => [
@@ -165,6 +171,8 @@ class ImportCommand extends ContainerAwareCommand
                 ],
                 'salary' => (int)$profile['salary'],
                 'experience' => (int)$profile['experience'],
+                'expect' => null,
+                'assert' => null,
                 'link' => $profile['link'],
                 'skills' => array_values(
                     array_intersect_key(

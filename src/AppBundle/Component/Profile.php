@@ -65,6 +65,16 @@ class Profile implements ProfileInterface
         return $this->data['experience'];
     }
 
+    public function getAssert()
+    {
+        return $this->data['assert'];
+    }
+
+    public function getExpect()
+    {
+        return $this->data['expect'];
+    }
+
     public function getCreated()
     {
         return new \DateTime($this->data['created']);
