@@ -392,6 +392,14 @@ class FillSkillCommand extends ContainerAwareCommand
             ],
 
             /**
+             * Game development
+             */
+            [
+                'alias' => 'unity3d',
+                'name' => 'Unity',
+            ],
+
+            /**
              * Server
              */
             [
@@ -437,6 +445,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'git',
                 'name' => 'Git',
+            ],
+            [
+                'alias' => 'svn',
+                'name' => 'SVN',
             ],
 
             /**
@@ -614,6 +626,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'windows',
                 'name' => 'Windows',
             ],
+            [
+                'alias' => 'macos',
+                'name' => 'MacOS',
+            ],
 
             /**
              * Shell
@@ -701,8 +717,10 @@ class FillSkillCommand extends ContainerAwareCommand
             'csharp' => ['c#'],
             'fsharp' => ['f#'],
             'css' => ['css3'],
+            'sass' => ['SCSS'],
             'html' => ['html5', 'htmlcss'],
             'actionscript' => ['actionscript3as3'],
+            'mssql' => ['mssqlserver'],
             'blender' => ['blender3d'],
             'bugreport' => ['bugreporting', 'bugreports', 'bugtracking'],
             'businessanalysis' => ['businessanalisys', 'businessanalyst', 'businessanalytics'],
