@@ -390,6 +390,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'userinterface',
                 'name' => 'User Interface (UI)',
             ],
+            [
+                'alias' => 'businessanalysis',
+                'name' => 'Business Analysis',
+            ],
 
             /**
              * Web development
