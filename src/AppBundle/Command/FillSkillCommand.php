@@ -298,6 +298,14 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'cakephp',
                 'name' => 'CakePHP',
             ],
+            [
+                'alias' => 'entityframework',
+                'name' => 'Entity Framework',
+            ],
+            [
+                'alias' => 'aspnetmvc',
+                'name' => 'ASP.NET MVC',
+            ],
 
             /**
              * Front-end JavaScript Framework
@@ -337,6 +345,22 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'css',
                 'name' => 'CSS',
+            ],
+            [
+                'alias' => 'bootstrap',
+                'name' => 'Bootstrap',
+            ],
+
+            /**
+             * Design
+             */
+            [
+                'alias' => 'adobephotoshop',
+                'name' => 'Adobe Photoshop',
+            ],
+            [
+                'alias' => 'adobeillustrator',
+                'name' => 'Adobe Illustrator',
             ],
 
             /**
@@ -397,6 +421,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'androidstudio',
                 'name' => 'Android Studio',
+            ],
+            [
+                'alias' => 'eclipse',
+                'name' => 'Eclipse',
             ],
 
             /**
@@ -470,6 +498,18 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'tdd',
                 'name' => 'TDD',
             ],
+            [
+                'alias' => 'designpatterns',
+                'name' => 'Design Patterns',
+            ],
+
+            /**
+             * Shell
+             */
+            [
+                'alias' => 'bash',
+                'name' => 'Bash',
+            ],
 
             /**
              * Other
@@ -510,10 +550,12 @@ class FillSkillCommand extends ContainerAwareCommand
         $synonym = $doctrine->getRepository('AppBundle:SkillSynonym');
         $synonym->add([
             'php' => ['php5', 'php7'],
+            'android' => ['androidsdk'],
             'go' => ['golang'],
             'dotnet' => ['.net'],
             'express' => ['expressjs'],
             'reactjs' => ['react'],
+            'angularjs' => ['angular', 'angular2'],
             'symfony' => ['symfony2', 'symfony3'],
             'teamlead' => ['teamleadership', 'teamleading'],
             'testcase' => ['testcasedesign', 'testcases', 'testcasescreation'],
