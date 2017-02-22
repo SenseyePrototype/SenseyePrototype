@@ -347,6 +347,14 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'CSS',
             ],
             [
+                'alias' => 'less',
+                'name' => 'LESS',
+            ],
+            [
+                'alias' => 'sass',
+                'name' => 'SASS',
+            ],
+            [
                 'alias' => 'bootstrap',
                 'name' => 'Bootstrap',
             ],
@@ -437,6 +445,18 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'firebug',
                 'name' => 'Firebug',
+            ],
+            [
+                'alias' => 'junit',
+                'name' => 'JUnit',
+            ],
+            [
+                'alias' => 'jenkins',
+                'name' => 'Jenkins',
+            ],
+            [
+                'alias' => 'jmeter',
+                'name' => 'JMeter',
             ],
 
             /**
@@ -546,6 +566,14 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'designpatterns',
                 'name' => 'Design Patterns',
             ],
+            [
+                'alias' => 'mvc',
+                'name' => 'MVC',
+            ],
+            [
+                'alias' => 'oop',
+                'name' => 'OOP',
+            ],
 
             /**
              * Shell
@@ -553,6 +581,18 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'bash',
                 'name' => 'Bash',
+            ],
+
+            /**
+             * CMS
+             */
+            [
+                'alias' => 'joomla',
+                'name' => 'Joomla',
+            ],
+            [
+                'alias' => 'wordpress',
+                'name' => 'WordPress',
             ],
 
             /**
