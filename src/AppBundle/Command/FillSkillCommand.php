@@ -328,7 +328,7 @@ class FillSkillCommand extends ContainerAwareCommand
             ],
 
             /**
-             * Web Design
+             * Web design
              */
             [
                 'alias' => 'html',
@@ -340,6 +340,34 @@ class FillSkillCommand extends ContainerAwareCommand
             ],
 
             /**
+             * Web development
+             */
+            [
+                'alias' => 'ajax',
+                'name' => 'AJAX',
+            ],
+
+            /**
+             * Data format
+             */
+            [
+                'alias' => 'json',
+                'name' => 'JSON',
+            ],
+            [
+                'alias' => 'xml',
+                'name' => 'XML',
+            ],
+
+            /**
+             * Version control system
+             */
+            [
+                'alias' => 'git',
+                'name' => 'Git',
+            ],
+
+            /**
              * Tool
              */
             [
@@ -347,8 +375,8 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'Wolfram Mathematica',
             ],
             [
-                'alias' => 'git',
-                'name' => 'Git',
+                'alias' => 'axure',
+                'name' => 'Axure',
             ],
 
             /**
@@ -365,6 +393,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'netbeans',
                 'name' => 'NetBeans',
+            ],
+            [
+                'alias' => 'androidstudio',
+                'name' => 'Android Studio',
             ],
 
             /**
@@ -421,6 +453,22 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'jira',
                 'name' => 'Jira',
+            ],
+
+            /**
+             * Software development
+             */
+            [
+                'alias' => 'agile',
+                'name' => 'Agile',
+            ],
+            [
+                'alias' => 'kanban',
+                'name' => 'Kanban',
+            ],
+            [
+                'alias' => 'tdd',
+                'name' => 'TDD',
             ],
 
             /**
