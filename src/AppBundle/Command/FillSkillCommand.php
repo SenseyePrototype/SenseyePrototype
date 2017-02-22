@@ -515,8 +515,16 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'VirtualBox',
             ],
             [
+                'alias' => 'vmware',
+                'name' => 'VMware',
+            ],
+            [
                 'alias' => 'testrail',
                 'name' => 'TestRail',
+            ],
+            [
+                'alias' => 'gradle',
+                'name' => 'Gradle',
             ],
 
             /**
@@ -645,6 +653,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'designpatterns',
                 'name' => 'Design Patterns',
+            ],
+            [
+                'alias' => 'multithreading',
+                'name' => 'Multithreading',
             ],
             [
                 'alias' => 'mvc',
