@@ -380,6 +380,18 @@ class FillSkillCommand extends ContainerAwareCommand
             ],
 
             /**
+             * User Experience (UX) & User Interface (UI)
+             */
+            [
+                'alias' => 'userexperience',
+                'name' => 'User Experience (UX)',
+            ],
+            [
+                'alias' => 'userinterface',
+                'name' => 'User Interface (UI)',
+            ],
+
+            /**
              * Web development
              */
             [
@@ -389,6 +401,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'rest',
                 'name' => 'REST',
+            ],
+            [
+                'alias' => 'seo',
+                'name' => 'SEO',
             ],
 
             /**
@@ -409,6 +425,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'apache',
                 'name' => 'Apache',
+            ],
+            [
+                'alias' => 'tomcat',
+                'name' => 'Tomcat',
             ],
 
             /**
@@ -463,6 +483,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'Axure',
             ],
             [
+                'alias' => 'sketch',
+                'name' => 'Sketch',
+            ],
+            [
                 'alias' => 'firebug',
                 'name' => 'Firebug',
             ],
@@ -477,6 +501,18 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'jmeter',
                 'name' => 'JMeter',
+            ],
+            [
+                'alias' => 'selenium',
+                'name' => 'Selenium',
+            ],
+            [
+                'alias' => 'virtualbox',
+                'name' => 'VirtualBox',
+            ],
+            [
+                'alias' => 'testrail',
+                'name' => 'TestRail',
             ],
 
             /**
@@ -510,6 +546,10 @@ class FillSkillCommand extends ContainerAwareCommand
             /**
              * ORM
              */
+            [
+                'alias' => 'linq',
+                'name' => 'LINQ',
+            ],
             [
                 'alias' => 'doctrine',
                 'name' => 'Doctrine',
@@ -611,6 +651,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'OOD',
             ],
             [
+                'alias' => 'uml',
+                'name' => 'UML',
+            ],
+            [
                 'alias' => 'productmanagement',
                 'name' => 'Product management',
             ],
@@ -696,6 +740,7 @@ class FillSkillCommand extends ContainerAwareCommand
             'php' => ['php5', 'php7'],
             'android' => ['androidsdk'],
             'java' => ['javacore'],
+            'tcp' => ['tcpip'],
             'go' => ['golang'],
             'adobeillustrator' => ['illustrator'],
             'adobephotoshop' => ['photoshop'],
@@ -704,6 +749,7 @@ class FillSkillCommand extends ContainerAwareCommand
             'reactjs' => ['react'],
             'angularjs' => ['angular', 'angular2'],
             'symfony' => ['symfony2', 'symfony3'],
+            'spring' => ['springmvc'],
             'teamlead' => ['teamleadership', 'teamleading'],
             'testcase' => ['testcasedesign', 'testcases', 'testcasescreation'],
             'manualtesting' => ['manualtestingqa'],
@@ -717,10 +763,14 @@ class FillSkillCommand extends ContainerAwareCommand
             'csharp' => ['c#'],
             'fsharp' => ['f#'],
             'css' => ['css3'],
-            'sass' => ['SCSS'],
+            'sass' => ['scss'],
             'html' => ['html5', 'htmlcss'],
+            'bootstrap' => ['twitterbootstrap'],
             'actionscript' => ['actionscript3as3'],
+            'userexperience' => ['userexperienceux'],
+            'userinterface' => ['userinterfaceui'],
             'mssql' => ['mssqlserver'],
+            'selenium' => ['seleniumide'],
             'blender' => ['blender3d'],
             'bugreport' => ['bugreporting', 'bugreports', 'bugtracking'],
             'businessanalysis' => ['businessanalisys', 'businessanalyst', 'businessanalytics'],
