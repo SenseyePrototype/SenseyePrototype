@@ -462,6 +462,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'eclipse',
                 'name' => 'Eclipse',
             ],
+            [
+                'alias' => 'intellijidea',
+                'name' => 'IntelliJ IDEA',
+            ],
 
             /**
              * ORM
@@ -591,7 +595,9 @@ class FillSkillCommand extends ContainerAwareCommand
         $synonym->add([
             'php' => ['php5', 'php7'],
             'android' => ['androidsdk'],
+            'java' => ['javacore'],
             'go' => ['golang'],
+            'adobeillustrator' => ['illustrator'],
             'dotnet' => ['.net'],
             'express' => ['expressjs'],
             'reactjs' => ['react'],
