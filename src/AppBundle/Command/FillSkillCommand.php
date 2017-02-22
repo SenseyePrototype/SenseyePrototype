@@ -30,6 +30,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'algorithms',
                 'name' => 'Algorithms',
             ],
+            [
+                'alias' => 'sql',
+                'name' => 'SQL',
+            ],
 
             /**
              * Language
@@ -550,6 +554,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'mantis',
                 'name' => 'Mantis',
             ],
+            [
+                'alias' => 'redmine',
+                'name' => 'Redmine',
+            ],
 
             /**
              * Software development
@@ -557,6 +565,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'agile',
                 'name' => 'Agile',
+            ],
+            [
+                'alias' => 'scrum',
+                'name' => 'Scrum',
             ],
             [
                 'alias' => 'kanban',
@@ -578,6 +590,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'oop',
                 'name' => 'OOP',
             ],
+            [
+                'alias' => 'ood',
+                'name' => 'OOD',
+            ],
 
             /**
              * Operating system
@@ -585,6 +601,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'linux',
                 'name' => 'Linux',
+            ],
+            [
+                'alias' => 'windows',
+                'name' => 'Windows',
             ],
 
             /**
@@ -654,6 +674,7 @@ class FillSkillCommand extends ContainerAwareCommand
             'java' => ['javacore'],
             'go' => ['golang'],
             'adobeillustrator' => ['illustrator'],
+            'adobephotoshop' => ['photoshop'],
             'dotnet' => ['net', '.net'],
             'express' => ['expressjs'],
             'reactjs' => ['react'],
@@ -666,6 +687,7 @@ class FillSkillCommand extends ContainerAwareCommand
             'gulpjs' => ['gulp'],
             'googleanalytics' => ['googleanalytic'],
             'gamedevelopment' => ['gamedev'],
+            'ood' => ['oopood'],
             'cplusplus' => ['cc++', 'c++'],
             'csharp' => ['c#'],
             'fsharp' => ['f#'],
