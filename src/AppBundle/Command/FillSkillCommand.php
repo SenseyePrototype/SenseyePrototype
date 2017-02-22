@@ -631,6 +631,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'Kanban',
             ],
             [
+                'alias' => 'waterfall',
+                'name' => 'Waterfall',
+            ],
+            [
                 'alias' => 'tdd',
                 'name' => 'TDD',
             ],
@@ -770,7 +774,7 @@ class FillSkillCommand extends ContainerAwareCommand
             'userexperience' => ['userexperienceux'],
             'userinterface' => ['userinterfaceui'],
             'mssql' => ['mssqlserver'],
-            'selenium' => ['seleniumide'],
+            'selenium' => ['seleniumide', 'seleniumwebdriver'],
             'blender' => ['blender3d'],
             'bugreport' => ['bugreporting', 'bugreports', 'bugtracking'],
             'businessanalysis' => ['businessanalisys', 'businessanalyst', 'businessanalytics'],
