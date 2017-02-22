@@ -350,6 +350,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'bootstrap',
                 'name' => 'Bootstrap',
             ],
+            [
+                'alias' => 'foundation',
+                'name' => 'Foundation',
+            ],
 
             /**
              * Design
@@ -369,6 +373,34 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'ajax',
                 'name' => 'AJAX',
+            ],
+
+            /**
+             * Server
+             */
+            [
+                'alias' => 'nginx',
+                'name' => 'Nginx',
+            ],
+            [
+                'alias' => 'apache',
+                'name' => 'Apache',
+            ],
+
+            /**
+             * Protocol
+             */
+            [
+                'alias' => 'ip',
+                'name' => 'IP',
+            ],
+            [
+                'alias' => 'http',
+                'name' => 'HTTP',
+            ],
+            [
+                'alias' => 'tcp',
+                'name' => 'TCP',
             ],
 
             /**
@@ -402,6 +434,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'axure',
                 'name' => 'Axure',
             ],
+            [
+                'alias' => 'firebug',
+                'name' => 'Firebug',
+            ],
 
             /**
              * IDE
@@ -433,6 +469,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'doctrine',
                 'name' => 'Doctrine',
+            ],
+            [
+                'alias' => 'hibernate',
+                'name' => 'Hibernate',
             ],
 
             /**
@@ -561,7 +601,7 @@ class FillSkillCommand extends ContainerAwareCommand
             'testcase' => ['testcasedesign', 'testcases', 'testcasescreation'],
             'manualtesting' => ['manualtestingqa'],
             'presentation' => ['presentations'],
-            'gulp' => ['gulpjs'],
+            'gulpjs' => ['gulp'],
             'googleanalytics' => ['googleanalytic'],
             'gamedevelopment' => ['gamedev'],
             'cplusplus' => ['cc++', 'c++'],
