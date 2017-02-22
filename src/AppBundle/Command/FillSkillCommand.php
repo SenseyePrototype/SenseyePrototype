@@ -576,6 +576,14 @@ class FillSkillCommand extends ContainerAwareCommand
             ],
 
             /**
+             * Operating system
+             */
+            [
+                'alias' => 'linux',
+                'name' => 'Linux',
+            ],
+
+            /**
              * Shell
              */
             [
