@@ -386,6 +386,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'ajax',
                 'name' => 'AJAX',
             ],
+            [
+                'alias' => 'rest',
+                'name' => 'REST',
+            ],
 
             /**
              * Server
@@ -594,6 +598,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'ood',
                 'name' => 'OOD',
             ],
+            [
+                'alias' => 'productmanagement',
+                'name' => 'Product management',
+            ],
 
             /**
              * Operating system
@@ -688,6 +696,7 @@ class FillSkillCommand extends ContainerAwareCommand
             'googleanalytics' => ['googleanalytic'],
             'gamedevelopment' => ['gamedev'],
             'ood' => ['oopood'],
+            'rest' => ['restapi'],
             'cplusplus' => ['cc++', 'c++'],
             'csharp' => ['c#'],
             'fsharp' => ['f#'],
