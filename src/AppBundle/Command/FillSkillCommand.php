@@ -546,6 +546,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'jira',
                 'name' => 'Jira',
             ],
+            [
+                'alias' => 'mantis',
+                'name' => 'Mantis',
+            ],
 
             /**
              * Software development
@@ -607,6 +611,10 @@ class FillSkillCommand extends ContainerAwareCommand
              * Other
              */
             [
+                'alias' => 'nodejs',
+                'name' => 'Node.js',
+            ],
+            [
                 'alias' => 'dotnet',
                 'name' => '.NET',
             ],
@@ -620,7 +628,7 @@ class FillSkillCommand extends ContainerAwareCommand
         $priority = $doctrine->getRepository('AppBundle:SkillPriority');
         $priority->add([
             'php',
-            'net',
+            'dotnet',
             'java',
             'python',
             'ruby',
@@ -646,7 +654,7 @@ class FillSkillCommand extends ContainerAwareCommand
             'java' => ['javacore'],
             'go' => ['golang'],
             'adobeillustrator' => ['illustrator'],
-            'dotnet' => ['.net'],
+            'dotnet' => ['net', '.net'],
             'express' => ['expressjs'],
             'reactjs' => ['react'],
             'angularjs' => ['angular', 'angular2'],
@@ -659,8 +667,8 @@ class FillSkillCommand extends ContainerAwareCommand
             'googleanalytics' => ['googleanalytic'],
             'gamedevelopment' => ['gamedev'],
             'cplusplus' => ['cc++', 'c++'],
-            'cshrap' => ['c#'],
-            'fshrap' => ['f#'],
+            'csharp' => ['c#'],
+            'fsharp' => ['f#'],
             'css' => ['css3'],
             'html' => ['html5', 'htmlcss'],
             'actionscript' => ['actionscript3as3'],
