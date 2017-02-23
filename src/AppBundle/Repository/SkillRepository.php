@@ -35,4 +35,13 @@ class SkillRepository extends \Doctrine\ORM\EntityRepository
         }
         $connection->commit();
     }
+
+    public function getList()
+    {
+        return $this
+            ->createQueryBuilder('s')
+            ->select('s.alias', 's.name')
+            ->getQuery()
+            ->getArrayResult();
+    }
 }
