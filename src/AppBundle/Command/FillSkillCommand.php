@@ -206,6 +206,14 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'objectivec',
                 'name' => 'Objective-C',
             ],
+            [
+                'alias' => 'zephyr',
+                'name' => 'Zephyr',
+            ],
+            [
+                'alias' => 'gherkin',
+                'name' => 'Gherkin',
+            ],
 
             /**
              * Database & search engine
@@ -337,6 +345,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'yii',
                 'name' => 'Yii',
+            ],
+            [
+                'alias' => 'phalcon',
+                'name' => 'Phalcon',
             ],
             [
                 'alias' => 'cucumber',
@@ -495,8 +507,8 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'Google Analytics',
             ],
             [
-                'alias' => 'smm',
-                'name' => 'SMM',
+                'alias' => 'socialmediamarketing',
+                'name' => 'Social Media Marketing',
             ],
             [
                 'alias' => 'qualityassurance',
@@ -513,6 +525,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'emailmarketing',
                 'name' => 'Email Marketing',
+            ],
+            [
+                'alias' => 'contentmarketing',
+                'name' => 'Content Marketing',
             ],
 
             /**
@@ -1046,6 +1062,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'rabbitmq',
                 'name' => 'RabbitMQ',
             ],
+            [
+                'alias' => 'kafka',
+                'name' => 'Kafka',
+            ],
 
             /**
              * Other
@@ -1132,6 +1152,7 @@ class FillSkillCommand extends ContainerAwareCommand
             'actionscript' => ['actionscript3as3'],
             'userexperience' => ['userexperienceux', 'uiux'],
             'userinterface' => ['userinterfaceui'],
+            'socialmediamarketing' => ['smm'],
             'spark' => ['apachespark'],
             'mssql' => ['mssqlserver', 'microsoftsqlserver'],
             'selenium' => ['seleniumide', 'seleniumwebdriver'],
