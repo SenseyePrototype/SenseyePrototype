@@ -379,6 +379,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'SASS',
             ],
             [
+                'alias' => 'bem',
+                'name' => 'BEM',
+            ],
+            [
                 'alias' => 'bootstrap',
                 'name' => 'Bootstrap',
             ],
@@ -423,6 +427,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'Business Analysis',
             ],
             [
+                'alias' => 'businessdevelopment',
+                'name' => 'Business development',
+            ],
+            [
                 'alias' => 'googleanalytics',
                 'name' => 'Google Analytics',
             ],
@@ -433,6 +441,14 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'qualityassurance',
                 'name' => 'Quality Assurance (QA)',
+            ],
+            [
+                'alias' => 'usability',
+                'name' => 'Usability',
+            ],
+            [
+                'alias' => 'marketing',
+                'name' => 'Marketing',
             ],
 
             /**
@@ -529,6 +545,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'axure',
                 'name' => 'Axure',
+            ],
+            [
+                'alias' => 'invision',
+                'name' => 'InVision',
             ],
             [
                 'alias' => 'sketch',
@@ -735,6 +755,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'TDD',
             ],
             [
+                'alias' => 'continuousintegration',
+                'name' => 'Continuous Integration',
+            ],
+            [
                 'alias' => 'bdd',
                 'name' => 'BDD',
             ],
@@ -907,6 +931,7 @@ class FillSkillCommand extends ContainerAwareCommand
             'gulpjs' => ['gulp'],
             'gruntjs' => ['grunt'],
             'googleanalytics' => ['googleanalytic'],
+            'continuousintegration' => ['ci'],
             'gamedevelopment' => ['gamedev'],
             'ood' => ['oopood'],
             'rest' => ['restapi'],
