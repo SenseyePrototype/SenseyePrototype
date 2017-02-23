@@ -635,6 +635,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'Gulp',
             ],
             [
+                'alias' => 'gruntjs',
+                'name' => 'Grunt',
+            ],
+            [
                 'alias' => 'webpack',
                 'name' => 'Webpack',
             ],
@@ -839,6 +843,7 @@ class FillSkillCommand extends ContainerAwareCommand
             'manualtesting' => ['manualtestingqa'],
             'presentation' => ['presentations'],
             'gulpjs' => ['gulp'],
+            'gruntjs' => ['grunt'],
             'googleanalytics' => ['googleanalytic'],
             'gamedevelopment' => ['gamedev'],
             'ood' => ['oopood'],
