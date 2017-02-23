@@ -534,6 +534,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'svn',
                 'name' => 'SVN',
             ],
+            [
+                'alias' => 'mercurial',
+                'name' => 'Mercurial',
+            ],
 
             /**
              * Tool
@@ -593,6 +597,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'zabbix',
                 'name' => 'Zabbix',
+            ],
+            [
+                'alias' => 'trello',
+                'name' => 'Trello',
             ],
 
             /**
@@ -857,6 +865,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'drupal',
                 'name' => 'Drupal',
+            ],
+            [
+                'alias' => 'opencart',
+                'name' => 'Opencart',
             ],
 
             /**
