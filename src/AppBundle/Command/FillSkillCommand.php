@@ -423,6 +423,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'Business Analysis',
             ],
             [
+                'alias' => 'googleanalytics',
+                'name' => 'Google Analytics',
+            ],
+            [
                 'alias' => 'smm',
                 'name' => 'SMM',
             ],
