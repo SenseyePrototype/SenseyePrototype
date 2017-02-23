@@ -76,12 +76,9 @@ class DeveloperProfileController extends BaseController
         $skills = $this
             ->getDoctrine()
             ->getRepository(Skill::class)
-            ->findAll();
+            ->getList();
 
-        $names = [];
-        foreach ($skills as $skill) {
-            $names[$skill->getName()] = $skill->getAlias();
-        }
+        $names = array_column($skills, 'alias', 'name');
 
         return $this->render('@App/Developer/Profile/skills.html.twig', [
             'profile' => $developerProfile,
