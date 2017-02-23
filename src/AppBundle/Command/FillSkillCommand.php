@@ -530,6 +530,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'unity3d',
                 'name' => 'Unity',
             ],
+            [
+                'alias' => 'unrealengine',
+                'name' => 'Unreal Engine',
+            ],
 
             /**
              * Server
@@ -645,6 +649,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'docker',
                 'name' => 'Docker',
+            ],
+            [
+                'alias' => 'vagrant',
+                'name' => 'Vagrant',
             ],
             [
                 'alias' => 'ansible',
@@ -1060,7 +1068,9 @@ class FillSkillCommand extends ContainerAwareCommand
             'reactjs' => ['react'],
             'angularjs' => ['angular', 'angular2'],
             'symfony' => ['symfony2', 'symfony3'],
+            'rubyonrails' => ['rails', 'ror'],
             'yii' => ['yii2'],
+            'unrealengine' => ['unrealengine4'],
             'magento' => ['magento2'],
             'spring' => ['springmvc'],
             'teamlead' => ['teamleadership', 'teamleading'],
