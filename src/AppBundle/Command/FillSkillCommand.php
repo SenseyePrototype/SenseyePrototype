@@ -348,8 +348,12 @@ class FillSkillCommand extends ContainerAwareCommand
             ],
 
             /**
-             * Web design
+             * Web Design
              */
+            [
+                'alias' => 'webdesign',
+                'name' => 'Web Design',
+            ],
             [
                 'alias' => 'html',
                 'name' => 'html',
@@ -374,6 +378,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'foundation',
                 'name' => 'Foundation',
             ],
+            [
+                'alias' => 'xpath',
+                'name' => 'XPath',
+            ],
 
             /**
              * Design
@@ -385,6 +393,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'adobeillustrator',
                 'name' => 'Adobe Illustrator',
+            ],
+            [
+                'alias' => 'adobeindesign',
+                'name' => 'Adobe InDesign',
             ],
 
             /**
@@ -461,6 +473,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'tcp',
                 'name' => 'TCP',
+            ],
+            [
+                'alias' => 'dns',
+                'name' => 'DNS',
             ],
 
             /**
@@ -574,6 +590,14 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'intellijidea',
                 'name' => 'IntelliJ IDEA',
             ],
+            [
+                'alias' => 'visualstudio',
+                'name' => 'Visual Studio',
+            ],
+            [
+                'alias' => 'xcode',
+                'name' => 'xcode',
+            ],
 
             /**
              * ORM
@@ -650,6 +674,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'confluence',
                 'name' => 'Confluence',
             ],
+            [
+                'alias' => 'bugzilla',
+                'name' => 'Bugzilla',
+            ],
 
             /**
              * Software development
@@ -725,6 +753,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'ubuntu',
                 'name' => 'Ubuntu',
+            ],
+            [
+                'alias' => 'freebsd',
+                'name' => 'FreeBSD',
             ],
 
             /**
