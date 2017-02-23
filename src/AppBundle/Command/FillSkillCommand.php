@@ -34,6 +34,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'sql',
                 'name' => 'SQL',
             ],
+            [
+                'alias' => 'machinelearning',
+                'name' => 'Machine Learning',
+            ],
 
             /**
              * Language
@@ -227,6 +231,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'MongoDB',
             ],
             [
+                'alias' => 'cassandra',
+                'name' => 'Cassandra',
+            ],
+            [
                 'alias' => 'neo4j',
                 'name' => 'Neo4j',
             ],
@@ -378,6 +386,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'backbonejs',
                 'name' => 'Backbone',
             ],
+            [
+                'alias' => 'underscorejs',
+                'name' => 'Underscore.js',
+            ],
 
             /**
              * Web Design
@@ -389,6 +401,14 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'responsivedesign',
                 'name' => 'Responsive Design',
+            ],
+            [
+                'alias' => 'materialdesign',
+                'name' => 'Material Design',
+            ],
+            [
+                'alias' => 'gamedesign',
+                'name' => 'Game Design',
             ],
             [
                 'alias' => 'html',
@@ -437,6 +457,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'adobeindesign',
                 'name' => 'Adobe InDesign',
+            ],
+            [
+                'alias' => 'adobemuse',
+                'name' => 'Adobe Muse',
             ],
 
             /**
@@ -635,6 +659,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'Zabbix',
             ],
             [
+                'alias' => 'asterisk',
+                'name' => 'Asterisk',
+            ],
+            [
                 'alias' => 'teamcity',
                 'name' => 'TeamCity',
             ],
@@ -762,6 +790,14 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'ios',
                 'name' => 'iOS',
             ],
+            [
+                'alias' => 'azure',
+                'name' => 'Azure',
+            ],
+            [
+                'alias' => 'aws',
+                'name' => 'AWS',
+            ],
 
             /**
              * Bug Tracker & team
@@ -785,6 +821,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'bugzilla',
                 'name' => 'Bugzilla',
+            ],
+            [
+                'alias' => 'youtrack',
+                'name' => 'YouTrack',
             ],
 
             /**
@@ -939,6 +979,10 @@ class FillSkillCommand extends ContainerAwareCommand
              * Templating
              */
             [
+                'alias' => 'twig',
+                'name' => 'Twig',
+            ],
+            [
                 'alias' => 'jade',
                 'name' => 'Jade',
             ],
@@ -948,11 +992,16 @@ class FillSkillCommand extends ContainerAwareCommand
             ],
 
             /**
-             * Big data
+             * Big data & Machine Learning
              */
             [
                 'alias' => 'hadoop',
                 'name' => 'Hadoop',
+            ],
+
+            [
+                'alias' => 'rabbitmq',
+                'name' => 'RabbitMQ',
             ],
 
             /**
@@ -1000,7 +1049,8 @@ class FillSkillCommand extends ContainerAwareCommand
             'php' => ['php5', 'php7'],
             'android' => ['androidsdk'],
             'java' => ['javacore'],
-            'javascript' => ['js'],
+            'javascript' => ['js', 'es6'],
+            'r' => ['rlanguage'],
             'tcp' => ['tcpip'],
             'go' => ['golang'],
             'adobeillustrator' => ['illustrator'],
