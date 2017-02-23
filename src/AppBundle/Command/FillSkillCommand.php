@@ -702,6 +702,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'productmanagement',
                 'name' => 'Product management',
             ],
+            [
+                'alias' => 'projectmanagement',
+                'name' => 'Project Management',
+            ],
 
             /**
              * Operating system
