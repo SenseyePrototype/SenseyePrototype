@@ -450,6 +450,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'marketing',
                 'name' => 'Marketing',
             ],
+            [
+                'alias' => 'emailmarketing',
+                'name' => 'Email Marketing',
+            ],
 
             /**
              * Web development
@@ -601,6 +605,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'trello',
                 'name' => 'Trello',
+            ],
+            [
+                'alias' => 'qt',
+                'name' => 'QT',
             ],
 
             /**
@@ -789,6 +797,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'ood',
                 'name' => 'OOD',
+            ],
+            [
+                'alias' => 'etl',
+                'name' => 'ETL',
             ],
             [
                 'alias' => 'uml',
