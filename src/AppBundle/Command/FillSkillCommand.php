@@ -387,6 +387,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'Web Design',
             ],
             [
+                'alias' => 'responsivedesign',
+                'name' => 'Responsive Design',
+            ],
+            [
                 'alias' => 'html',
                 'name' => 'html',
             ],
@@ -641,6 +645,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'qt',
                 'name' => 'QT',
+            ],
+            [
+                'alias' => 'swing',
+                'name' => 'Swing',
             ],
 
             /**
@@ -933,6 +941,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'jade',
                 'name' => 'Jade',
+            ],
+            [
+                'alias' => 'haml',
+                'name' => 'HAML',
             ],
 
             /**
