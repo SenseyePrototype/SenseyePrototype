@@ -251,6 +251,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'MS SQL',
             ],
             [
+                'alias' => 'firebird',
+                'name' => 'Firebird',
+            ],
+            [
                 'alias' => 'tsql',
                 'name' => 'T-SQL',
             ],
@@ -317,6 +321,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'aspnetmvc',
                 'name' => 'ASP.NET MVC',
+            ],
+            [
+                'alias' => 'yii',
+                'name' => 'Yii',
             ],
 
             /**
@@ -413,6 +421,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'businessanalysis',
                 'name' => 'Business Analysis',
+            ],
+            [
+                'alias' => 'smm',
+                'name' => 'SMM',
             ],
             [
                 'alias' => 'qualityassurance',
@@ -547,8 +559,16 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'VMware',
             ],
             [
+                'alias' => 'docker',
+                'name' => 'Docker',
+            ],
+            [
                 'alias' => 'testrail',
                 'name' => 'TestRail',
+            ],
+            [
+                'alias' => 'zabbix',
+                'name' => 'Zabbix',
             ],
 
             /**
@@ -561,6 +581,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'maven',
                 'name' => 'Maven',
+            ],
+            [
+                'alias' => 'ant',
+                'name' => 'Ant',
             ],
 
             /**
@@ -707,6 +731,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'TDD',
             ],
             [
+                'alias' => 'bdd',
+                'name' => 'BDD',
+            ],
+            [
                 'alias' => 'designpatterns',
                 'name' => 'Design Patterns',
             ],
@@ -743,6 +771,10 @@ class FillSkillCommand extends ContainerAwareCommand
              * Operating system
              */
             [
+                'alias' => 'unix',
+                'name' => 'Unix',
+            ],
+            [
                 'alias' => 'linux',
                 'name' => 'Linux',
             ],
@@ -759,6 +791,14 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'Ubuntu',
             ],
             [
+                'alias' => 'debian',
+                'name' => 'Debian',
+            ],
+            [
+                'alias' => 'centos',
+                'name' => 'CentOS',
+            ],
+            [
                 'alias' => 'freebsd',
                 'name' => 'FreeBSD',
             ],
@@ -772,7 +812,7 @@ class FillSkillCommand extends ContainerAwareCommand
             ],
 
             /**
-             * CMS
+             * CMS & CRM & Platrom
              */
             [
                 'alias' => 'joomla',
@@ -781,6 +821,22 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'wordpress',
                 'name' => 'WordPress',
+            ],
+            [
+                'alias' => 'magento',
+                'name' => 'Magento',
+            ],
+            [
+                'alias' => 'drupal',
+                'name' => 'Drupal',
+            ],
+
+            /**
+             * Templating
+             */
+            [
+                'alias' => 'jade',
+                'name' => 'Jade',
             ],
 
             /**
@@ -828,6 +884,7 @@ class FillSkillCommand extends ContainerAwareCommand
             'php' => ['php5', 'php7'],
             'android' => ['androidsdk'],
             'java' => ['javacore'],
+            'javascript' => ['js'],
             'tcp' => ['tcpip'],
             'go' => ['golang'],
             'adobeillustrator' => ['illustrator'],
@@ -837,6 +894,7 @@ class FillSkillCommand extends ContainerAwareCommand
             'reactjs' => ['react'],
             'angularjs' => ['angular', 'angular2'],
             'symfony' => ['symfony2', 'symfony3'],
+            'magento' => ['magento2'],
             'spring' => ['springmvc'],
             'teamlead' => ['teamleadership', 'teamleading'],
             'testcase' => ['testcasedesign', 'testcases', 'testcasescreation'],
@@ -858,7 +916,7 @@ class FillSkillCommand extends ContainerAwareCommand
             'actionscript' => ['actionscript3as3'],
             'userexperience' => ['userexperienceux'],
             'userinterface' => ['userinterfaceui'],
-            'mssql' => ['mssqlserver'],
+            'mssql' => ['mssqlserver', 'microsoftsqlserver'],
             'selenium' => ['seleniumide', 'seleniumwebdriver'],
             'blender' => ['blender3d'],
             'bugreport' => ['bugreporting', 'bugreports', 'bugtracking'],
