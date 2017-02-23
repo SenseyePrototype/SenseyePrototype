@@ -530,9 +530,17 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'testrail',
                 'name' => 'TestRail',
             ],
+
+            /**
+             * Build manager
+             */
             [
                 'alias' => 'gradle',
                 'name' => 'Gradle',
+            ],
+            [
+                'alias' => 'maven',
+                'name' => 'Maven',
             ],
 
             /**
