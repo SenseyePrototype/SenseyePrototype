@@ -811,6 +811,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'OOD',
             ],
             [
+                'alias' => 'solid',
+                'name' => 'SOLID',
+            ],
+            [
                 'alias' => 'etl',
                 'name' => 'ETL',
             ],
@@ -977,6 +981,7 @@ class FillSkillCommand extends ContainerAwareCommand
             'googleanalytics' => ['googleanalytic'],
             'continuousintegration' => ['ci'],
             'gamedevelopment' => ['gamedev'],
+            'tdd' => ['testdrivendevelopment', 'testdrivendevelopmenttdd'],
             'ood' => ['oopood'],
             'rest' => ['restapi'],
             'cplusplus' => ['cc++', 'c++'],
