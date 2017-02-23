@@ -351,12 +351,20 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'Behat',
             ],
             [
+                'alias' => 'codeception',
+                'name' => 'Codeception',
+            ],
+            [
                 'alias' => 'nunit',
                 'name' => 'NUnit',
             ],
             [
                 'alias' => 'rspec',
                 'name' => 'RSpec',
+            ],
+            [
+                'alias' => 'reactnative',
+                'name' => 'React Native',
             ],
 
             /**
@@ -702,6 +710,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'ant',
                 'name' => 'Ant',
             ],
+            [
+                'alias' => 'capistrano',
+                'name' => 'Capistrano',
+            ],
 
             /**
              * IDE
@@ -713,6 +725,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'phpstorm',
                 'name' => 'PhpStorm',
+            ],
+            [
+                'alias' => 'webstorm',
+                'name' => 'WebStorm',
             ],
             [
                 'alias' => 'netbeans',
@@ -737,6 +753,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'xcode',
                 'name' => 'xcode',
+            ],
+            [
+                'alias' => 'rstudio',
+                'name' => 'RStudio',
             ],
 
             /**
@@ -1006,7 +1026,22 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'hadoop',
                 'name' => 'Hadoop',
             ],
-
+            [
+                'alias' => 'spark',
+                'name' => 'Spark',
+            ],
+            [
+                'alias' => 'hbase',
+                'name' => 'HBase',
+            ],
+            [
+                'alias' => 'pandas',
+                'name' => 'Pandas',
+            ],
+            [
+                'alias' => 'hive',
+                'name' => 'Hive',
+            ],
             [
                 'alias' => 'rabbitmq',
                 'name' => 'RabbitMQ',
@@ -1072,18 +1107,20 @@ class FillSkillCommand extends ContainerAwareCommand
             'yii' => ['yii2'],
             'unrealengine' => ['unrealengine4'],
             'magento' => ['magento2'],
-            'spring' => ['springmvc'],
+            'spring' => ['springmvc', 'springframework'],
             'teamlead' => ['teamleadership', 'teamleading'],
             'testcase' => ['testcasedesign', 'testcases', 'testcasescreation'],
             'manualtesting' => ['manualtestingqa'],
             'presentation' => ['presentations'],
             'gulpjs' => ['gulp'],
             'gruntjs' => ['grunt'],
+            'jquery' => ['jqueryui'],
             'googleanalytics' => ['googleanalytic'],
             'continuousintegration' => ['ci'],
             'gamedevelopment' => ['gamedev'],
             'tdd' => ['testdrivendevelopment', 'testdrivendevelopmenttdd'],
             'ood' => ['oopood'],
+            'scrum' => ['agilescrum'],
             'rest' => ['restapi'],
             'cplusplus' => ['cc++', 'c++'],
             'csharp' => ['c#'],
@@ -1093,8 +1130,9 @@ class FillSkillCommand extends ContainerAwareCommand
             'html' => ['html5', 'htmlcss'],
             'bootstrap' => ['twitterbootstrap'],
             'actionscript' => ['actionscript3as3'],
-            'userexperience' => ['userexperienceux'],
+            'userexperience' => ['userexperienceux', 'uiux'],
             'userinterface' => ['userinterfaceui'],
+            'spark' => ['apachespark'],
             'mssql' => ['mssqlserver', 'microsoftsqlserver'],
             'selenium' => ['seleniumide', 'seleniumwebdriver'],
             'blender' => ['blender3d'],
