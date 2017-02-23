@@ -1,0 +1,14 @@
+{# @var exists bool #}
+<div class="col s3 left-menu">
+    <div class="block">
+        <a href="javascript:void(0);" class="name">{{ 'profile'|trans }}</a>
+    </div>
+    {% if exists %}
+        <div class="block">
+            <a href="javascript:void(0);" class="name">{{ 'skills'|trans }}</a>
+        </div>
+        <div class="block">
+            <a href="javascript:void(0);" class="name">{{ 'contacts'|trans }}</a>
+        </div>
+    {% endif %}
+</div>

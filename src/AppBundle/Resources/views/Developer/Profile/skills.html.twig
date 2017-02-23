@@ -22,20 +22,9 @@
     <section class="content profile">
         <div class="container">
             <div class="row">
-                <div class="col s3 left-menu">
-                    <div class="block">
-                        <a href="javascript:void(0);" class="name">{{ 'profile'|trans }}</a>
-                    </div>
-                    <div class="block">
-                        <a href="javascript:void(0);" class="name">{{ 'skills'|trans }}</a>
-                    </div>
-                    <div class="block">
-                        <a href="javascript:void(0);" class="name">{{ 'contacts'|trans }}</a>
-                    </div>
-                    <div class="block">
-                        <a href="javascript:void(0);" class="name">{{ 'logout'|trans }}</a>
-                    </div>
-                </div>
+                {% include '@App/Developer/Profile/block/menu.html.twig' with {
+                    exists: true
+                } %}
                 <div class="col s9">
                     <h5>Укажите ваши умения</h5>
                     <div class="row">
