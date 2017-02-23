@@ -250,6 +250,14 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'mssql',
                 'name' => 'MS SQL',
             ],
+            [
+                'alias' => 'tsql',
+                'name' => 'T-SQL',
+            ],
+            [
+                'alias' => 'plsql',
+                'name' => 'PL/SQL',
+            ],
 
             /**
              * Framework
@@ -612,7 +620,7 @@ class FillSkillCommand extends ContainerAwareCommand
             ],
 
             /**
-             * Bug Tracker
+             * Bug Tracker & team
              */
             [
                 'alias' => 'jira',
@@ -625,6 +633,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'redmine',
                 'name' => 'Redmine',
+            ],
+            [
+                'alias' => 'confluence',
+                'name' => 'Confluence',
             ],
 
             /**
