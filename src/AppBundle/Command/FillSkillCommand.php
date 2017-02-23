@@ -722,6 +722,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'macos',
                 'name' => 'MacOS',
             ],
+            [
+                'alias' => 'ubuntu',
+                'name' => 'Ubuntu',
+            ],
 
             /**
              * Shell
