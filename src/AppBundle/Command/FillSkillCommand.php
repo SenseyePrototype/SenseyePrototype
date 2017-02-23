@@ -326,6 +326,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'yii',
                 'name' => 'Yii',
             ],
+            [
+                'alias' => 'cucumber',
+                'name' => 'Cucumber',
+            ],
 
             /**
              * Front-end JavaScript Framework
@@ -595,12 +599,20 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'Docker',
             ],
             [
+                'alias' => 'ansible',
+                'name' => 'Ansible',
+            ],
+            [
                 'alias' => 'testrail',
                 'name' => 'TestRail',
             ],
             [
                 'alias' => 'zabbix',
                 'name' => 'Zabbix',
+            ],
+            [
+                'alias' => 'teamcity',
+                'name' => 'TeamCity',
             ],
             [
                 'alias' => 'trello',
@@ -814,6 +826,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'projectmanagement',
                 'name' => 'Project Management',
             ],
+            [
+                'alias' => 'highload',
+                'name' => 'Highload',
+            ],
 
             /**
              * Operating system
@@ -881,6 +897,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'opencart',
                 'name' => 'Opencart',
+            ],
+            [
+                'alias' => 'bitrix',
+                'name' => 'Bitrix',
             ],
 
             /**
