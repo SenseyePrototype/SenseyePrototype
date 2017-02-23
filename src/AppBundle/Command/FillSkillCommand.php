@@ -219,6 +219,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'name' => 'Redis',
             ],
             [
+                'alias' => 'memcached',
+                'name' => 'Memcached',
+            ],
+            [
                 'alias' => 'mongodb',
                 'name' => 'MongoDB',
             ],
@@ -329,6 +333,22 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'cucumber',
                 'name' => 'Cucumber',
+            ],
+            [
+                'alias' => 'phpunit',
+                'name' => 'PHPUnit',
+            ],
+            [
+                'alias' => 'behat',
+                'name' => 'Behat',
+            ],
+            [
+                'alias' => 'nunit',
+                'name' => 'NUnit',
+            ],
+            [
+                'alias' => 'rspec',
+                'name' => 'RSpec',
             ],
 
             /**
@@ -916,6 +936,14 @@ class FillSkillCommand extends ContainerAwareCommand
             ],
 
             /**
+             * Big data
+             */
+            [
+                'alias' => 'hadoop',
+                'name' => 'Hadoop',
+            ],
+
+            /**
              * Other
              */
             [
@@ -970,6 +998,7 @@ class FillSkillCommand extends ContainerAwareCommand
             'reactjs' => ['react'],
             'angularjs' => ['angular', 'angular2'],
             'symfony' => ['symfony2', 'symfony3'],
+            'yii' => ['yii2'],
             'magento' => ['magento2'],
             'spring' => ['springmvc'],
             'teamlead' => ['teamleadership', 'teamleading'],
