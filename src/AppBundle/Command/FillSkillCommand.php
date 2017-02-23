@@ -402,6 +402,10 @@ class FillSkillCommand extends ContainerAwareCommand
                 'alias' => 'businessanalysis',
                 'name' => 'Business Analysis',
             ],
+            [
+                'alias' => 'qualityassurance',
+                'name' => 'Quality Assurance (QA)',
+            ],
 
             /**
              * Web development
