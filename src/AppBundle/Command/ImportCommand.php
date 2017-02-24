@@ -17,6 +17,8 @@ class ImportCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $startTime = microtime(true);
+
         /* @var $connection Connection */
         $connection = $this->getContainer()->get('doctrine')->getConnection();
 
@@ -187,6 +189,10 @@ class ImportCommand extends ContainerAwareCommand
         $searchable->addDocuments($documents);
 
         $index->refresh();
+
+        $duration = microtime(true) - $startTime;
+
+        $output->writeln("<info>Runtime: $duration</info>");
     }
 
     private function getSkills()
