@@ -19,16 +19,13 @@ class ImportCommand extends ContainerAwareCommand
     {
         $startTime = microtime(true);
 
-        /* @var $connection Connection */
-        $connection = $this->getContainer()->get('doctrine')->getConnection();
+        $connection = $this->getConnection();
 
         $cities = $this->getCities();
 
         $cityNameMap = array_column($cities, null, 'name');
 
         $skills = $this->getSkills();
-
-        $preparedSkills = array_slice($skills, 0, 100);
 
         $ranges = $this->getRanges();
 
@@ -37,7 +34,7 @@ class ImportCommand extends ContainerAwareCommand
                 'cities' => $cities,
             ],
             'must' => [
-                'skills' => $preparedSkills,
+                'skills' => $skills,
             ],
             'range' => [
                 'salary' => [
@@ -77,7 +74,116 @@ class ImportCommand extends ContainerAwareCommand
         }
 
         $index->create();
-        $searchable->setMapping([
+        $searchable->setMapping($this->getMapping());
+
+        $documents = [];
+        foreach ($profiles as $profile) {
+            $profileSkills = array_flip(json_decode($profile['skills'], true));
+
+            if ($profileSkillSynonyms = array_intersect_key($synonymMap, $profileSkills)) {
+                $profileSkills = array_merge(
+                    $profileSkills,
+                    array_flip($profileSkillSynonyms)
+                );
+            }
+
+            $document = [
+                'title' => $profile['title'],
+                'description' => $profile['description'],
+                'cities' => [
+                    $cityNameMap[$profile['city']]
+                ],
+                'salary' => (int)$profile['salary'],
+                'experience' => (int)$profile['experience'],
+                'expect' => null,
+                'assert' => null,
+                'link' => $profile['link'],
+                'skills' => array_values(
+                    array_intersect_key(
+                        $skillAliasMap,
+                        $profileSkills
+                    )
+                ),
+            ];
+            $documents[] = new Document($profile['id'], $document);
+        }
+
+        $searchable->addDocuments($documents);
+
+        $index->refresh();
+
+        $duration = microtime(true) - $startTime;
+
+        $output->writeln("<info>Runtime: $duration</info>");
+    }
+
+    private function getSkills()
+    {
+        $skillStatement = $this->getConnection()->prepare('
+            SELECT `alias`, `name`
+            FROM `s_skill`
+            LEFT JOIN `s_skill_priority` USING (`alias`)
+            ORDER BY `priority` DESC;
+        ');
+
+        $skillStatement->execute();
+
+        return $skillStatement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    private function getCities()
+    {
+        $cityStatement = $this->getConnection()->prepare('
+            SELECT `alias`, `name`
+            FROM `s_city`;
+        ');
+
+        $cityStatement->execute();
+
+        return $cityStatement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    private function getSynonymMap()
+    {
+        $synonymStatement = $this->getConnection()->prepare('
+            SELECT `alias`, `synonym`
+            FROM `s_skill_synonym`;
+        ');
+
+        $synonymStatement->execute();
+
+        $list = $synonymStatement->fetchAll(\PDO::FETCH_ASSOC);
+
+        return array_column($list, 'alias', 'synonym');
+    }
+
+    private function getRanges()
+    {
+        $rangeStatement = $this->getConnection()->prepare('
+            SELECT 
+                MIN(`salary`) AS `salary_from`,
+                MAX(`salary`) AS `salary_to`,
+                MIN(`experience`) AS `experience_from`,
+                MAX(`experience`) AS `experience_to`
+            FROM `profile`;
+        ');
+
+        $rangeStatement->execute();
+
+        return $rangeStatement->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    private function getConnection()
+    {
+        /* @var $connection Connection */
+        $connection = $this->getContainer()->get('doctrine')->getConnection();
+
+        return $connection;
+    }
+
+    private function getMapping()
+    {
+        return [
             'hash_code' => [
                 'type' => 'long',
             ],
@@ -152,110 +258,6 @@ class ImportCommand extends ContainerAwareCommand
                     ],
                 ],
             ],
-        ]);
-
-        $documents = [];
-        foreach ($profiles as $profile) {
-            $profileSkills = array_flip(json_decode($profile['skills'], true));
-
-            if ($profileSkillSynonyms = array_intersect_key($synonymMap, $profileSkills)) {
-                $profileSkills = array_merge(
-                    $profileSkills,
-                    array_flip($profileSkillSynonyms)
-                );
-            }
-
-            $document = [
-                'title' => $profile['title'],
-                'description' => $profile['description'],
-                'cities' => [
-                    $cityNameMap[$profile['city']]
-                ],
-                'salary' => (int)$profile['salary'],
-                'experience' => (int)$profile['experience'],
-                'expect' => null,
-                'assert' => null,
-                'link' => $profile['link'],
-                'skills' => array_values(
-                    array_intersect_key(
-                        $skillAliasMap,
-                        $profileSkills
-                    )
-                ),
-            ];
-            $documents[] = new Document($profile['id'], $document);
-        }
-
-        $searchable->addDocuments($documents);
-
-        $index->refresh();
-
-        $duration = microtime(true) - $startTime;
-
-        $output->writeln("<info>Runtime: $duration</info>");
-    }
-
-    private function getSkills()
-    {
-        $skillStatement = $this->getConnection()->prepare('
-            SELECT `alias`, `name`
-            FROM `skill`
-            LEFT JOIN `s_skill_priority` USING (`alias`)
-            ORDER BY `priority` DESC, `count` DESC;
-        ');
-
-        $skillStatement->execute();
-
-        return $skillStatement->fetchAll(\PDO::FETCH_ASSOC);
-    }
-
-    private function getCities()
-    {
-        $cityStatement = $this->getConnection()->prepare('
-            SELECT `alias`, `name`
-            FROM `city`;
-        ');
-
-        $cityStatement->execute();
-
-        return $cityStatement->fetchAll(\PDO::FETCH_ASSOC);
-    }
-
-    private function getSynonymMap()
-    {
-        $synonymStatement = $this->getConnection()->prepare('
-            SELECT `alias`, `synonym`
-            FROM `s_skill_synonym`;
-        ');
-
-        $synonymStatement->execute();
-
-        $list = $synonymStatement->fetchAll(\PDO::FETCH_ASSOC);
-
-        return array_column($list, 'alias', 'synonym');
-    }
-
-    private function getRanges()
-    {
-        $rangeStatement = $this->getConnection()->prepare('
-            SELECT 
-                MIN(`salary`) AS `salary_from`,
-                MAX(`salary`) AS `salary_to`,
-                MIN(`experience`) AS `experience_from`,
-                MAX(`experience`) AS `experience_to`
-            FROM `profile`;
-        ');
-
-        $rangeStatement->execute();
-
-        return $rangeStatement->fetch(\PDO::FETCH_ASSOC);
-    }
-
-    private function getConnection()
-    {
-        /* @var $connection Connection */
-        $connection = $this->getContainer()->get('doctrine')->getConnection();
-
-        return $connection;
+        ];
     }
 }
