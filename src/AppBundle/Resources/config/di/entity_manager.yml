@@ -1,6 +1,6 @@
 services:
     app.entity.manager.user:
-        class: AppBundle\Entity\Manager\UserManager
+        class: 'AppBundle\Entity\Manager\UserManager'
         arguments:
-            - "@doctrine.orm.entity_manager"
+            - '@doctrine.orm.entity_manager'
 

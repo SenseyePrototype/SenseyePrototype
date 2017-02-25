@@ -1,0 +1,6 @@
+services:
+    senseye.external.developer.profile.repository:
+        class: 'Doctrine\ORM\EntityRepository'
+        factory: ['@doctrine.orm.default_entity_manager', 'getRepository']
+        arguments:
+            - 'AppBundle\Entity\ExternalDeveloperProfile'

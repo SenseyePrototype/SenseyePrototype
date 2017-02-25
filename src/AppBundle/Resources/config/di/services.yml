@@ -42,3 +42,9 @@ services:
 
     senseye.seo:
         class: 'AppBundle\Service\SeoService'
+
+    senseye.extrenal.developer.profile.searcher:
+        class: 'AppBundle\Service\ExternalDeveloperProfileSearcher'
+        arguments:
+            - '@senseye.profile.searcher'
+            - '@senseye.external.developer.profile.repository'

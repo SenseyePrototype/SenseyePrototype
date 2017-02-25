@@ -18,20 +18,24 @@
                         <div class="post-date">27 ноября 2016</div>
                     #}
                     <h4 class="center-align">{{ profile.getTitle() }}</h4>
-                    <div class="field col s12">
-                        <div class="title col s12">{{ 'salary'|trans }}</div>
-                        <div class="col s12">
-                            <i class="zmdi zmdi-money"></i> {{ profile.getSalary() }}$
+                    {% if profile.getSalary() %}
+                        <div class="field col s12">
+                            <div class="title col s12">{{ 'salary'|trans }}</div>
+                            <div class="col s12">
+                                <i class="zmdi zmdi-money"></i> {{ profile.getSalary() }}$
+                            </div>
                         </div>
-                    </div>
-                    <div class="field col s12">
-                        <div class="title col s12">
-                            {{ 'profile_parameters.city'|trans }}
+                    {% endif %}
+                    {% if profile.getCities() %}
+                        <div class="field col s12">
+                            <div class="title col s12">
+                                {{ 'profile_parameters.city'|trans }}
+                            </div>
+                            <div class="col s12">
+                                <i class="zmdi zmdi-pin"></i> {{ profile.getCities()[0]['name'] }}
+                            </div>
                         </div>
-                        <div class="col s12">
-                            <i class="zmdi zmdi-pin"></i> {{ profile.getCities()[0]['name'] }}
-                        </div>
-                    </div>
+                    {% endif %}
                     <div class="field col s12">
                         <div class="title col s12">
                             {{ 'profile_parameters.description'|trans }}
@@ -68,31 +72,35 @@
                             </div>
                         </div>
                     {% endif %}
-                    <div class="field col s12">
-                        <div class="title col s12">
-                            {{ 'skills'|trans }}
-                        </div>
-                        <div class="col s12 skills">
-                            {% for index, skill in profile.getSkills() %}
-                                <div class="skill col s12">
-                                    <div class="col s2">
-                                        {{ skill['name'] }}
+                    {% if profile.getSkills() %}
+                        <div class="field col s12">
+                            <div class="title col s12">
+                                {{ 'skills'|trans }}
+                            </div>
+                            <div class="col s12 skills">
+                                {% for index, skill in profile.getSkills() %}
+                                    <div class="skill col s12">
+                                        <div class="col s2">
+                                            {{ skill['name'] }}
+                                        </div>
+                                        {% set score = min(10, skill['score']) %}
+                                        <div class="col s10">
+                                            {% for active in 1..10 %}
+                                                <div class="point {% if active <= score %}active{% endif %}"></div>
+                                            {% endfor %}
+                                        </div>
                                     </div>
-                                    {% set score = min(10, skill['score']) %}
-                                    <div class="col s10">
-                                        {% for active in 1..10 %}
-                                            <div class="point {% if active <= score %}active{% endif %}"></div>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            {% endfor %}
-                            <div class="link-original">
-                                <a href="{{ profile.getLink() }}?from=senseye">
-                                    <i class="zmdi zmdi-link"></i> Original
-                                </a>
+                                {% endfor %}
                             </div>
                         </div>
-                    </div>
+                    {% endif %}
+                    {% if profile.getLink() %}
+                        <div class="link-original">
+                            <a href="{{ profile.getLink() }}?from=senseye">
+                                <i class="zmdi zmdi-link"></i> Original
+                            </a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
