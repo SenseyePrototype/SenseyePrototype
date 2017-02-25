@@ -423,12 +423,12 @@ class ProfileCounterTest extends TestCase
                 ],
                 'range' => [
                     'salary' => [
-                        'from' => 0,
-                        'to' => 0,
+                        'from' => 1500,
+                        'to' => 5000,
                     ],
                     'experience' => [
-                        'from' => 0,
-                        'to' => 0,
+                        'from' => 2,
+                        'to' => 17,
                     ],
                 ],
             ],
