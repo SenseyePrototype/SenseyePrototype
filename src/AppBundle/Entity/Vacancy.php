@@ -197,4 +197,3 @@ class Vacancy
         return $this->creator;
     }
 }
-

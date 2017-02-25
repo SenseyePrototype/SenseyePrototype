@@ -39,6 +39,10 @@ AppBundle\Entity\ExternalDeveloperProfile:
             type: integer
             nullable: false
             unsigned: true
+        link:
+            type: string
+            nullable: false
+            length: 255
         created:
             type: datetime
             nullable: false

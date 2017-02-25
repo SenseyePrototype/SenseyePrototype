@@ -40,6 +40,11 @@ class ExternalDeveloperProfile
     private $experience;
 
     /**
+     * @var string
+     */
+    private $link;
+
+    /**
      * @var \DateTime
      */
     private $created;
@@ -178,6 +183,30 @@ class ExternalDeveloperProfile
     public function getExperience()
     {
         return $this->experience;
+    }
+
+    /**
+     * Set link
+     *
+     * @param string $link
+     *
+     * @return ExternalDeveloperProfile
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    /**
+     * Get link
+     *
+     * @return string
+     */
+    public function getLink()
+    {
+        return $this->link;
     }
 
     /**

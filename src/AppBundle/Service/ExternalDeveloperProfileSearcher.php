@@ -52,7 +52,7 @@ class ExternalDeveloperProfileSearcher
         return new Profile($id, [
             'title' => $entity->getTitle(),
             'description' => $entity->getDescription(),
-            'link' => null,
+            'link' => $entity->getLink(),
             'skills' => [],
             'cities' => [],
             'salary' => null,

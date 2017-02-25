@@ -201,6 +201,7 @@ class ImportCommand extends ContainerAwareCommand
                 `title`,
                 `description`,
                 `experience`,
+                `link`,
                 `created`,
                 `updated`
             ) 
@@ -210,6 +211,7 @@ class ImportCommand extends ContainerAwareCommand
                 `title`,
                 `description`,
                 `experience`,
+                `link`,
                 NOW(),
                 NOW()
             FROM `profile`
