@@ -7,6 +7,8 @@ namespace AppBundle\Entity;
  */
 class ExternalDeveloperProfile
 {
+    const SOURCE_DJINNI = 2;
+
     /**
      * @var integer
      */
