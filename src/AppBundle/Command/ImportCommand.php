@@ -97,22 +97,20 @@ class ImportCommand extends ContainerAwareCommand
                 }
             }
 
-            if ($skills) {
-                $document = [
-                    'title' => $profile['title'],
-                    'description' => $profile['description'],
-                    'cities' => [
-                        $cityNameMap[$profile['city']]
-                    ],
-                    'salary' => (int)$profile['salary'],
-                    'experience' => (int)$profile['experience'],
-                    'expect' => null,
-                    'assert' => null,
-                    'link' => $profile['link'],
-                    'skills' => $skills,
-                ];
-                $documents[] = new Document($profile['id'], $document);
-            }
+            $document = [
+                'title' => $profile['title'],
+                'description' => $profile['description'],
+                'cities' => [
+                    $cityNameMap[$profile['city']]
+                ],
+                'salary' => (int)$profile['salary'],
+                'experience' => (int)$profile['experience'],
+                'expect' => null,
+                'assert' => null,
+                'link' => $profile['link'],
+                'skills' => $skills,
+            ];
+            $documents[] = new Document($profile['id'], $document);
         }
 
         $searchable->addDocuments($documents);
