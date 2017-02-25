@@ -58,4 +58,9 @@ interface ProfileInterface
      * @return \DateTimeInterface
      */
     public function getCreated();
+
+    /**
+     * @return bool
+     */
+    public function isInternal();
 }

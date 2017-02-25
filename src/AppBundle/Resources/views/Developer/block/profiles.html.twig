@@ -3,7 +3,11 @@
     <div class="col s12 work-block z-depth-2 card-panel hoverable">
         <div class="col s12 header">
             <div class="title">
-                <a href="{{ path('developer.external', { id: profile.getId() }) }}" target="_blank">{{ profile.getTitle() }}</a>
+                {% set link = profile.isInternal()
+                    ? path('developer.profile', { id: profile.getId() })
+                    : path('developer.external', { id: profile.getId() })
+                %}
+                <a href="{{ link }}" target="_blank">{{ profile.getTitle() }}</a>
             </div>
             {#
                 <div class="post-date">27 ноября 2016</div>

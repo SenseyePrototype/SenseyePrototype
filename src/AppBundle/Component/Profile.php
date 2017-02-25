@@ -72,4 +72,9 @@ class Profile implements ProfileInterface
     {
         return new \DateTime($this->data['created']);
     }
+
+    public function isInternal()
+    {
+        return $this->getLink() === null;
+    }
 }
