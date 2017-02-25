@@ -78,7 +78,7 @@
                                     <div class="col s2">
                                         {{ skill['name'] }}
                                     </div>
-                                    {% set score = max(10 - index, 2) %}
+                                    {% set score = min(10, skill['score']) %}
                                     <div class="col s10">
                                         {% for active in 1..10 %}
                                             <div class="point {% if active <= score %}active{% endif %}"></div>

@@ -78,34 +78,41 @@ class ImportCommand extends ContainerAwareCommand
 
         $documents = [];
         foreach ($profiles as $profile) {
-            $profileSkills = array_flip(json_decode($profile['skills'], true));
+            $externalSkills = json_decode($profile['skills'], true);
 
-            if ($profileSkillSynonyms = array_intersect_key($synonymMap, $profileSkills)) {
-                $profileSkills = array_merge(
-                    $profileSkills,
-                    array_flip($profileSkillSynonyms)
-                );
+            $skills = [];
+
+            foreach ($externalSkills as $externalSkill) {
+                $alias = $externalSkill['alias'];
+                if (isset($synonymMap[$alias])) {
+                    $alias = $synonymMap[$alias];
+                }
+
+                if (isset($skillAliasMap[$alias])) {
+                    $skills[] = [
+                        'alias' => $alias,
+                        'name' => $skillAliasMap[$alias]['name'],
+                        'score' => $externalSkill['score'],
+                    ];
+                }
             }
 
-            $document = [
-                'title' => $profile['title'],
-                'description' => $profile['description'],
-                'cities' => [
-                    $cityNameMap[$profile['city']]
-                ],
-                'salary' => (int)$profile['salary'],
-                'experience' => (int)$profile['experience'],
-                'expect' => null,
-                'assert' => null,
-                'link' => $profile['link'],
-                'skills' => array_values(
-                    array_intersect_key(
-                        $skillAliasMap,
-                        $profileSkills
-                    )
-                ),
-            ];
-            $documents[] = new Document($profile['id'], $document);
+            if ($skills) {
+                $document = [
+                    'title' => $profile['title'],
+                    'description' => $profile['description'],
+                    'cities' => [
+                        $cityNameMap[$profile['city']]
+                    ],
+                    'salary' => (int)$profile['salary'],
+                    'experience' => (int)$profile['experience'],
+                    'expect' => null,
+                    'assert' => null,
+                    'link' => $profile['link'],
+                    'skills' => $skills,
+                ];
+                $documents[] = new Document($profile['id'], $document);
+            }
         }
 
         $searchable->addDocuments($documents);
