@@ -79,11 +79,11 @@ class ProfileSearcher
      * @param $id
      * @return Profile
      */
-    public function find($id)
+    public function find($id, $type)
     {
         $searchable = $this->indexService->getProfile();
 
-        $document = $searchable->getDocument($id);
+        $document = $searchable->getDocument("$type.$id");
 
         return new Profile(
             $document->getData()

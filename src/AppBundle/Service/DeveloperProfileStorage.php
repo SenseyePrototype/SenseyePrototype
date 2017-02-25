@@ -3,6 +3,7 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\DeveloperProfile;
+use AppBundle\Entity\DeveloperProfileSkillLink;
 use Elastica\Document;
 
 class DeveloperProfileStorage
@@ -23,6 +24,18 @@ class DeveloperProfileStorage
 
     public function store(DeveloperProfile $profile)
     {
+        $skills = [];
+
+        /* @var $skillLink DeveloperProfileSkillLink */
+        foreach ($profile->getSkillLinks() as $skillLink) {
+            $skill = $skillLink->getSkill();
+            $skills[] = [
+                'alias' => $skill->getAlias(),
+                'name' => $skill->getName(),
+                'score' => $skillLink->getScore(),
+            ];
+        }
+
         $document = [
             'id' => $profile->getId(),
             'title' => $profile->getTitle(),
@@ -33,7 +46,7 @@ class DeveloperProfileStorage
             'expect' => $profile->getExpect(),
             'assert' => $profile->getAssert(),
             'link' => null,
-            'skills' => [],
+            'skills' => $skills,
         ];
 
         $searchable = $this->indexService->getProfile();

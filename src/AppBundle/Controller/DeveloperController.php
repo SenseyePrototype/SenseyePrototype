@@ -61,7 +61,7 @@ class DeveloperController extends Controller
 
     public function profileAction($id)
     {
-        $profile = $this->get('senseye.profile.searcher')->find($id);
+        $profile = $this->get('senseye.profile.searcher')->find($id, 'i');
 
         return $this->render('@App/Developer/Profile/public.html.twig', [
             'profile' => $profile,

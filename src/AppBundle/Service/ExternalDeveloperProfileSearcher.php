@@ -37,7 +37,7 @@ class ExternalDeveloperProfileSearcher
     public function find($id)
     {
         try {
-            return $this->searcher->find("e.$id");
+            return $this->searcher->find($id, 'e');
         } catch (\Exception $e) {
             // NOP
         }
