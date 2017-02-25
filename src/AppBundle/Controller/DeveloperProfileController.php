@@ -46,6 +46,7 @@ class DeveloperProfileController extends BaseController
             $em = $this->getDoctrine()->getManager();
             $em->persist($developerProfile);
             $em->flush($developerProfile);
+            $this->get('senseye.developer.profile.storage')->store($developerProfile);
         }
 
         return $this->render('@App/Developer/Profile/edit.html.twig', [

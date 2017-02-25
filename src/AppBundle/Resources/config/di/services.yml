@@ -48,3 +48,8 @@ services:
         arguments:
             - '@senseye.profile.searcher'
             - '@senseye.external.developer.profile.repository'
+
+    senseye.developer.profile.storage:
+        class: 'AppBundle\Service\DeveloperProfileStorage'
+        arguments:
+            - '@senseye.developer.index'

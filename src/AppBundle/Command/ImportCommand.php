@@ -102,8 +102,8 @@ class ImportCommand extends ContainerAwareCommand
                 ],
                 'salary' => (int)$profile['salary'],
                 'experience' => (int)$profile['experience'],
-                'expect' => null,
                 'assert' => null,
+                'expect' => null,
                 'link' => $profile['link'],
                 'skills' => $skills,
             ];
