@@ -23,8 +23,6 @@ class ImportCommand extends ContainerAwareCommand
 
         $this->storeExternalDeveloperProfile();
 
-        $connection = $this->getConnection();
-
         $cities = $this->getCities();
 
         $cityNameMap = array_column($cities, null, 'name');
@@ -56,13 +54,7 @@ class ImportCommand extends ContainerAwareCommand
 
         $repository->store($available);
 
-        $profileStatement = $connection->prepare('
-            SELECT * FROM `profile`;
-        ');
-
-        $profileStatement->execute();
-
-        $profiles = $profileStatement->fetchAll(\PDO::FETCH_ASSOC);
+        $profiles = $this->getProfiles();
 
         $skillAliasMap = array_column($skills, null, 'alias');
 
@@ -102,6 +94,7 @@ class ImportCommand extends ContainerAwareCommand
             }
 
             $document = [
+                'id' => $profile['id'],
                 'title' => $profile['title'],
                 'description' => $profile['description'],
                 'cities' => [
@@ -184,18 +177,8 @@ class ImportCommand extends ContainerAwareCommand
 
     private function storeExternalDeveloperProfile()
     {
-        /* @var $mapping ClassMetadata */
-        $mapping = $this
-            ->getContainer()
-            ->get('doctrine')
-            ->getManager()
-            ->getClassMetadata(ExternalDeveloperProfile::class);
-
-        $exnernal = $mapping->getTableName();
-        $sourceId = ExternalDeveloperProfile::SOURCE_DJINNI;
-
-        $this->getConnection()->exec("
-            INSERT INTO `$exnernal` (
+        $statement = $this->getConnection()->prepare("
+            INSERT INTO `s_external_developer_profile` (
                 `external_id`,
                 `source_id`,
                 `title`,
@@ -207,7 +190,7 @@ class ImportCommand extends ContainerAwareCommand
             ) 
             SELECT
                 `external_id`,
-                $sourceId,
+                :sourceId,
                 `title`,
                 `description`,
                 `experience`,
@@ -222,6 +205,10 @@ class ImportCommand extends ContainerAwareCommand
                 `updated` = NOW()
             ;
         ");
+
+        $statement->execute([
+            'sourceId' => ExternalDeveloperProfile::SOURCE_DJINNI,
+        ]);
     }
 
     private function getConnection()
@@ -310,5 +297,34 @@ class ImportCommand extends ContainerAwareCommand
                 ],
             ],
         ];
+    }
+
+    /**
+     * @return array
+     */
+    private function getProfiles()
+    {
+        $statement = $this
+            ->getConnection()
+            ->prepare('
+                SELECT
+                  `e`.`id`,
+                  `p`.`link`,
+                  `p`.`city`,
+                  `p`.`title`,
+                  `p`.`salary`,
+                  `p`.`experience`,
+                  `p`.`description`,
+                  `p`.`skills`
+                FROM `profile` `p`
+                INNER JOIN `s_external_developer_profile` `e`
+                  ON (`e`.`external_id` = `p`.`external_id` AND `e`.`source_id` = :sourceId);
+            ');
+
+        $statement->execute([
+            'sourceId' => ExternalDeveloperProfile::SOURCE_DJINNI,
+        ]);
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 }
