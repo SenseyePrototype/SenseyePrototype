@@ -1,0 +1,47 @@
+AppBundle\Entity\ExternalDeveloperProfile:
+    type: entity
+    table: s_external_developer_profile
+
+    uniqueConstraints:
+        UNIQUE_EXTERNAL_SOURCE:
+            columns:
+                - external_id
+                - source_id
+
+    id:
+        id:
+            type: integer
+            unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+
+    fields:
+        externalId:
+            type: string
+            fixed: true
+            length: 8
+            nullable: false
+            column: external_id
+        sourceId:
+            type: integer
+            nullable: false
+            unsigned: true
+            column: source_id
+        title:
+            type: string
+            nullable: false
+            length: 255
+        description:
+            type: text
+            nullable: false
+        experience:
+            type: integer
+            nullable: false
+            unsigned: true
+        created:
+            type: datetime
+            nullable: false
+        updated:
+            type: datetime
+            nullable: false
