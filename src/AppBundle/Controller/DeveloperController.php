@@ -75,6 +75,10 @@ class DeveloperController extends Controller
     {
         $profile = $this->get('senseye.extrenal.developer.profile.searcher')->find($id);
 
+        if (empty($profile)) {
+            throw $this->createNotFoundException();
+        }
+
         return $this->render('@App/Developer/Profile/public.html.twig', [
             'profile' => $profile,
             'seo' => [

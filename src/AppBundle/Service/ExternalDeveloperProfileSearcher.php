@@ -45,6 +45,10 @@ class ExternalDeveloperProfileSearcher
         /* @var $entity ExternalDeveloperProfile */
         $entity = $this->repository->find($id);
 
+        if (empty($entity)) {
+            return null;
+        }
+
         return new Profile($id, [
             'title' => $entity->getTitle(),
             'description' => $entity->getDescription(),
