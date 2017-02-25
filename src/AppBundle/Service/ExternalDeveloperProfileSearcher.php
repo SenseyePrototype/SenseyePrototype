@@ -49,7 +49,8 @@ class ExternalDeveloperProfileSearcher
             return null;
         }
 
-        return new Profile($id, [
+        return new Profile([
+            'id' => $entity->getId(),
             'title' => $entity->getTitle(),
             'description' => $entity->getDescription(),
             'link' => $entity->getLink(),

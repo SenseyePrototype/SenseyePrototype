@@ -107,7 +107,7 @@ class ImportCommand extends ContainerAwareCommand
                 'link' => $profile['link'],
                 'skills' => $skills,
             ];
-            $documents[] = new Document($profile['id'], $document);
+            $documents[] = new Document("e.{$profile['id']}", $document);
         }
 
         $searchable->addDocuments($documents);

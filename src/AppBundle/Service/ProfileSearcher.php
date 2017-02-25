@@ -68,7 +68,6 @@ class ProfileSearcher
         /* @var $result Result */
         foreach ($pager->getResults() as $result) {
             $profiles[] = new Profile(
-                $result->getId(),
                 $result->getSource()
             );
         }
@@ -87,7 +86,6 @@ class ProfileSearcher
         $document = $searchable->getDocument($id);
 
         return new Profile(
-            $document->getId(),
             $document->getData()
         );
     }
