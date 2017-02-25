@@ -319,7 +319,7 @@ class ImportCommand extends ContainerAwareCommand
                 FROM `profile` `p`
                 INNER JOIN `s_external_developer_profile` `e`
                   ON (`e`.`external_id` = `p`.`external_id` AND `e`.`source_id` = :sourceId)
-                LIMIT 1;
+                LIMIT 10000;
             ');
 
         $statement->execute([
