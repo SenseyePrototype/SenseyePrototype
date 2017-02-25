@@ -2,7 +2,9 @@
 
 namespace AppBundle\Command;
 
+use AppBundle\Entity\ExternalDeveloperProfile;
 use Doctrine\DBAL\Connection;
+use Doctrine\ORM\Mapping\ClassMetadata;
 use Elastica\Document;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -18,6 +20,8 @@ class ImportCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $startTime = microtime(true);
+
+        $this->storeExternalDeveloperProfile();
 
         $connection = $this->getConnection();
 
@@ -176,6 +180,46 @@ class ImportCommand extends ContainerAwareCommand
         $rangeStatement->execute();
 
         return $rangeStatement->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    private function storeExternalDeveloperProfile()
+    {
+        /* @var $mapping ClassMetadata */
+        $mapping = $this
+            ->getContainer()
+            ->get('doctrine')
+            ->getManager()
+            ->getClassMetadata(ExternalDeveloperProfile::class);
+
+        $exnernal = $mapping->getTableName();
+        $sourceId = ExternalDeveloperProfile::SOURCE_DJINNI;
+
+        $this->getConnection()->exec("
+            INSERT INTO `$exnernal` (
+                `external_id`,
+                `source_id`,
+                `title`,
+                `description`,
+                `experience`,
+                `created`,
+                `updated`
+            ) 
+            SELECT
+                `external_id`,
+                $sourceId,
+                `title`,
+                `description`,
+                `experience`,
+                NOW(),
+                NOW()
+            FROM `profile`
+            ON DUPLICATE KEY UPDATE
+                `title` = VALUES(`title`),
+                `description` = VALUES(`description`),
+                `experience` = VALUES(`experience`),
+                `updated` = NOW()
+            ;
+        ");
     }
 
     private function getConnection()
