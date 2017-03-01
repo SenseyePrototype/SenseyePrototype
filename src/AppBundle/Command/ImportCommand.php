@@ -4,7 +4,6 @@ namespace AppBundle\Command;
 
 use AppBundle\Entity\ExternalDeveloperProfile;
 use Doctrine\DBAL\Connection;
-use Doctrine\ORM\Mapping\ClassMetadata;
 use Elastica\Document;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -85,10 +84,15 @@ class ImportCommand extends ContainerAwareCommand
                 }
 
                 if (isset($skillAliasMap[$alias])) {
-                    $skills[] = [
+                    $score = max(
+                        $externalSkill['score'],
+                        $skills[$alias]['score'] ?? 1
+                    );
+
+                    $skills[$alias] = [
                         'alias' => $alias,
                         'name' => $skillAliasMap[$alias]['name'],
-                        'score' => $externalSkill['score'],
+                        'score' => $score,
                     ];
                 }
             }
@@ -105,7 +109,7 @@ class ImportCommand extends ContainerAwareCommand
                 'assert' => null,
                 'expect' => null,
                 'link' => $profile['link'],
-                'skills' => $skills,
+                'skills' => array_values($skills),
             ];
             $documents[] = new Document("e.{$profile['id']}", $document);
         }
