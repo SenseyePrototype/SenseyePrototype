@@ -46,12 +46,8 @@
                     </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix zmdi zmdi-pin"></i>
-                        <select id="city">
-                            <option value="kyiv">Киев</option>
-                            <option value="odesa">Одесса</option>
-                            <option value="lviv">Львов</option>
-                        </select>
-                        <label for="city">{{ 'city'|trans }}</label>
+                        {{ form_widget(form.city) }}
+                        {{ form_label(form.city, 'city'|trans) }}
                     </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix zmdi zmdi-brush"></i>

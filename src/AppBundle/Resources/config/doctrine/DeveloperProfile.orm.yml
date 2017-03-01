@@ -13,6 +13,11 @@ AppBundle\Entity\DeveloperProfile:
             targetEntity: AppBundle\Entity\DeveloperProfileSkillLink
             mappedBy: developerProfile
             fetch: LAZY
+        cityLinks:
+            targetEntity: AppBundle\Entity\DeveloperProfileCityLink
+            mappedBy: developerProfile
+            fetch: LAZY
+            cascade: ['persist']
 
     manyToOne:
         user:

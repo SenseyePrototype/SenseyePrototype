@@ -257,4 +257,3 @@ class ExternalDeveloperProfile
         return $this->updated;
     }
 }
-
