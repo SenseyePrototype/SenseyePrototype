@@ -44,4 +44,4 @@ hwi_oauth:
         bitbucket:
             type:                bitbucket
             client_id:           '%bitbucket_client_id%'
-            client_secret:       '%bitbucket_client_id%'
+            client_secret:       '%bitbucket_client_secret%'

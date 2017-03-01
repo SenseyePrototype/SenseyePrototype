@@ -33,3 +33,4 @@ parameters:
     github_client_id: empty
     github_client_secret: empty
     bitbucket_client_id: empty
+    bitbucket_client_secret: empty
