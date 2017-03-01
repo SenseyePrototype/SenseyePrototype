@@ -80,11 +80,11 @@
                             <div class="col s12 skills">
                                 {% for index, skill in profile.getSkills() %}
                                     <div class="skill col s12">
-                                        <div class="col s2">
+                                        <div class="col s4">
                                             {{ skill['name'] }}
                                         </div>
                                         {% set score = min(10, skill['score']) %}
-                                        <div class="col s10">
+                                        <div class="col s8">
                                             {% for active in 1..10 %}
                                                 <div class="point {% if active <= score %}active{% endif %}"></div>
                                             {% endfor %}
