@@ -1,6 +1,10 @@
-app_developer_profile:
-    resource: "@AppBundle/Resources/config/routing/developerprofile.yml"
+app.developer.profile:
+    resource: '@AppBundle/Resources/config/routing/developer.profile.yml'
     prefix:   /developer/profile
+
+app.employer.profile:
+    resource: '@AppBundle/Resources/config/routing/employer.profile.yml'
+    prefix:   /employer/profile
 
 intro:
     path: /

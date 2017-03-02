@@ -1,0 +1,4 @@
+employer.profile.edit:
+    path:     /edit
+    defaults: { _controller: 'AppBundle:EmployerProfile:edit' }
+    methods:  ['GET', 'POST']

@@ -41,7 +41,7 @@ class EmployerProfileController extends BaseController
             $em->flush($employerProfile);
         }
 
-        return $this->render('@App/Developer/Profile/edit.html.twig', [
+        return $this->render('@App/Employer/Profile/edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }
