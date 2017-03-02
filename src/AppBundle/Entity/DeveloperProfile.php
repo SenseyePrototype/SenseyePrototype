@@ -437,7 +437,6 @@ class DeveloperProfile
      */
     private function getMainCityLink()
     {
-        /* @var $cityLink DeveloperProfileCityLink */
         return $this
             ->getCityLinks()
             ->filter(function (DeveloperProfileCityLink $cityLink) {
