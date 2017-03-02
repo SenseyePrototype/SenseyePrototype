@@ -13,6 +13,11 @@ class DeveloperProfileCityLink
     private $id;
 
     /**
+     * @var boolean
+     */
+    private $main;
+
+    /**
      * @var \DateTime
      */
     private $created;
@@ -41,6 +46,30 @@ class DeveloperProfileCityLink
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set main
+     *
+     * @param boolean $main
+     *
+     * @return DeveloperProfileCityLink
+     */
+    public function setMain($main)
+    {
+        $this->main = $main;
+
+        return $this;
+    }
+
+    /**
+     * Get main
+     *
+     * @return boolean
+     */
+    public function getMain()
+    {
+        return $this->main;
     }
 
     /**
@@ -139,4 +168,3 @@ class DeveloperProfileCityLink
         return $this->city;
     }
 }
-
