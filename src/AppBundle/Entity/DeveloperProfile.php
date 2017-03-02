@@ -412,22 +412,21 @@ class DeveloperProfile
     {
         $cityLink = $this->getMainCityLink();
 
-        if ($cityLink) {
-            $this->removeCityLink($cityLink);
-        }
-
         $now = new \DateTime();
 
-        $cityLink = new DeveloperProfileCityLink();
+        if (empty($cityLink)) {
+            $cityLink = new DeveloperProfileCityLink();
+            $cityLink
+                ->setMain(true)
+                ->setDeveloperProfile($this)
+                ->setCreated($now);
+
+            $this->addCityLink($cityLink);
+        }
 
         $cityLink
-            ->setMain(true)
-            ->setDeveloperProfile($this)
             ->setCity($city)
-            ->setCreated($now)
             ->setUpdated($now);
-
-        $this->addCityLink($cityLink);
 
         return $this;
     }
