@@ -1,0 +1,42 @@
+AppBundle\Entity\DeveloperProfileCityLink:
+    type: entity
+    table: s_developer_profile_city_link
+
+    id:
+        id:
+            type: integer
+            unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+
+    manyToOne:
+        developerProfile:
+            targetEntity: AppBundle\Entity\DeveloperProfile
+            inversedBy: cityLinks
+            fetch: EXTRA_LAZY
+            joinColumns:
+                -
+                    name: developer_id
+                    nullable: false
+                    referencedColumnName: id
+
+        city:
+            targetEntity: AppBundle\Entity\City
+            fetch: EAGER
+            joinColumns:
+                -
+                    name: city_id
+                    nullable: false
+                    referencedColumnName: id
+
+    fields:
+        main:
+            type: boolean
+            nullable: false
+        created:
+            type: datetime
+            nullable: false
+        updated:
+            type: datetime
+            nullable: false

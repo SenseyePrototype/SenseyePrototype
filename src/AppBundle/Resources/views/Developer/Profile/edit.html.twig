@@ -45,6 +45,11 @@
                         {{ form_label(form.salary, 'salary'|trans) }}
                     </div>
                     <div class="input-field col s12">
+                        <i class="material-icons prefix zmdi zmdi-pin"></i>
+                        {{ form_widget(form.mainCity) }}
+                        {{ form_label(form.mainCity, 'city'|trans) }}
+                    </div>
+                    <div class="input-field col s12">
                         <i class="material-icons prefix zmdi zmdi-brush"></i>
                         {{ form_widget(form.description, {
                             'attr': {
@@ -100,4 +105,5 @@
 {% block javascripts %}
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+    <script src="{{ asset('js/developer.profile.edit.js') }}?v=7"></script>
 {% endblock %}

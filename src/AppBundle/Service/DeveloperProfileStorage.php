@@ -3,6 +3,7 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\DeveloperProfile;
+use AppBundle\Entity\DeveloperProfileCityLink;
 use AppBundle\Entity\DeveloperProfileSkillLink;
 use Elastica\Document;
 
@@ -36,11 +37,21 @@ class DeveloperProfileStorage
             ];
         }
 
+        $cities = [];
+        /* @var $cityLink DeveloperProfileCityLink */
+        foreach ($profile->getCityLinks() as $cityLink) {
+            $city = $cityLink->getCity();
+            $cities[] = [
+                'alias' => $city->getAlias(),
+                'name' => $city->getName(),
+            ];
+        }
+
         $document = [
             'id' => $profile->getId(),
             'title' => $profile->getTitle(),
             'description' => $profile->getDescription(),
-            'cities' => [],
+            'cities' => $cities,
             'salary' => $profile->getSalary(),
             'experience' => $profile->getExperience(),
             'expect' => $profile->getExpect(),

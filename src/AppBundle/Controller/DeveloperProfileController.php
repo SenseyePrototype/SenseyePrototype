@@ -45,7 +45,7 @@ class DeveloperProfileController extends BaseController
             $developerProfile->setUpdated($now);
             $em = $this->getDoctrine()->getManager();
             $em->persist($developerProfile);
-            $em->flush($developerProfile);
+            $em->flush();
             $this->get('senseye.developer.profile.storage')->store($developerProfile);
         }
 

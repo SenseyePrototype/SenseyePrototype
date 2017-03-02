@@ -2,10 +2,13 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\City;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class DeveloperProfileType extends AbstractType
 {
@@ -29,6 +32,17 @@ class DeveloperProfileType extends AbstractType
             ->add('expect', TextareaType::class, [
                 'empty_data' => '',
                 'required' => false,
+            ])
+            ->add('mainCity', EntityType::class, [
+                'class' => City::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er
+                        ->createQueryBuilder('city')
+                        ->orderBy('city.name', 'ASC');
+                },
+                'choice_label' => function (City $city) {
+                    return $city->getName();
+                },
             ])
             ->add('published')
         ;

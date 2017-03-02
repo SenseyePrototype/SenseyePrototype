@@ -63,6 +63,11 @@ class DeveloperProfile
     private $skillLinks;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $cityLinks;
+
+    /**
      * @var \AppBundle\Entity\User
      */
     private $user;
@@ -357,5 +362,85 @@ class DeveloperProfile
     public function getUpdated()
     {
         return $this->updated;
+    }
+
+    /**
+     * Add cityLink
+     *
+     * @param \AppBundle\Entity\DeveloperProfileCityLink $cityLink
+     *
+     * @return DeveloperProfile
+     */
+    public function addCityLink(\AppBundle\Entity\DeveloperProfileCityLink $cityLink)
+    {
+        $this->cityLinks[] = $cityLink;
+
+        return $this;
+    }
+
+    /**
+     * Remove cityLink
+     *
+     * @param \AppBundle\Entity\DeveloperProfileCityLink $cityLink
+     */
+    public function removeCityLink(\AppBundle\Entity\DeveloperProfileCityLink $cityLink)
+    {
+        $this->cityLinks->removeElement($cityLink);
+    }
+
+    /**
+     * Get cityLinks
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCityLinks()
+    {
+        return $this->cityLinks;
+    }
+
+    /**
+     * @return City|null
+     */
+    public function getMainCity()
+    {
+        $cityLink = $this->getMainCityLink();
+
+        return $cityLink ? $cityLink->getCity() : null;
+    }
+
+    public function setMainCity(City $city)
+    {
+        $cityLink = $this->getMainCityLink();
+
+        $now = new \DateTime();
+
+        if (empty($cityLink)) {
+            $cityLink = new DeveloperProfileCityLink();
+            $cityLink
+                ->setMain(true)
+                ->setDeveloperProfile($this)
+                ->setCreated($now);
+
+            $this->addCityLink($cityLink);
+        }
+
+        $cityLink
+            ->setCity($city)
+            ->setUpdated($now);
+
+        return $this;
+    }
+
+    /**
+     * @return DeveloperProfileCityLink|null
+     */
+    private function getMainCityLink()
+    {
+        return $this
+            ->getCityLinks()
+            ->filter(function (DeveloperProfileCityLink $cityLink) {
+                return $cityLink->getMain();
+            })
+            ->first();
     }
 }
