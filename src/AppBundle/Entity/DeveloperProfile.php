@@ -401,35 +401,48 @@ class DeveloperProfile
     /**
      * @return City|null
      */
-    public function getCity()
+    public function getMainCity()
     {
-        /* @var $cityLink DeveloperProfileCityLink */
-        $cityLink = $this->getCityLinks()->first();
+        $cityLink = $this->getMainCityLink();
 
         return $cityLink ? $cityLink->getCity() : null;
     }
 
-    public function setCity(City $city)
+    public function setMainCity(City $city)
     {
-        /* @var $cityLink DeveloperProfileCityLink */
-        $cityLink = $this->getCityLinks()->first();
+        $cityLink = $this->getMainCityLink();
+
+        if ($cityLink) {
+            $this->removeCityLink($cityLink);
+        }
 
         $now = new \DateTime();
 
-        if (empty($cityLink)) {
-            $cityLink = new DeveloperProfileCityLink();
-
-            $cityLink
-                ->setDeveloperProfile($this)
-                ->setCreated($now);
-
-            $this->addCityLink($cityLink);
-        }
+        $cityLink = new DeveloperProfileCityLink();
 
         $cityLink
+            ->setMain(true)
+            ->setDeveloperProfile($this)
             ->setCity($city)
+            ->setCreated($now)
             ->setUpdated($now);
 
+        $this->addCityLink($cityLink);
+
         return $this;
+    }
+
+    /**
+     * @return DeveloperProfileCityLink|null
+     */
+    private function getMainCityLink()
+    {
+        /* @var $cityLink DeveloperProfileCityLink */
+        return $this
+            ->getCityLinks()
+            ->filter(function (DeveloperProfileCityLink $cityLink) {
+                return $cityLink->getMain();
+            })
+            ->first();
     }
 }

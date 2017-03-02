@@ -33,7 +33,7 @@ class DeveloperProfileType extends AbstractType
                 'empty_data' => '',
                 'required' => false,
             ])
-            ->add('city', EntityType::class, [
+            ->add('mainCity', EntityType::class, [
                 'class' => City::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er
