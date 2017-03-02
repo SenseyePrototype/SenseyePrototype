@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\City;
+use AppBundle\Entity\DeveloperProfile;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -53,9 +54,9 @@ class DeveloperProfileType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\DeveloperProfile'
-        ));
+        $resolver->setDefaults([
+            'data_class' => DeveloperProfile::class,
+        ]);
     }
 
     /**
@@ -65,6 +66,4 @@ class DeveloperProfileType extends AbstractType
     {
         return 'appbundle_developerprofile';
     }
-
-
 }

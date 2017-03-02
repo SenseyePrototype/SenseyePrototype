@@ -3,7 +3,6 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\DeveloperProfile;
-use AppBundle\Entity\DeveloperProfileSkillLink;
 use AppBundle\Entity\Skill;
 use Symfony\Component\HttpFoundation\Request;
 
