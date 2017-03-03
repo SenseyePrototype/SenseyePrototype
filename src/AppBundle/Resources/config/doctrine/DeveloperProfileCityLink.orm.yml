@@ -31,8 +31,9 @@ AppBundle\Entity\DeveloperProfileCityLink:
                     referencedColumnName: id
 
     fields:
-        main:
-            type: boolean
+        type:
+            type: smallint
+            unsigned: true
             nullable: false
         created:
             type: datetime

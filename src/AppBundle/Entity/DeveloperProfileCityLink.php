@@ -7,15 +7,17 @@ namespace AppBundle\Entity;
  */
 class DeveloperProfileCityLink
 {
+    const MAIN = 1;
+
     /**
      * @var integer
      */
     private $id;
 
     /**
-     * @var boolean
+     * @var integer
      */
-    private $main;
+    private $type;
 
     /**
      * @var \DateTime
@@ -51,13 +53,13 @@ class DeveloperProfileCityLink
     /**
      * Set main
      *
-     * @param boolean $main
+     * @param integer $type
      *
      * @return DeveloperProfileCityLink
      */
-    public function setMain($main)
+    public function setType($type)
     {
-        $this->main = $main;
+        $this->type = $type;
 
         return $this;
     }
@@ -65,11 +67,11 @@ class DeveloperProfileCityLink
     /**
      * Get main
      *
-     * @return boolean
+     * @return integer
      */
-    public function getMain()
+    public function getType()
     {
-        return $this->main;
+        return $this->type;
     }
 
     /**

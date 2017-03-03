@@ -78,6 +78,7 @@ class DeveloperProfile
     public function __construct()
     {
         $this->skillLinks = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->cityLinks = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -417,7 +418,7 @@ class DeveloperProfile
         if (empty($cityLink)) {
             $cityLink = new DeveloperProfileCityLink();
             $cityLink
-                ->setMain(true)
+                ->setType(DeveloperProfileCityLink::MAIN)
                 ->setDeveloperProfile($this)
                 ->setCreated($now);
 
@@ -439,7 +440,7 @@ class DeveloperProfile
         return $this
             ->getCityLinks()
             ->filter(function (DeveloperProfileCityLink $cityLink) {
-                return $cityLink->getMain();
+                return $cityLink->getType() === DeveloperProfileCityLink::MAIN;
             })
             ->first();
     }
