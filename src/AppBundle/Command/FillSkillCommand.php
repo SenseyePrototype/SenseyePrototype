@@ -432,7 +432,7 @@ class FillSkillCommand extends ContainerAwareCommand
             ],
             [
                 'alias' => 'html',
-                'name' => 'html',
+                'name' => 'HTML',
             ],
             [
                 'alias' => 'css',
@@ -1012,11 +1012,16 @@ class FillSkillCommand extends ContainerAwareCommand
             ],
             [
                 'alias' => 'opencart',
-                'name' => 'Opencart',
+                'name' => 'OpenCart',
             ],
             [
                 'alias' => 'bitrix',
                 'name' => 'Bitrix',
+            ],
+
+            [
+                'alias' => 'prestashop',
+                'name' => 'PrestaShop',
             ],
 
             /**
@@ -1029,6 +1034,10 @@ class FillSkillCommand extends ContainerAwareCommand
             [
                 'alias' => 'jade',
                 'name' => 'Jade',
+            ],
+            [
+                'alias' => 'blade',
+                'name' => 'Blade',
             ],
             [
                 'alias' => 'haml',
