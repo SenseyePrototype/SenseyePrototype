@@ -56,7 +56,7 @@ class FillSkillCommand extends ContainerAwareCommand
             ],
             [
                 'alias' => 'c',
-                'name' => 'c',
+                'name' => 'C',
             ],
             [
                 'alias' => 'cplusplus',
