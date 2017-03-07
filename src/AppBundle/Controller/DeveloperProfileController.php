@@ -32,7 +32,7 @@ class DeveloperProfileController extends BaseController
         if (empty($developerProfile)) {
             $developerProfile = new DeveloperProfile();
             $developerProfile
-                ->setUser($this->getUser())
+                ->setUser($user)
                 ->setCreated($now)
                 ->setPublished(true);
         }

@@ -27,7 +27,7 @@ class EmployerProfileController extends BaseController
         if (empty($employerProfile)) {
             $employerProfile = new EmployerProfile();
             $employerProfile
-                ->setUser($this->getUser())
+                ->setUser($user)
                 ->setCreated($now);
         }
 
