@@ -36,3 +36,8 @@ developer.external:
     methods: ['GET']
     requirements:
         id: '\d+'
+
+debug.dump:
+    path:     /dump
+    defaults: { _controller: AppBundle:Debug:dump }
+    methods: ['GET']
