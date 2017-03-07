@@ -7,10 +7,10 @@ use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class GithubResponseConnector
+ * Class LinkedinResponseConnector
  * @package AppBundle\Service\OAuth\UserResponseConnector
  */
-class GithubResponseConnector extends AbstractResponseConnector
+class LinkedInResponseConnector extends AbstractResponseConnector
 {
     /**
      * @param UserInterface|User         $user
@@ -19,15 +19,15 @@ class GithubResponseConnector extends AbstractResponseConnector
     public function connect(UserInterface $user, UserResponseInterface $response)
     {
         /** @var User $previousUser */
-        $previousUser = $this->userManager->findOneByGithubId($response->getUsername());
+        $previousUser = $this->userManager->findOneByLinkedinId($response->getUsername());
 
         if ($previousUser) {
             $this->disconnect($previousUser, $response);
         }
 
         //we connect current user
-        $user->setGithubId($response->getUsername());
-        $user->setGithubAccessToken($response->getAccessToken());
+        $user->setLinkedinId($response->getUsername());
+        $user->setLinkedinAccessToken($response->getAccessToken());
     }
 
     /**
@@ -36,8 +36,8 @@ class GithubResponseConnector extends AbstractResponseConnector
      */
     public function disconnect(UserInterface $user, UserResponseInterface $response)
     {
-        $user->setGithubId(null);
-        $user->setGithubAccessToken(null);
+        $user->setLinkedinId(null);
+        $user->setLinkedinAccessToken(null);
         $this->userManager->save($user);
     }
 }

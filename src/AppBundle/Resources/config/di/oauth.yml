@@ -46,13 +46,13 @@ services:
 
     app.oauth.user_response_connector_linkedin:
         parent: app.oauth.user_response_connector
-        class: AppBundle\Service\OAuth\UserResponseConnector\LinkedinResponseConnector
+        class: AppBundle\Service\OAuth\UserResponseConnector\LinkedInResponseConnector
         tags:
             - { name: app.oauth.user_response_connector, alias: linkedin}
 
     app.oauth.user_response_connector_github:
         parent: app.oauth.user_response_connector
-        class: AppBundle\Service\OAuth\UserResponseConnector\GithubResponseConnector
+        class: AppBundle\Service\OAuth\UserResponseConnector\GitHubResponseConnector
         tags:
             - { name: app.oauth.user_response_connector, alias: github}
 
