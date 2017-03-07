@@ -255,4 +255,3 @@ class SocialProfile
         return $this->user;
     }
 }
-

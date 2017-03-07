@@ -1,6 +1,7 @@
 AppBundle\Entity\SocialProfile:
     type: entity
     table: s_social_profile
+    repositoryClass: AppBundle\Repository\SocialProfileRepository
 
     indexes:
         USER_ID_INDEX:

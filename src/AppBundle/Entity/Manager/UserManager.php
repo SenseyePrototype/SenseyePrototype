@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity\Manager;
 
+use AppBundle\Entity\SocialProfile;
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 
@@ -75,11 +76,21 @@ class UserManager
     /**
      * @param $username
      *
-     * @return \AppBundle\Entity\User|null|object
+     * @return \AppBundle\Entity\User|null
      */
     public function findUserByUsername($username)
     {
         return $this->getRepository()->findOneBy(['username' => $username]);
+    }
+
+    /**
+     * @param $socialCode
+     * @param $profileId
+     * @return \AppBundle\Entity\User|null
+     */
+    public function findBySocial($socialCode, $profileId)
+    {
+        return $this->getSocialRepository()->findByUnique($socialCode, $profileId);
     }
 
     /**
@@ -111,6 +122,11 @@ class UserManager
 
     private function getRepository()
     {
-        return $this->manager->getRepository('AppBundle:User');
+        return $this->manager->getRepository(User::class);
+    }
+
+    private function getSocialRepository()
+    {
+        return $this->manager->getRepository(SocialProfile::class);
     }
 }
