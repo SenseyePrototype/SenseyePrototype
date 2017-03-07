@@ -7,6 +7,9 @@ AppBundle\Entity\User:
         developerProfiles:
             targetEntity: AppBundle\Entity\DeveloperProfile
             mappedBy: user
+        socialProfiles:
+            targetEntity: AppBundle\Entity\SocialProfile
+            mappedBy: user
 
     id:
         id:

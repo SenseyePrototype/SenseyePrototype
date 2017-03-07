@@ -6,7 +6,11 @@ class DebugController extends BaseController
 {
     public function dumpAction()
     {
-        dump('debug');
+        $user = $this->getUser();
+        foreach ($user->getSocialProfiles() as $socialProfile) {
+
+        }
+        dump($user);
         die;
     }
 }

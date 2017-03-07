@@ -87,11 +87,17 @@ class User implements UserInterface
     private $developerProfiles;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $socialProfiles;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->developerProfiles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->socialProfiles = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -496,5 +502,39 @@ class User implements UserInterface
     public function getUpdated()
     {
         return $this->updated;
+    }
+
+    /**
+     * Add socialProfile
+     *
+     * @param \AppBundle\Entity\SocialProfile $socialProfile
+     *
+     * @return User
+     */
+    public function addSocialProfile(\AppBundle\Entity\SocialProfile $socialProfile)
+    {
+        $this->socialProfiles[] = $socialProfile;
+
+        return $this;
+    }
+
+    /**
+     * Remove socialProfile
+     *
+     * @param \AppBundle\Entity\SocialProfile $socialProfile
+     */
+    public function removeSocialProfile(\AppBundle\Entity\SocialProfile $socialProfile)
+    {
+        $this->socialProfiles->removeElement($socialProfile);
+    }
+
+    /**
+     * Get socialProfiles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSocialProfiles()
+    {
+        return $this->socialProfiles;
     }
 }

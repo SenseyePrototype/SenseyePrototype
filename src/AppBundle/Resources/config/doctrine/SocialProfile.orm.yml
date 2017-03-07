@@ -1,0 +1,61 @@
+AppBundle\Entity\SocialProfile:
+    type: entity
+    table: s_social_profile
+
+    indexes:
+        USER_ID_INDEX:
+            columns:
+                - user_id
+
+    manyToOne:
+        user:
+            targetEntity: AppBundle\Entity\User
+            inversedBy: socialProfiles
+            joinColumns:
+                -
+                    name: user_id
+                    nullable: false
+                    referencedColumnName: id
+            fetch: EXTRA_LAZY
+
+    id:
+        id:
+            type: integer
+            unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+
+    fields:
+        email:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        name:
+           type: string
+           length: 255
+           fixed: false
+           nullable: true
+        profileId:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: profile_id
+        accessToken:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: access_token
+        socialCode:
+            type: integer
+            nullable: false
+            column: social_code
+        created:
+            type: datetime
+            nullable: false
+        updated:
+            type: datetime
+            nullable: false
