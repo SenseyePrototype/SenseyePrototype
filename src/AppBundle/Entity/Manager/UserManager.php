@@ -86,7 +86,7 @@ class UserManager
     /**
      * @param $socialCode
      * @param $profileId
-     * @return \AppBundle\Entity\User|null
+     * @return SocialProfile
      */
     public function findBySocial($socialCode, $profileId)
     {
@@ -96,7 +96,7 @@ class UserManager
     /**
      * @param $email
      *
-     * @return \AppBundle\Entity\User|null|object
+     * @return User|null
      */
     public function findUserByEmail($email)
     {

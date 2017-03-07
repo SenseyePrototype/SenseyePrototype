@@ -17,5 +17,5 @@ interface ResponseHandlerInterface
      *
      * @return UserInterface
      */
-    public function processOauthUserResponse(UserResponseInterface $response): UserInterface;
+    public function processOAuthUserResponse(UserResponseInterface $response): UserInterface;
 }

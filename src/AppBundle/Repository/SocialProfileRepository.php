@@ -26,6 +26,6 @@ class SocialProfileRepository extends \Doctrine\ORM\EntityRepository
             ])
             ->setMaxResults(1)
             ->getQuery()
-            ->getResult();
+            ->getOneOrNullResult();
     }
 }

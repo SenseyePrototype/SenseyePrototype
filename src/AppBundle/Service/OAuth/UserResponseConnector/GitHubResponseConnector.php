@@ -18,6 +18,10 @@ class GitHubResponseConnector extends AbstractResponseConnector
      */
     public function connect(UserInterface $user, UserResponseInterface $response)
     {
+        /**
+         * TODO: find for what use this method? (#111)
+         */
+
         /** @var User $previousUser */
         $previousUser = $this->userManager->findOneByGithubId($response->getUsername());
 

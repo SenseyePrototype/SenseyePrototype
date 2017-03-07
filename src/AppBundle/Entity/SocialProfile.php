@@ -7,6 +7,8 @@ namespace AppBundle\Entity;
  */
 class SocialProfile
 {
+    const SOCIAL_CODE_GITHUB = 1;
+
     /**
      * @var integer
      */

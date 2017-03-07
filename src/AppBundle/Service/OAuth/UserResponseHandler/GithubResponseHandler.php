@@ -2,6 +2,7 @@
 
 namespace AppBundle\Service\OAuth\UserResponseHandler;
 
+use AppBundle\Entity\SocialProfile;
 use AppBundle\Entity\User;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -20,10 +21,14 @@ class GithubResponseHandler extends AbstractResponseHandler
      */
     protected function getUserByResourceOwnerId(UserResponseInterface $response)
     {
-        return $this->userManager->findOneByGithubId($response->getUsername());
+        return $this->userManager->findBySocial(
+            SocialProfile::SOCIAL_CODE_GITHUB,
+            $response->getUsername()
+        );
     }
 
     /**
+     * TODO: DEPRECATED? (#111)
      * @param UserResponseInterface $response
      * @param UserInterface         $user
      *

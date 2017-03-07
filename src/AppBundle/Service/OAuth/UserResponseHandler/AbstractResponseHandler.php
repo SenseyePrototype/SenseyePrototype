@@ -3,6 +3,7 @@
 namespace AppBundle\Service\OAuth\UserResponseHandler;
 
 use AppBundle\Entity\Manager\UserManager;
+use AppBundle\Entity\SocialProfile;
 use AppBundle\Entity\User;
 use AppBundle\Service\OAuth\UserResponseMapper\ResponseMapperInterface;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
@@ -52,28 +53,47 @@ abstract class AbstractResponseHandler implements ResponseHandlerInterface
      *
      * @return UserInterface
      */
-    public function processOauthUserResponse(UserResponseInterface $response): UserInterface
+    public function processOAuthUserResponse(UserResponseInterface $response): UserInterface
     {
-        $user = $this->getUserByResourceOwnerId($response);
-        $isUserWithSameEmail = $this->userManager->findUserByEmail($response->getEmail());
+        $social = $this->getUserByResourceOwnerId($response);
 
-        if ($user === null) {
-            $user = ($isUserWithSameEmail) ? $isUserWithSameEmail : new User();
+        $now = new \DateTime();
+
+        if ($social === null) {
+            $isUserWithSameEmail = $this->userManager->findUserByEmail($response->getEmail());
+
+            /* @var $user User */
+            $user = $isUserWithSameEmail ?: new User();
 
             $user = $this
                 ->responseMapper
                 ->map($response, $user);
 
+            $social = new SocialProfile();
+            $social
+                ->setUser($user)
+                ->setAccessToken($response->getAccessToken())
+                ->setProfileId($response->getUsername())
+                ->setSocialCode(SocialProfile::SOCIAL_CODE_GITHUB)
+                ->setCreated($now)
+                ->setUpdated($now);
+
+            $user->addSocialProfile($social);
+
             return $this->userManager->save($user);
         }
 
-        return $this->updateUserAccessToken($response, $user);
+        $social
+            ->setUpdated($now)
+            ->setAccessToken($response->getAccessToken());
+
+        return $social->getUser();
     }
 
     /**
      * @param UserResponseInterface $response
      *
-     * @return UserInterface|null
+     * @return SocialProfile|null
      */
     abstract protected function getUserByResourceOwnerId(UserResponseInterface $response);
 

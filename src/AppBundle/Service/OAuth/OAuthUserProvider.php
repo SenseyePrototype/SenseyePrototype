@@ -86,7 +86,7 @@ class OAuthUserProvider implements UserProviderInterface, AccountConnectorInterf
         $resourceOwnerName = $response->getResourceOwner()->getName();
         $responseHandler = $this->responseHandlerProvider->getResponseHandler($resourceOwnerName);
 
-        return $responseHandler->processOauthUserResponse($response);
+        return $responseHandler->processOAuthUserResponse($response);
     }
 
     /**

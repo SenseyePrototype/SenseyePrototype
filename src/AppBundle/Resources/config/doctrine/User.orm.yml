@@ -10,6 +10,8 @@ AppBundle\Entity\User:
         socialProfiles:
             targetEntity: AppBundle\Entity\SocialProfile
             mappedBy: user
+            cascade:
+                - persist
 
     id:
         id:
