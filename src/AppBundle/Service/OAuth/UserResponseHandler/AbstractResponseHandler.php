@@ -17,6 +17,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
 abstract class AbstractResponseHandler implements ResponseHandlerInterface
 {
     /**
+     * @var array
+     */
+    private $socialNameCodeMap = [
+        'github' => SocialProfile::SOCIAL_CODE_GITHUB,
+        'bitbucket' => SocialProfile::SOCIAL_CODE_BITBUCKET,
+    ];
+
+    /**
      * @var UserManager
      */
     protected $userManager;
@@ -55,7 +63,12 @@ abstract class AbstractResponseHandler implements ResponseHandlerInterface
      */
     public function processOAuthUserResponse(UserResponseInterface $response): UserInterface
     {
-        $social = $this->getUserByResourceOwnerId($response);
+        $socialCode = $this->socialNameCodeMap[$response->getResourceOwner()->getName()];
+
+        $social = $this->userManager->findBySocial(
+            $socialCode,
+            $response->getUsername()
+        );
 
         $now = new \DateTime();
 
@@ -63,18 +76,26 @@ abstract class AbstractResponseHandler implements ResponseHandlerInterface
             $isUserWithSameEmail = $this->userManager->findUserByEmail($response->getEmail());
 
             /* @var $user User */
-            $user = $isUserWithSameEmail ?: new User();
+            if ($isUserWithSameEmail) {
+                $user = $isUserWithSameEmail;
+            } else {
+                $user = new User();
 
-            $user = $this
-                ->responseMapper
-                ->map($response, $user);
+                $user
+                    ->setUsername($response->getNickname())
+                    ->setEmail($response->getEmail())
+                    ->setCreated($now)
+                    ->setUpdated($now);
+            }
 
             $social = new SocialProfile();
             $social
                 ->setUser($user)
+                ->setName($response->getNickname())
+                ->setEmail($response->getEmail())
                 ->setAccessToken($response->getAccessToken())
                 ->setProfileId($response->getUsername())
-                ->setSocialCode(SocialProfile::SOCIAL_CODE_GITHUB)
+                ->setSocialCode($socialCode)
                 ->setCreated($now)
                 ->setUpdated($now);
 

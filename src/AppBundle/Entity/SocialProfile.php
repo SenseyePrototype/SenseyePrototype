@@ -8,6 +8,7 @@ namespace AppBundle\Entity;
 class SocialProfile
 {
     const SOCIAL_CODE_GITHUB = 1;
+    const SOCIAL_CODE_BITBUCKET = 2;
 
     /**
      * @var integer

@@ -15,6 +15,7 @@ class GithubResponseHandler extends AbstractResponseHandler
 {
 
     /**
+     * TODO: DEPRECATED? (#111)
      * @param UserResponseInterface $response
      *
      * @return UserInterface|object
