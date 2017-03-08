@@ -7,8 +7,13 @@ namespace AppBundle\Entity;
  */
 class SocialProfile
 {
-    const SOCIAL_CODE_GITHUB = 1;
-    const SOCIAL_CODE_BITBUCKET = 2;
+    const SOCIAL_CODE_GITHUB        = 0b00000001;
+    const SOCIAL_CODE_BITBUCKET     = 0b00000010;
+    const SOCIAL_CODE_GITLAB        = 0b00000011;
+
+    const SOCIAL_CODE_FACEBOOK      = 0b00010001;
+    const SOCIAL_CODE_LINKEDIN      = 0b00010010;
+    const SOCIAL_CODE_GOOGLE        = 0b00010011;
 
     /**
      * @var integer

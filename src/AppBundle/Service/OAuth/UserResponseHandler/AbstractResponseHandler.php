@@ -22,6 +22,7 @@ abstract class AbstractResponseHandler implements ResponseHandlerInterface
     private $socialNameCodeMap = [
         'github' => SocialProfile::SOCIAL_CODE_GITHUB,
         'bitbucket' => SocialProfile::SOCIAL_CODE_BITBUCKET,
+        'google' => SocialProfile::SOCIAL_CODE_GOOGLE,
     ];
 
     /**
