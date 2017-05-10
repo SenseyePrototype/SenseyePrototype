@@ -71,13 +71,13 @@
             </div>
             <div class="col s8 offset-s1 view z-depth-3">
                 <div class="post-date">27 ноября 2016</div>
-                <h4 class="center-align">Full Stack Web Dev</h4>
+                <h4 class="center-align">{{ vacancy.getTitle() }}</h4>
                 <div class="field col s12">
                     <div class="title col s12">
                         Вознаграждение
                     </div>
                     <div class="col s12">
-                        <i class="zmdi zmdi-money"></i> 5000$
+                        <i class="zmdi zmdi-money"></i> {{ vacancy.getSalary() }}$
                     </div>
                 </div>
                 <div class="field col s12">
@@ -93,7 +93,7 @@
                         Описание
                     </div>
                     <div class="col s12">
-                        <i class="zmdi zmdi-assignment"></i> I'm a 25 y.o. web developer focusing on PHP5, MySQL, NodeJS, CSS3, jQuery and JS. I am experienced in architecting and developing large scale web applications and delivering on-time.
+                        <i class="zmdi zmdi-assignment"></i> {{ vacancy.getDescription() }}
                     </div>
                 </div>
                 <div class="field col s12">
