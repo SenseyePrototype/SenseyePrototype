@@ -1,0 +1,67 @@
+{# @var form \Symfony\Component\Form\FormView #}
+{# @var form \AppBundle\Entity\Vacancy #}
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link href="https://cdn.rawgit.com/SenseyePrototype/senseyeprototype.github.io/master/css/list.css" type="text/css" rel="stylesheet"/>
+    <link href="https://cdn.rawgit.com/SenseyePrototype/senseyeprototype.github.io/master/css/profile.css" type="text/css" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+    <section class="navigation z-depth-2">
+        <nav class="container">
+            <div class="nav-wrapper">
+                <a href="{{ path('developers.page') }}" class="brand-logo left">Senseye</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="javascript:void(0);">{{ app.getUser().getUsername() }}</a></li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+    <section class="content profile">
+        <div class="container">
+            <div class="row">
+                <div class="col s9">
+                    {{ form_start(form) }}
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix zmdi zmdi-account"></i>
+                        {{ form_widget(form.title, {'attr': {'class': 'validate'}}) }}
+                        {{ form_label(form.title, 'profile_parameters.title'|trans) }}
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix zmdi zmdi-brush"></i>
+                        {{ form_widget(form.description, {
+                            'attr': {
+                                'class': 'materialize-textarea validate'
+                            }}
+                        ) }}
+                        {{ form_label(form.description, 'profile_parameters.description'|trans) }}
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix zmdi zmdi-money"></i>
+                        {{ form_widget(form.salary, {
+                            'attr': {
+                                'type': 'number',
+                                'step': 100,
+                                'class': 'validate'
+                            }}
+                        ) }}
+                        {{ form_label(form.salary, 'salary'|trans) }}
+                    </div>
+                    <div class="input-field col s12 padding-top">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">
+                            {{ 'action.save'|trans }}
+                        </button>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+{% endblock %}

@@ -1,0 +1,4 @@
+vacancy.new:
+    path:     /new
+    defaults: { _controller: 'AppBundle:Vacancy:new' }
+    methods:  ['GET']

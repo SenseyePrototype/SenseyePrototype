@@ -6,6 +6,10 @@ app.employer.profile:
     resource: '@AppBundle/Resources/config/routing/employer.profile.yml'
     prefix:   /employer/profile
 
+app.vacancy:
+    resource: '@AppBundle/Resources/config/routing/vacancy.yml'
+    prefix:   /vacancy
+
 intro:
     path: /
     defaults: { _controller: AppBundle:Intro:index }
