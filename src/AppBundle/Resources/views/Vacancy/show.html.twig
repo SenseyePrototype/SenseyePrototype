@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Senseye поиск программистов</title>
-    <meta property="og:site_name" content="Senseye – пошук программістів">
-    <meta name="description" content="Пошук програмістів">
-    <meta name="keywords" content="Senseye,поиск резюме,пошук резюме,пошук программістів">
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
-    <link href="css/list.css" type="text/css" rel="stylesheet"/>
-    <link href="css/profile.css" type="text/css" rel="stylesheet"/>
-</head>
-<body>
+{# @var vacancy \AppBundle\Entity\Vacancy #}
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link href="https://cdn.rawgit.com/SenseyePrototype/senseyeprototype.github.io/master/css/list.css" type="text/css" rel="stylesheet"/>
+    <link href="https://cdn.rawgit.com/SenseyePrototype/senseyeprototype.github.io/master/css/profile.css" type="text/css" rel="stylesheet"/>
+{% endblock %}
 
+{% block body %}
 <section class="navigation z-depth-2">
     <nav class="container">
         <div class="nav-wrapper">
@@ -62,7 +55,7 @@
         <div class="row">
             <div class="col s3 view z-depth-3 center-align">
                 <div>
-                    <img src="images/user.png" class="circle responsive-img">
+                    <img src="https://cdn.rawgit.com/SenseyePrototype/senseyeprototype.github.io/master/images/user.png" class="circle responsive-img">
                 </div>
                 <h5>Alex Golars Alfionskiy</h5>
                 <div class="field col s12">
@@ -195,10 +188,9 @@
         </div>
     </div>
 </section>
-<!-- Compiled and minified JavaScript -->
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-<script src="js/main.js"></script>
-<script src="js/profile.js"></script>
-</body>
-</html>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+{% endblock %}
