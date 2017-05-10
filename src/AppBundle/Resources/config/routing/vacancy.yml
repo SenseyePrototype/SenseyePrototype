@@ -2,3 +2,15 @@ vacancy.new:
     path:     /new
     defaults: { _controller: 'AppBundle:Vacancy:new' }
     methods:  ['GET']
+
+vacancy.create:
+    path:     /create
+    defaults: { _controller: 'AppBundle:Vacancy:create' }
+    methods:  ['POST']
+
+vacancy.show:
+    path:     /{id}
+    defaults: { _controller: 'AppBundle:Vacancy:show' }
+    methods: ['GET']
+    requirements:
+        id: '\d+'
